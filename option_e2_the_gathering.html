@@ -568,13 +568,14 @@
     background: linear-gradient(135deg, var(--dark-green), var(--black));
     border: 2px solid var(--gold);
     flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    overflow: hidden;
+  }
+
+  .card-keynote-preview .keynote-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .card-keynote-preview .keynote-info .card-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
@@ -862,16 +863,16 @@
     background: linear-gradient(135deg, var(--dark-green), var(--black));
     border: 3px solid var(--gold);
     margin: 0 auto 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
-    color: var(--gold);
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    overflow: hidden;
     box-shadow: 0 0 80px rgba(212, 168, 67, 0.15), 0 0 160px rgba(212, 168, 67, 0.05);
     animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  .keynote-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .keynote-label {
@@ -1787,7 +1788,7 @@
   </div>
 
   <div class="info-card card-keynote-preview">
-    <div class="keynote-thumb">Photo</div>
+    <div class="keynote-thumb"><img src="madison-butler.jpeg" alt="Madison Butler"></div>
     <div class="keynote-info">
       <div class="card-label">Keynote</div>
       <div class="card-value">Madison Butler</div>
@@ -1924,7 +1925,7 @@
   <div class="orbit-element orbit-el-4" aria-hidden="true">&#10023;</div>
 
   <div class="keynote-center">
-    <div class="keynote-photo" aria-label="Photo placeholder for Madison Butler">Photo<br>Placeholder</div>
+    <div class="keynote-photo"><img src="madison-butler.jpeg" alt="Madison Butler, keynote speaker"></div>
     <div class="keynote-label">Keynote Speaker</div>
     <h2 class="keynote-name">Madison<br>Butler</h2>
     <p class="keynote-title">
