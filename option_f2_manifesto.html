@@ -579,9 +579,10 @@
       color: rgba(255,255,255,0.04);
       text-align: center;
       position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       white-space: nowrap;
     }
 
@@ -953,7 +954,7 @@
 
   <!-- Stat: 20,000+ -->
   <section style="z-index:1; position:relative;">
-    <div class="stat-bg-number reveal-scale" aria-hidden="true">20,000+</div>
+    <div class="stat-bg-number" aria-hidden="true">20,000+</div>
     <div style="position:relative; z-index:2; text-align:center;">
       <p class="reveal" style="font-family:'Inter',sans-serif; font-size:clamp(16px,2vw,22px); color:rgba(255,255,255,0.6); letter-spacing:0.1em; text-transform:uppercase;">
         watched the first one
