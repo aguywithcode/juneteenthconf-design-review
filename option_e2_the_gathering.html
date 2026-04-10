@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juneteenth Conference 2026 — Design Option E-2: The Gathering Evolved</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #231c2d;
+    --dark-green: #1a2d19;
+    --red: #c84342;
+    --green: #55ac64;
+    --gold: #D4A843;
+    --cyan: #45B7D1;
+    --glass-bg: rgba(35, 28, 45, 0.55);
+    --glass-border: rgba(255, 255, 255, 0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: #f0ece2;
+    overflow-x: hidden;
+    line-height: 1.5;
+  }
+
+  /* ===== DESIGN BANNER ===== */
+  .design-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: linear-gradient(90deg, var(--red), var(--gold), var(--cyan), var(--green));
+    color: #000;
+    text-align: center;
+    padding: 8px 16px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ===== AMBIENT PARTICLE CANVAS ===== */
+  .particle-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: particle-drift linear infinite;
+  }
+
+  .particle--red { background: var(--red); }
+  .particle--green { background: var(--green); }
+  .particle--gold { background: var(--gold); }
+  .particle--cyan { background: var(--cyan); }
+  .particle--white { background: rgba(240, 236, 226, 0.6); }
+
+  @keyframes particle-drift {
+    0% { opacity: 0; transform: translateY(100vh) translateX(0) scale(0); }
+    10% { opacity: 0.6; transform: translateY(80vh) translateX(10px) scale(1); }
+    90% { opacity: 0.3; transform: translateY(-10vh) translateX(-20px) scale(0.5); }
+    100% { opacity: 0; transform: translateY(-20vh) translateX(0) scale(0); }
+  }
+
+  /* Flowing ambient lines */
+  .flow-lines {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .flow-line {
+    position: absolute;
+    width: 200%;
+    height: 1px;
+    left: -50%;
+    opacity: 0.06;
+    animation: flow-drift linear infinite;
+  }
+
+  .flow-line:nth-child(1) { top: 20%; background: linear-gradient(90deg, transparent, var(--red), transparent); animation-duration: 20s; }
+  .flow-line:nth-child(2) { top: 40%; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation-duration: 28s; animation-delay: -5s; }
+  .flow-line:nth-child(3) { top: 60%; background: linear-gradient(90deg, transparent, var(--green), transparent); animation-duration: 24s; animation-delay: -10s; }
+  .flow-line:nth-child(4) { top: 80%; background: linear-gradient(90deg, transparent, var(--cyan), transparent); animation-duration: 32s; animation-delay: -15s; }
+  .flow-line:nth-child(5) { top: 10%; background: linear-gradient(90deg, transparent, var(--gold), transparent); animation-duration: 26s; animation-delay: -8s; }
+  .flow-line:nth-child(6) { top: 50%; background: linear-gradient(90deg, transparent, var(--red), transparent); animation-duration: 22s; animation-delay: -12s; }
+  .flow-line:nth-child(7) { top: 70%; background: linear-gradient(90deg, transparent, var(--cyan), transparent); animation-duration: 30s; animation-delay: -3s; }
+  .flow-line:nth-child(8) { top: 90%; background: linear-gradient(90deg, transparent, var(--green), transparent); animation-duration: 18s; animation-delay: -7s; }
+
+  @keyframes flow-drift {
+    0% { transform: translateX(-30%); }
+    100% { transform: translateX(30%); }
+  }
+
+  /* ===== SIDE NAV ===== */
+  .side-nav {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .side-nav a {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: block;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .side-nav a:hover {
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold);
+    transform: scale(1.5);
+  }
+
+  .side-nav a::after {
+    content: attr(aria-label);
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .side-nav a:hover::after { opacity: 1; }
+
+  /* ===== FLOATING SOCIALS ===== */
+  .floating-socials {
+    position: fixed;
+    left: 24px;
+    bottom: 40px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .social-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    text-decoration: none;
+    color: #f0ece2;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .social-icon:hover {
+    transform: scale(1.2);
+  }
+
+  .social-icon:nth-child(1):hover { box-shadow: 0 0 20px var(--cyan); }
+  .social-icon:nth-child(2):hover { box-shadow: 0 0 20px var(--red); }
+  .social-icon:nth-child(3):hover { box-shadow: 0 0 20px var(--green); }
+  .social-icon:nth-child(4):hover { box-shadow: 0 0 20px var(--gold); }
+
+  /* ===== SOUND TOGGLE ===== */
+  .sound-toggle {
+    position: fixed;
+    left: 24px;
+    top: 60px;
+    z-index: 1000;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #f0ece2;
+    font-size: 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .sound-toggle:hover {
+    box-shadow: 0 0 16px var(--cyan);
+    transform: scale(1.1);
+  }
+
+  /* ===== SECTION 1: THE CANVAS — COLLAGE WITH HISTORY ===== */
+  .canvas-section {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 36px;
+    z-index: 1;
+  }
+
+  .canvas-bg-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .canvas-composition {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    min-height: 100vh;
+    padding: 60px 40px;
+    z-index: 1;
+  }
+
+  /* Fragmented conference type */
+  .frag-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    position: absolute;
+    line-height: 0.85;
+    user-select: none;
+  }
+
+  .frag-j { font-size: clamp(80px, 14vw, 180px); color: var(--red); top: 6%; left: 4%; transform: rotate(-4deg); animation: float-slow 8s ease-in-out infinite; }
+  .frag-u { font-size: clamp(60px, 10vw, 140px); color: var(--green); top: 3%; left: 17%; transform: rotate(2deg); animation: float-med 6s ease-in-out infinite 0.5s; }
+  .frag-n { font-size: clamp(50px, 8vw, 110px); color: var(--gold); top: 10%; left: 31%; transform: rotate(-1deg); animation: float-slow 9s ease-in-out infinite 1s; }
+  .frag-e1 { font-size: clamp(70px, 12vw, 160px); color: var(--cyan); top: 1%; left: 43%; transform: rotate(3deg); animation: float-med 7s ease-in-out infinite 0.3s; }
+  .frag-t { font-size: clamp(55px, 9vw, 120px); color: var(--red); top: 8%; left: 59%; transform: rotate(-5deg); animation: float-slow 8s ease-in-out infinite 1.5s; }
+  .frag-e2 { font-size: clamp(65px, 11vw, 150px); color: var(--green); top: 2%; left: 71%; transform: rotate(1deg); animation: float-med 6.5s ease-in-out infinite 0.7s; }
+  .frag-enth { font-size: clamp(40px, 7vw, 100px); color: var(--gold); top: 14%; left: 82%; transform: rotate(-2deg); animation: float-slow 7.5s ease-in-out infinite 2s; }
+
+  .frag-conf {
+    font-size: clamp(28px, 4vw, 56px);
+    color: rgba(240, 236, 226, 0.5);
+    top: 26%;
+    left: 8%;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    transform: rotate(-1deg);
+    animation: float-med 10s ease-in-out infinite;
+  }
+
+  .frag-2026 {
+    font-size: clamp(120px, 22vw, 320px);
+    color: rgba(212, 168, 67, 0.1);
+    top: 16%;
+    left: 24%;
+    z-index: 0;
+    animation: float-slow 12s ease-in-out infinite 1s;
+  }
+
+  .frag-chicago {
+    font-size: clamp(24px, 3.5vw, 48px);
+    color: var(--cyan);
+    top: 36%;
+    right: 8%;
+    letter-spacing: 0.15em;
+    transform: rotate(6deg);
+    animation: float-med 7s ease-in-out infinite 0.8s;
+  }
+
+  .frag-theme {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: clamp(18px, 2.5vw, 36px);
+    color: #f0ece2;
+    top: 44%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    letter-spacing: 0.08em;
+    animation: pulse-subtle 4s ease-in-out infinite;
+    white-space: nowrap;
+  }
+
+  /* Historical fragments woven into the canvas collage */
+  .hist-frag {
+    position: absolute;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .hf-1619 {
+    font-size: clamp(70px, 12vw, 160px);
+    color: rgba(200, 67, 66, 0.12);
+    top: 55%;
+    right: 3%;
+    transform: rotate(3deg);
+    animation: float-slow 11s ease-in-out infinite 1s;
+  }
+
+  .hf-1865 {
+    font-size: clamp(60px, 10vw, 140px);
+    color: rgba(85, 172, 100, 0.14);
+    top: 62%;
+    left: 25%;
+    transform: rotate(-2deg);
+    animation: float-med 10s ease-in-out infinite 2s;
+  }
+
+  .hf-equal {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(16px, 2.2vw, 28px);
+    color: rgba(212, 168, 67, 0.25);
+    top: 74%;
+    right: 15%;
+    transform: rotate(4deg);
+    letter-spacing: 0.1em;
+    animation: float-slow 8s ease-in-out infinite 3s;
+  }
+
+  .hf-chains {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(20px, 3vw, 36px);
+    color: rgba(200, 67, 66, 0.1);
+    top: 82%;
+    left: 5%;
+    transform: rotate(-5deg);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-decoration: line-through;
+    text-decoration-color: rgba(85, 172, 100, 0.3);
+    animation: float-med 9s ease-in-out infinite 1.5s;
+  }
+
+  .hf-freedom {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(18px, 2.8vw, 32px);
+    color: rgba(85, 172, 100, 0.2);
+    top: 86%;
+    left: 50%;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    animation: float-slow 10s ease-in-out infinite 0.5s;
+  }
+
+  .hf-sixteen {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(14px, 1.8vw, 22px);
+    color: rgba(69, 183, 209, 0.2);
+    top: 78%;
+    right: 40%;
+    transform: rotate(-2deg);
+    font-weight: 300;
+    font-style: italic;
+    animation: float-med 8.5s ease-in-out infinite 2.5s;
+  }
+
+  /* Historical image placeholders woven into the collage */
+  .hist-image {
+    position: absolute;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    color: rgba(240, 236, 226, 0.4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px;
+    line-height: 1.3;
+  }
+
+  .hi-passage {
+    width: clamp(90px, 14vw, 180px);
+    height: clamp(70px, 10vw, 130px);
+    background: linear-gradient(135deg, rgba(200, 67, 66, 0.15), rgba(35, 28, 45, 0.8));
+    border: 1px solid rgba(200, 67, 66, 0.2);
+    top: 52%;
+    left: 2%;
+    transform: rotate(-3deg);
+    animation: float-slow 9s ease-in-out infinite 1s;
+  }
+
+  .hi-galveston {
+    width: clamp(100px, 15vw, 200px);
+    height: clamp(75px, 11vw, 140px);
+    background: linear-gradient(135deg, rgba(212, 168, 67, 0.15), rgba(35, 28, 45, 0.8));
+    border: 1px solid rgba(212, 168, 67, 0.2);
+    top: 68%;
+    left: 55%;
+    transform: rotate(2deg);
+    animation: float-med 8s ease-in-out infinite 0.5s;
+  }
+
+  .hi-march {
+    width: clamp(110px, 16vw, 210px);
+    height: clamp(70px, 10vw, 130px);
+    background: linear-gradient(135deg, rgba(85, 172, 100, 0.15), rgba(35, 28, 45, 0.8));
+    border: 1px solid rgba(85, 172, 100, 0.2);
+    top: 58%;
+    right: 18%;
+    transform: rotate(-1.5deg);
+    animation: float-slow 10s ease-in-out infinite 2s;
+  }
+
+  .hi-conf2020 {
+    width: clamp(100px, 15vw, 200px);
+    height: clamp(75px, 11vw, 140px);
+    background: linear-gradient(135deg, rgba(69, 183, 209, 0.15), rgba(35, 28, 45, 0.8));
+    border: 1px solid rgba(69, 183, 209, 0.2);
+    top: 80%;
+    right: 5%;
+    transform: rotate(3deg);
+    animation: float-med 7.5s ease-in-out infinite 1.5s;
+  }
+
+  .illustration-badge {
+    position: absolute;
+    width: clamp(100px, 14vw, 200px);
+    height: clamp(100px, 14vw, 200px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dark-green), var(--black));
+    border: 2px solid var(--green);
+    top: 50%;
+    left: 42%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: var(--green);
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: float-slow 9s ease-in-out infinite 2s;
+    box-shadow: 0 0 40px rgba(85, 172, 100, 0.15);
+    z-index: 2;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(240, 236, 226, 0.35);
+    animation: bounce-hint 2s ease-in-out infinite;
+    z-index: 5;
+  }
+
+  .scroll-hint span {
+    display: block;
+    text-align: center;
+    margin-top: 6px;
+    font-size: 18px;
+  }
+
+  /* ===== SECTION 2: FLOATING INFO CARDS (richer content) ===== */
+  .cards-section {
+    min-height: 100vh;
+    position: relative;
+    padding: 120px 40px;
+    z-index: 1;
+  }
+
+  .info-card {
+    position: absolute;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 28px 36px;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.4s ease;
+    z-index: 2;
+  }
+
+  .info-card:hover {
+    transform: scale(1.05) !important;
+    z-index: 10;
+  }
+
+  .card-date {
+    top: 6%;
+    left: 6%;
+    transform: rotate(-2deg);
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212, 168, 67, 0.1);
+    animation: float-card-1 7s ease-in-out infinite;
+  }
+
+  .card-date .card-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .card-date .card-value { font-size: clamp(32px, 4.5vw, 56px); font-weight: 700; line-height: 1; color: #fff; }
+  .card-date .card-detail { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(240,236,226,0.5); margin-top: 10px; line-height: 1.5; }
+
+  .card-location {
+    top: 4%;
+    right: 10%;
+    transform: rotate(1.5deg);
+    border-color: var(--cyan);
+    box-shadow: 0 0 30px rgba(69, 183, 209, 0.1);
+    animation: float-card-2 8s ease-in-out infinite 1s;
+  }
+
+  .card-location .card-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); margin-bottom: 6px; }
+  .card-location .card-value { font-size: clamp(26px, 3.5vw, 48px); font-weight: 700; line-height: 1.1; }
+  .card-location .card-detail { font-family: 'Inter', sans-serif; font-size: 13px; color: rgba(240,236,226,0.5); margin-top: 10px; line-height: 1.5; }
+
+  .card-keynote-preview {
+    top: 30%;
+    left: 25%;
+    transform: rotate(-1.5deg);
+    border-color: var(--gold);
+    max-width: 380px;
+    animation: float-card-3 9s ease-in-out infinite 1.5s;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .card-keynote-preview .keynote-thumb {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dark-green), var(--black));
+    border: 2px solid var(--gold);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .card-keynote-preview .keynote-info .card-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+  .card-keynote-preview .keynote-info .card-value { font-size: clamp(18px, 2.5vw, 28px); font-weight: 700; line-height: 1.1; }
+  .card-keynote-preview .keynote-info .card-detail { font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(240,236,226,0.5); margin-top: 6px; line-height: 1.4; }
+
+  .card-register {
+    top: 48%;
+    left: 10%;
+    transform: rotate(-1deg);
+    background: var(--red);
+    border-color: var(--red);
+    cursor: pointer;
+    animation: float-card-1 6s ease-in-out infinite 0.5s;
+    box-shadow: 0 0 40px rgba(200, 67, 66, 0.25);
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .card-register:hover {
+    box-shadow: 0 0 60px rgba(200, 67, 66, 0.5) !important;
+    background: #d95554;
+  }
+
+  .card-register .card-value { font-size: clamp(22px, 2.8vw, 36px); font-weight: 700; text-transform: uppercase; letter-spacing: 4px; }
+  .card-register .card-detail { font-family: 'Inter', sans-serif; font-size: 12px; opacity: 0.8; margin-top: 8px; }
+  .card-register .card-arrow { font-size: 24px; margin-left: 12px; }
+
+  .card-sponsor {
+    top: 52%;
+    right: 6%;
+    transform: rotate(2.5deg);
+    border-color: var(--green);
+    cursor: pointer;
+    animation: float-card-4 7.5s ease-in-out infinite 2s;
+    box-shadow: 0 0 30px rgba(85, 172, 100, 0.15);
+    text-decoration: none;
+    color: #f0ece2;
+  }
+
+  .card-sponsor:hover {
+    box-shadow: 0 0 60px rgba(85, 172, 100, 0.4) !important;
+  }
+
+  .card-sponsor .card-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+  .card-sponsor .card-value { font-size: clamp(20px, 2.5vw, 32px); font-weight: 600; color: var(--green); }
+  .card-sponsor .card-detail { font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(240,236,226,0.45); margin-top: 8px; line-height: 1.4; }
+
+  .card-stats {
+    top: 22%;
+    right: 5%;
+    transform: rotate(3deg);
+    border-color: rgba(255, 255, 255, 0.08);
+    animation: float-card-2 8.5s ease-in-out infinite 0.8s;
+    max-width: 220px;
+  }
+
+  .stat-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .stat-row:last-child { margin-bottom: 0; }
+
+  .stat-number {
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gold);
+  }
+
+  .stat-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: rgba(240, 236, 226, 0.5);
+  }
+
+  /* ===== SECTION 3: THE JOURNEY ===== */
+  .journey-section {
+    position: relative;
+    min-height: 120vh;
+    padding: 100px 40px;
+    overflow: hidden;
+    z-index: 1;
+    background: linear-gradient(180deg, var(--black) 0%, rgba(26, 45, 25, 0.25) 50%, var(--black) 100%);
+  }
+
+  .journey-section::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(200, 67, 66, 0.5) 12%,
+      rgba(212, 168, 67, 0.5) 30%,
+      rgba(85, 172, 100, 0.5) 50%,
+      rgba(69, 183, 209, 0.5) 68%,
+      rgba(200, 67, 66, 0.6) 82%,
+      rgba(255, 255, 255, 0.8) 95%,
+      transparent 100%
+    );
+    z-index: 0;
+  }
+
+  .journey-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(14px, 1.5vw, 18px);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(240, 236, 226, 0.4);
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .journey-canvas {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .epoch {
+    position: relative;
+    margin-bottom: 90px;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .epoch:nth-child(odd) { justify-content: flex-start; }
+  .epoch:nth-child(even) { justify-content: flex-end; }
+
+  .epoch-marker {
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  .epoch-content {
+    max-width: 480px;
+    position: relative;
+  }
+
+  .epoch:nth-child(odd) .epoch-content { padding-right: 80px; text-align: right; margin-right: auto; }
+  .epoch:nth-child(even) .epoch-content { padding-left: 80px; text-align: left; margin-left: auto; }
+
+  .epoch-year {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(48px, 7vw, 90px);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .epoch-phrase {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 22px);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .epoch-text {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(13px, 1.4vw, 16px);
+    color: rgba(240, 236, 226, 0.5);
+    line-height: 1.7;
+  }
+
+  /* Epoch image placeholder — collage-style alongside text */
+  .epoch-image {
+    width: clamp(100px, 16vw, 200px);
+    height: clamp(70px, 11vw, 130px);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 10px;
+    color: rgba(240, 236, 226, 0.35);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px;
+    line-height: 1.3;
+    margin-top: 16px;
+    flex-shrink: 0;
+  }
+
+  .epoch:nth-child(odd) .epoch-image { margin-left: auto; }
+
+  .epoch-origin .epoch-marker { background: var(--red); box-shadow: 0 0 20px rgba(200, 67, 66, 0.4); }
+  .epoch-origin .epoch-year { color: var(--red); }
+  .epoch-origin .epoch-phrase { color: rgba(200, 67, 66, 0.7); }
+  .epoch-origin .epoch-image { background: linear-gradient(135deg, rgba(200, 67, 66, 0.12), rgba(35,28,45,0.8)); border: 1px solid rgba(200, 67, 66, 0.2); }
+
+  .epoch-emancipation .epoch-marker { background: var(--gold); box-shadow: 0 0 20px rgba(212, 168, 67, 0.4); }
+  .epoch-emancipation .epoch-year { color: var(--gold); }
+  .epoch-emancipation .epoch-phrase { color: rgba(212, 168, 67, 0.8); }
+  .epoch-emancipation .epoch-image { background: linear-gradient(135deg, rgba(212, 168, 67, 0.12), rgba(35,28,45,0.8)); border: 1px solid rgba(212, 168, 67, 0.2); }
+
+  .epoch-rights .epoch-marker { background: var(--green); box-shadow: 0 0 20px rgba(85, 172, 100, 0.4); }
+  .epoch-rights .epoch-year { color: var(--green); }
+  .epoch-rights .epoch-phrase { color: rgba(85, 172, 100, 0.8); }
+  .epoch-rights .epoch-image { background: linear-gradient(135deg, rgba(85, 172, 100, 0.12), rgba(35,28,45,0.8)); border: 1px solid rgba(85, 172, 100, 0.2); }
+
+  .epoch-tech .epoch-marker { background: var(--cyan); box-shadow: 0 0 20px rgba(69, 183, 209, 0.4); }
+  .epoch-tech .epoch-year { color: var(--cyan); }
+  .epoch-tech .epoch-phrase { color: rgba(69, 183, 209, 0.8); }
+  .epoch-tech .epoch-image { background: linear-gradient(135deg, rgba(69, 183, 209, 0.12), rgba(35,28,45,0.8)); border: 1px solid rgba(69, 183, 209, 0.2); }
+
+  .epoch-built .epoch-marker { background: var(--red); box-shadow: 0 0 24px rgba(200, 67, 66, 0.5); }
+  .epoch-built .epoch-year { color: var(--red); }
+  .epoch-built .epoch-phrase { color: rgba(240, 236, 226, 0.9); font-style: normal; font-weight: 600; }
+  .epoch-built .epoch-image { background: linear-gradient(135deg, rgba(200, 67, 66, 0.12), rgba(69, 183, 209, 0.1)); border: 1px solid rgba(200, 67, 66, 0.3); }
+
+  .epoch-now .epoch-marker { background: #fff; box-shadow: 0 0 24px rgba(255, 255, 255, 0.5); animation: glow-pulse-white 3s ease-in-out infinite; }
+  .epoch-now .epoch-year {
+    background: linear-gradient(135deg, var(--gold), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .epoch-now .epoch-phrase { color: var(--gold); font-style: normal; font-weight: 600; }
+
+  /* Ghost watermarks */
+  .journey-ghost {
+    position: absolute;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .jg-chains { font-size: clamp(80px, 15vw, 220px); color: rgba(200, 67, 66, 0.04); top: 3%; left: -5%; transform: rotate(-8deg); }
+  .jg-freedom { font-size: clamp(60px, 12vw, 180px); color: rgba(85, 172, 100, 0.04); bottom: 12%; right: -5%; transform: rotate(5deg); }
+
+  /* ===== SECTION 4: KEYNOTE REVEAL ===== */
+  .keynote-section {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .keynote-orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 168, 67, 0.06);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: spin-slow 60s linear infinite;
+  }
+
+  .orbit-1 { width: 550px; height: 550px; }
+  .orbit-2 { width: 850px; height: 850px; animation-duration: 90s; animation-direction: reverse; }
+  .orbit-3 { width: 1150px; height: 1150px; animation-duration: 120s; }
+
+  .keynote-center {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .keynote-photo {
+    width: clamp(200px, 28vw, 360px);
+    height: clamp(200px, 28vw, 360px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dark-green), var(--black));
+    border: 3px solid var(--gold);
+    margin: 0 auto 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 0 80px rgba(212, 168, 67, 0.15), 0 0 160px rgba(212, 168, 67, 0.05);
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  .keynote-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+
+  .keynote-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 700;
+    line-height: 0.9;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .keynote-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(14px, 2vw, 22px);
+    font-weight: 300;
+    color: rgba(240, 236, 226, 0.7);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .orbit-element {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .orbit-el-1 { top: 8%; left: 18%; animation: float-slow 8s ease-in-out infinite; }
+  .orbit-el-2 { top: 22%; right: 12%; animation: float-med 6s ease-in-out infinite 1s; }
+  .orbit-el-3 { bottom: 18%; left: 12%; animation: float-slow 9s ease-in-out infinite 2s; }
+  .orbit-el-4 { bottom: 12%; right: 22%; animation: float-med 7s ease-in-out infinite 0.5s; }
+
+  /* ===== SECTION 5: BIG DIPPER CONSTELLATION ===== */
+  .constellation-section {
+    min-height: 100vh;
+    position: relative;
+    padding: 100px 40px;
+    overflow: hidden;
+    z-index: 1;
+    background: radial-gradient(ellipse at 80% 20%, rgba(212, 168, 67, 0.03) 0%, transparent 50%);
+  }
+
+  .constellation-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(14px, 1.5vw, 18px);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .constellation-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(13px, 1.3vw, 16px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(240, 236, 226, 0.3);
+    text-align: center;
+    margin-bottom: 80px;
+    letter-spacing: 0.05em;
+  }
+
+  .constellation-canvas {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 700px;
+    margin: 0 auto;
+  }
+
+  .constellation-lines {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .constellation-lines svg { width: 100%; height: 100%; }
+  .constellation-lines line { stroke-width: 1.5; opacity: 0.35; }
+  .constellation-lines .pointer-line { stroke-dasharray: 6 8; opacity: 0.2; stroke-width: 1; }
+
+  /* Interactive speaker nodes */
+  .speaker-node {
+    position: absolute;
+    text-align: center;
+    z-index: 2;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+
+  .speaker-node:hover { z-index: 10; }
+  .speaker-node:hover .speaker-name { opacity: 1; transform: translateY(0); }
+  .speaker-node:hover .speaker-avatar { transform: scale(1.15); }
+
+  .speaker-avatar {
+    width: clamp(54px, 7vw, 84px);
+    height: clamp(54px, 7vw, 84px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dark-green), var(--black));
+    border: 2px solid var(--glass-border);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: rgba(240, 236, 226, 0.5);
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+    position: relative;
+  }
+
+  /* Star glow ring around avatar on hover */
+  .speaker-avatar::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    transition: all 0.4s ease;
+  }
+
+  .speaker-node:hover .speaker-avatar::after {
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212, 168, 67, 0.25);
+  }
+
+  .speaker-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 12px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  /* Speaker detail card — appears on click (JS toggle) */
+  .speaker-detail {
+    position: absolute;
+    top: calc(100% + 16px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    width: 260px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 14px;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 20;
+    text-align: left;
+  }
+
+  .speaker-node.active .speaker-detail {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) scale(1);
+  }
+
+  .speaker-detail-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .speaker-detail-role {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: rgba(240, 236, 226, 0.5);
+    margin-bottom: 14px;
+    line-height: 1.4;
+  }
+
+  .speaker-video-placeholder {
+    width: 100%;
+    height: 120px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, rgba(26, 45, 25, 0.8), rgba(35, 28, 45, 0.9));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: rgba(240, 236, 226, 0.4);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .speaker-video-placeholder:hover {
+    border-color: var(--red);
+    color: var(--red);
+  }
+
+  .play-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid currentColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* Big Dipper positions */
+  .s1 { top: 68%; left: 8%; animation: float-slow 8s ease-in-out infinite; }
+  .s1 .speaker-avatar { border-color: var(--gold); }
+  .s1 .speaker-name { color: var(--gold); }
+  .s1 .speaker-detail { border-color: var(--gold); }
+
+  .s2 { top: 55%; left: 22%; animation: float-med 7s ease-in-out infinite 0.5s; }
+  .s2 .speaker-avatar { border-color: var(--gold); }
+  .s2 .speaker-name { color: var(--gold); }
+  .s2 .speaker-detail { border-color: var(--gold); }
+
+  .s3 { top: 48%; left: 38%; animation: float-slow 9s ease-in-out infinite 1s; }
+  .s3 .speaker-avatar { border-color: var(--cyan); }
+  .s3 .speaker-name { color: var(--cyan); }
+  .s3 .speaker-detail { border-color: var(--cyan); }
+
+  .s4 { top: 52%; left: 58%; animation: float-med 6.5s ease-in-out infinite 1.5s; }
+  .s4 .speaker-avatar { border-color: var(--cyan); }
+  .s4 .speaker-name { color: var(--cyan); }
+  .s4 .speaker-detail { border-color: var(--cyan); }
+
+  .s5 { top: 28%; left: 60%; animation: float-slow 8.5s ease-in-out infinite 0.8s; }
+  .s5 .speaker-avatar { border-color: var(--green); }
+  .s5 .speaker-name { color: var(--green); }
+  .s5 .speaker-detail { border-color: var(--green); }
+
+  .s6 { top: 25%; left: 40%; animation: float-med 7.5s ease-in-out infinite 2s; }
+  .s6 .speaker-avatar { border-color: var(--green); }
+  .s6 .speaker-name { color: var(--green); }
+  .s6 .speaker-detail { border-color: var(--green); }
+
+  /* North Star */
+  .north-star {
+    position: absolute;
+    top: 3%;
+    right: 11%;
+    z-index: 3;
+    text-align: center;
+  }
+
+  .north-star-glow {
+    width: clamp(18px, 2.5vw, 30px);
+    height: clamp(18px, 2.5vw, 30px);
+    border-radius: 50%;
+    background: #fff;
+    margin: 0 auto 12px;
+    box-shadow:
+      0 0 20px rgba(255,255,255,0.8),
+      0 0 60px rgba(212,168,67,0.5),
+      0 0 120px rgba(212,168,67,0.2);
+    animation: north-star-pulse 3s ease-in-out infinite;
+    position: relative;
+  }
+
+  .north-star-rays {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(70px, 9vw, 110px);
+    height: clamp(70px, 9vw, 110px);
+    background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: north-star-rays-pulse 4s ease-in-out infinite;
+  }
+
+  /* Cross-shaped light burst */
+  .north-star-glow::before,
+  .north-star-glow::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.3);
+    animation: north-star-pulse 3s ease-in-out infinite;
+  }
+  .north-star-glow::before { width: 1px; height: clamp(40px, 5vw, 70px); }
+  .north-star-glow::after { width: clamp(40px, 5vw, 70px); height: 1px; }
+
+  .north-star-label { font-family: 'Space Grotesk', sans-serif; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); opacity: 0.6; }
+  .north-star-year { font-family: 'Space Grotesk', sans-serif; font-size: clamp(22px, 3vw, 38px); font-weight: 700; color: #fff; line-height: 1; margin-top: 4px; }
+  .north-star-dest { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 300; color: rgba(240,236,226,0.5); margin-top: 4px; font-style: italic; }
+
+  /* Background stars */
+  .bg-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(240, 236, 226, 0.25);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bg-star:nth-child(odd) { animation: twinkle 4s ease-in-out infinite; }
+  .bg-star:nth-child(even) { animation: twinkle 5.5s ease-in-out infinite 2s; }
+  .bg-star.bright { width: 3px; height: 3px; background: rgba(240, 236, 226, 0.5); }
+
+  /* ===== SECTION 6: MISSION STREAM ===== */
+  .mission-section {
+    position: relative;
+    padding: 120px 40px;
+    overflow: hidden;
+    min-height: 100vh;
+    z-index: 1;
+  }
+
+  .mission-bg-stat {
+    position: absolute;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(100px, 20vw, 300px);
+    color: rgba(212, 168, 67, 0.05);
+    top: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .mission-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .mission-block {
+    margin-bottom: 100px;
+    position: relative;
+  }
+
+  .mission-pullquote {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 32px;
+    max-width: 800px;
+  }
+
+  .pullquote-red { color: var(--red); transform: rotate(-1deg); display: inline-block; }
+  .pullquote-green { color: var(--green); }
+  .pullquote-gold { color: var(--gold); }
+
+  .mission-text {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(16px, 1.8vw, 20px);
+    line-height: 1.8;
+    color: rgba(240, 236, 226, 0.7);
+    max-width: 640px;
+  }
+
+  .mission-block:nth-child(even) { text-align: right; margin-left: auto; }
+  .mission-block:nth-child(even) .mission-text { margin-left: auto; }
+
+  .inline-stat {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 1.4em;
+  }
+
+  .program-card {
+    display: inline-block;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 24px 32px;
+    margin: 12px 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.3s ease;
+    vertical-align: top;
+    max-width: 340px;
+  }
+
+  .program-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+  .program-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .program-card p { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; color: rgba(240,236,226,0.6); }
+
+  .pc-1 { border-color: var(--red); transform: rotate(-1deg); }
+  .pc-1 h3 { color: var(--red); }
+  .pc-2 { border-color: var(--green); transform: rotate(1.5deg); }
+  .pc-2 h3 { color: var(--green); }
+  .pc-3 { border-color: var(--cyan); transform: rotate(-0.5deg); }
+  .pc-3 h3 { color: var(--cyan); }
+
+  /* ===== SECTION 7: THE INVITATION ===== */
+  .invitation-section {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 40px;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .invitation-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(212,168,67,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .invitation-content { position: relative; z-index: 2; }
+
+  .invitation-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 7vw, 90px);
+    font-weight: 700;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--gold), #fff, var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .invitation-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(15px, 1.8vw, 22px);
+    font-weight: 300;
+    color: rgba(240,236,226,0.55);
+    margin-bottom: 60px;
+    line-height: 1.6;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+
+  .cta-btn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 20px 48px;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .cta-register {
+    background: var(--red);
+    color: #fff;
+    box-shadow: 0 0 40px rgba(200,67,66,0.3);
+  }
+
+  .cta-register:hover {
+    box-shadow: 0 0 60px rgba(200,67,66,0.6);
+    transform: translateY(-4px) scale(1.03);
+  }
+
+  .cta-sponsor {
+    background: transparent;
+    color: var(--green);
+    border: 2px solid var(--green);
+    box-shadow: 0 0 30px rgba(85,172,100,0.12);
+  }
+
+  .cta-sponsor:hover {
+    background: var(--green);
+    color: #fff;
+    box-shadow: 0 0 60px rgba(85,172,100,0.4);
+    transform: translateY(-4px) scale(1.03);
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    border-radius: 60px;
+    overflow: hidden;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 16px 24px;
+    background: transparent;
+    border: none;
+    color: #f0ece2;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    outline: none;
+  }
+
+  .newsletter-form input::placeholder { color: rgba(240,236,226,0.35); }
+
+  .newsletter-form button {
+    padding: 16px 28px;
+    background: var(--gold);
+    border: none;
+    color: var(--black);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .newsletter-form button:hover { background: #e6bb4e; }
+
+  .newsletter-note {
+    font-size: 13px;
+    color: rgba(240,236,226,0.35);
+    margin-top: -36px;
+    margin-bottom: 48px;
+  }
+
+  .gathering-footer {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(240,236,226,0.3);
+    line-height: 1.8;
+  }
+
+  .gathering-footer a { color: var(--gold); text-decoration: none; transition: color 0.3s; }
+  .gathering-footer a:hover { color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+
+  @keyframes float-med {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+  }
+
+  @keyframes float-card-1 {
+    0%, 100% { transform: rotate(-2deg) translateY(0); }
+    50% { transform: rotate(-2deg) translateY(-11px); }
+  }
+
+  @keyframes float-card-2 {
+    0%, 100% { transform: rotate(1.5deg) translateY(0); }
+    50% { transform: rotate(1.5deg) translateY(-9px); }
+  }
+
+  @keyframes float-card-3 {
+    0%, 100% { transform: rotate(-1.5deg) translateY(0); }
+    50% { transform: rotate(-1.5deg) translateY(-12px); }
+  }
+
+  @keyframes float-card-4 {
+    0%, 100% { transform: rotate(2.5deg) translateY(0); }
+    50% { transform: rotate(2.5deg) translateY(-10px); }
+  }
+
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 80px rgba(212,168,67,0.15), 0 0 160px rgba(212,168,67,0.05); }
+    50% { box-shadow: 0 0 100px rgba(212,168,67,0.25), 0 0 200px rgba(212,168,67,0.1); }
+  }
+
+  @keyframes glow-pulse-white {
+    0%, 100% { box-shadow: 0 0 24px rgba(255,255,255,0.3); }
+    50% { box-shadow: 0 0 40px rgba(255,255,255,0.6); }
+  }
+
+  @keyframes spin-slow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  @keyframes north-star-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 60px rgba(212,168,67,0.5), 0 0 120px rgba(212,168,67,0.2); }
+    50% { box-shadow: 0 0 30px rgba(255,255,255,1), 0 0 80px rgba(212,168,67,0.7), 0 0 160px rgba(212,168,67,0.3); }
+  }
+
+  @keyframes north-star-rays-pulse {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes bounce-hint {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ===== ACCESSIBILITY: REDUCED MOTION ===== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .particle-canvas, .flow-lines { display: none; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .side-nav { right: 12px; gap: 10px; }
+    .floating-socials { left: 12px; bottom: 20px; }
+    .sound-toggle { left: 12px; }
+
+    .info-card {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      transform: rotate(0deg) !important;
+      margin: 16px auto;
+      max-width: 420px;
+      animation: none !important;
+    }
+
+    .cards-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .constellation-canvas {
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px;
+      padding: 20px;
+    }
+
+    .constellation-lines { display: none; }
+    .bg-star { display: none; }
+    .north-star { position: relative; top: auto; right: auto; margin: 0 auto 24px; }
+
+    .speaker-node {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      animation: none !important;
+    }
+
+    .speaker-name { opacity: 1 !important; transform: none !important; }
+
+    /* Journey responsive */
+    .journey-section::before { left: 24px; }
+    .epoch { flex-direction: column; }
+    .epoch:nth-child(odd) .epoch-content,
+    .epoch:nth-child(even) .epoch-content {
+      text-align: left;
+      padding-left: 44px;
+      padding-right: 0;
+      margin: 0;
+    }
+    .epoch-marker { left: 24px !important; }
+    .hist-frag, .hist-image { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .canvas-composition { padding: 40px 20px; }
+
+    .frag-title {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      display: inline;
+      transform: none !important;
+      animation: none !important;
+    }
+
+    .canvas-composition {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-height: auto;
+      padding-top: 80px;
+      padding-bottom: 40px;
+    }
+
+    .frag-2026 {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+    }
+
+    .frag-theme { width: 100%; position: relative !important; margin-top: 24px; }
+    .frag-chicago { transform: none !important; }
+    .illustration-badge { position: relative !important; margin: 24px auto; }
+    .scroll-hint { position: relative; margin-top: 32px; }
+    .side-nav { display: none; }
+
+    .keynote-name { font-size: clamp(36px, 10vw, 80px); }
+    .orbit-1, .orbit-2, .orbit-3 { display: none; }
+    .orbit-element { display: none; }
+
+    .mission-block:nth-child(even) { text-align: left; }
+    .mission-block:nth-child(even) .mission-text { margin-left: 0; }
+
+    .program-card { display: block; margin: 12px 0; max-width: 100%; transform: none !important; }
+
+    .cta-btn { padding: 16px 36px; font-size: 14px; }
+
+    .newsletter-form { border-radius: 12px; flex-direction: column; }
+    .newsletter-form button { border-radius: 0 0 12px 12px; }
+
+    .speaker-detail { left: 0; transform: translateX(-20%) scale(0.9); }
+    .speaker-node.active .speaker-detail { transform: translateX(-20%) scale(1); }
+  }
+
+  /* ===== SKIP LINK ===== */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--gold);
+    color: var(--black);
+    padding: 12px 24px;
+    z-index: 99999;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.3s;
+  }
+
+  .skip-link:focus { top: 36px; }
+</style>
+</head>
+<body>
+
+<!-- Skip Link -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Design Banner -->
+<div class="design-banner" role="banner">Design Option E-2: The Gathering &mdash; Evolved</div>
+
+<!-- Ambient Particle Canvas -->
+<div class="particle-canvas" aria-hidden="true">
+  <div class="particle particle--red" style="left:8%;width:3px;height:3px;animation-duration:18s;animation-delay:0s;"></div>
+  <div class="particle particle--gold" style="left:15%;width:2px;height:2px;animation-duration:22s;animation-delay:-3s;"></div>
+  <div class="particle particle--green" style="left:25%;width:4px;height:4px;animation-duration:20s;animation-delay:-7s;"></div>
+  <div class="particle particle--cyan" style="left:35%;width:2px;height:2px;animation-duration:24s;animation-delay:-2s;"></div>
+  <div class="particle particle--white" style="left:42%;width:2px;height:2px;animation-duration:19s;animation-delay:-11s;"></div>
+  <div class="particle particle--red" style="left:55%;width:3px;height:3px;animation-duration:21s;animation-delay:-5s;"></div>
+  <div class="particle particle--gold" style="left:65%;width:2px;height:2px;animation-duration:25s;animation-delay:-8s;"></div>
+  <div class="particle particle--green" style="left:72%;width:3px;height:3px;animation-duration:17s;animation-delay:-1s;"></div>
+  <div class="particle particle--cyan" style="left:82%;width:2px;height:2px;animation-duration:23s;animation-delay:-14s;"></div>
+  <div class="particle particle--white" style="left:90%;width:2px;height:2px;animation-duration:20s;animation-delay:-6s;"></div>
+  <div class="particle particle--gold" style="left:5%;width:2px;height:2px;animation-duration:26s;animation-delay:-9s;"></div>
+  <div class="particle particle--red" style="left:48%;width:3px;height:3px;animation-duration:19s;animation-delay:-13s;"></div>
+  <div class="particle particle--green" style="left:78%;width:2px;height:2px;animation-duration:22s;animation-delay:-4s;"></div>
+  <div class="particle particle--cyan" style="left:20%;width:4px;height:4px;animation-duration:28s;animation-delay:-10s;"></div>
+  <div class="particle particle--white" style="left:60%;width:2px;height:2px;animation-duration:16s;animation-delay:-7s;"></div>
+  <div class="particle particle--gold" style="left:38%;width:3px;height:3px;animation-duration:21s;animation-delay:-12s;"></div>
+</div>
+
+<!-- Flowing Ambient Lines -->
+<div class="flow-lines" aria-hidden="true">
+  <div class="flow-line"></div>
+  <div class="flow-line"></div>
+  <div class="flow-line"></div>
+  <div class="flow-line"></div>
+  <div class="flow-line"></div>
+  <div class="flow-line"></div>
+  <div class="flow-line"></div>
+  <div class="flow-line"></div>
+</div>
+
+<!-- Side Navigation -->
+<nav class="side-nav" aria-label="Section navigation">
+  <a href="#canvas" aria-label="Opening"></a>
+  <a href="#cards" aria-label="Details"></a>
+  <a href="#journey" aria-label="The Journey"></a>
+  <a href="#keynote" aria-label="Keynote"></a>
+  <a href="#constellation" aria-label="Speakers"></a>
+  <a href="#mission" aria-label="Mission"></a>
+  <a href="#invitation" aria-label="Register"></a>
+</nav>
+
+<!-- Floating Socials -->
+<div class="floating-socials" aria-label="Social media links">
+  <a href="#" class="social-icon" aria-label="Twitter">&#120143;</a>
+  <a href="#" class="social-icon" aria-label="YouTube">&#9654;</a>
+  <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
+  <a href="#" class="social-icon" aria-label="Instagram">&#9741;</a>
+</div>
+
+<!-- Sound Toggle -->
+<button class="sound-toggle" aria-label="Toggle ambient sound" title="Sound on/off">&#9835;</button>
+
+<!-- ===== SECTION 1: THE CANVAS — COLLAGE WITH HISTORY ===== -->
+<section id="canvas" class="canvas-section" aria-label="Juneteenth Conference 2026 hero">
+  <div class="canvas-bg-grain"></div>
+  <div class="canvas-composition" id="main-content">
+    <!-- Conference title fragments -->
+    <span class="frag-title frag-j" aria-hidden="true">J</span>
+    <span class="frag-title frag-u" aria-hidden="true">U</span>
+    <span class="frag-title frag-n" aria-hidden="true">N</span>
+    <span class="frag-title frag-e1" aria-hidden="true">E</span>
+    <span class="frag-title frag-t" aria-hidden="true">T</span>
+    <span class="frag-title frag-e2" aria-hidden="true">E</span>
+    <span class="frag-title frag-enth" aria-hidden="true">ENTH</span>
+    <span class="frag-title frag-conf">CONFERENCE</span>
+    <span class="frag-title frag-2026" aria-hidden="true">2026</span>
+    <span class="frag-title frag-chicago">CHICAGO</span>
+    <p class="frag-title frag-theme">"Building Our Own Table"</p>
+
+    <h1 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">
+      Juneteenth Conference 2026 — Building Our Own Table — June 19-20, Chicago, IL
+    </h1>
+
+    <!-- Historical fragments woven into the collage -->
+    <span class="hist-frag hf-1619" aria-hidden="true">1619</span>
+    <span class="hist-frag hf-1865" aria-hidden="true">1865</span>
+    <span class="hist-frag hf-equal" aria-hidden="true">"Absolutely Equal"</span>
+    <span class="hist-frag hf-chains" aria-hidden="true">Chains</span>
+    <span class="hist-frag hf-freedom" aria-hidden="true">Freedom</span>
+    <span class="hist-frag hf-sixteen" aria-hidden="true">16 days</span>
+
+    <!-- Historical image placeholders layered into the collage -->
+    <div class="hist-image hi-passage" aria-label="Historical image: Middle Passage">Middle<br>Passage</div>
+    <div class="hist-image hi-galveston" aria-label="Historical image: Galveston, 1865">Galveston<br>June 19, 1865</div>
+    <div class="hist-image hi-march" aria-label="Historical image: March on Washington">March on<br>Washington</div>
+    <div class="hist-image hi-conf2020" aria-label="Historical image: JuneteenthConf 2020">JuneteenthConf<br>2020</div>
+
+    <div class="illustration-badge" aria-label="Conference illustration placeholder">Illustration<br>Badge</div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      Explore
+      <span>&darr;</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: FLOATING INFO CARDS (RICHER) ===== -->
+<section id="cards" class="cards-section" aria-label="Conference details">
+
+  <div class="info-card card-date">
+    <div class="card-label">Save the Date</div>
+    <div class="card-value">JUNE<br>19&ndash;20</div>
+    <div class="card-detail">Two days of sessions, connection,<br>and a dinner cruise on the water</div>
+  </div>
+
+  <div class="info-card card-location">
+    <div class="card-label">Location</div>
+    <div class="card-value">Chicago,<br>Illinois</div>
+    <div class="card-detail">The city that built the blues, house music,<br>and a legacy of Black excellence</div>
+  </div>
+
+  <div class="info-card card-keynote-preview">
+    <div class="keynote-thumb">Photo</div>
+    <div class="keynote-info">
+      <div class="card-label">Keynote</div>
+      <div class="card-value">Madison Butler</div>
+      <div class="card-detail">Founder, Blue Haired Unicorn<br>&amp; Black Speakers Collection</div>
+    </div>
+  </div>
+
+  <div class="info-card card-stats">
+    <div class="stat-row"><span class="stat-number">20K+</span><span class="stat-label">viewers at launch</span></div>
+    <div class="stat-row"><span class="stat-number">16</span><span class="stat-label">days to full roster</span></div>
+    <div class="stat-row"><span class="stat-number">79</span><span class="stat-label">videos on YouTube</span></div>
+  </div>
+
+  <a href="#invitation" class="info-card card-register" role="button" aria-label="Register for the conference">
+    <div class="card-value">Register <span class="card-arrow">&rarr;</span></div>
+    <div class="card-detail">20 sessions &bull; 2 days &bull; Dinner cruise</div>
+  </a>
+
+  <a href="#invitation" class="info-card card-sponsor" role="button" aria-label="Become a sponsor">
+    <div class="card-label">Join Us</div>
+    <div class="card-value">Become a Sponsor</div>
+    <div class="card-detail">Help sustain and grow the movement.<br>Build your brand with our community.</div>
+  </a>
+
+</section>
+
+<!-- ===== SECTION 3: THE JOURNEY — 400 YEARS ===== -->
+<section id="journey" class="journey-section" aria-label="The 400-year journey to this gathering">
+
+  <span class="journey-ghost jg-chains" aria-hidden="true">CHAINS</span>
+  <span class="journey-ghost jg-freedom" aria-hidden="true">FREE</span>
+
+  <div class="journey-title">The Journey to This Table</div>
+
+  <div class="journey-canvas">
+
+    <div class="epoch epoch-origin">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">1619</div>
+        <div class="epoch-phrase">The first enslaved Africans arrive at Point Comfort, Virginia</div>
+        <p class="epoch-text">
+          20 and odd Negroes. Torn from home, stripped of name and nation.
+          Four hundred years ago, a story of resilience began.
+        </p>
+        <div class="epoch-image">Middle Passage<br>Image Placeholder</div>
+      </div>
+    </div>
+
+    <div class="epoch epoch-emancipation">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">1865</div>
+        <div class="epoch-phrase">"All enslaved people are&hellip; absolutely equal"</div>
+        <p class="epoch-text">
+          June 19th, Galveston, Texas. General Order No. 3.
+          Two and a half years after the Emancipation Proclamation,
+          the last enslaved people in Texas finally learn they are free.
+          The chains break. Juneteenth is born.
+        </p>
+        <div class="epoch-image">General Order No. 3<br>Image Placeholder</div>
+      </div>
+    </div>
+
+    <div class="epoch epoch-rights">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">1964</div>
+        <div class="epoch-phrase">We shall not be moved</div>
+        <p class="epoch-text">
+          From sit-ins to the March on Washington, from Selma to the Civil Rights Act.
+          A generation demanded a seat at the table &mdash; and was told to wait.
+          They didn't wait.
+        </p>
+        <div class="epoch-image">March on Washington<br>Image Placeholder</div>
+      </div>
+    </div>
+
+    <div class="epoch epoch-tech">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">2000s</div>
+        <div class="epoch-phrase">The digital frontier</div>
+        <p class="epoch-text">
+          Black engineers, founders, and visionaries build the technologies that power the world &mdash;
+          while fighting for representation in the rooms where decisions are made.
+          The seat at the table was never enough.
+        </p>
+        <div class="epoch-image">Black in Tech<br>Image Placeholder</div>
+      </div>
+    </div>
+
+    <div class="epoch epoch-built">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">2020</div>
+        <div class="epoch-phrase">We built our own table.</div>
+        <p class="epoch-text">
+          A pandemic. A reckoning. The world proclaimed Black Lives Matter while conferences
+          still claimed "Black talent is hard to find." We filled a roster of brilliant Black
+          speakers in 16 days. What they said couldn't be done in a year, we did in two weeks.
+          We didn't wait for permission. We built it ourselves.
+        </p>
+        <div class="epoch-image">JuneteenthConf 2020<br>Image Placeholder</div>
+      </div>
+    </div>
+
+    <div class="epoch epoch-now">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">2026</div>
+        <div class="epoch-phrase">Now we turn this into a movement.</div>
+        <p class="epoch-text">
+          This isn't a comeback. This is an escalation. The table was built in 2020.
+          In 2026, it becomes permanent. Institutional. A movement.
+          No more asking. No more waiting. Building.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SECTION 4: KEYNOTE REVEAL ===== -->
+<section id="keynote" class="keynote-section" aria-label="Keynote speaker">
+
+  <div class="keynote-orbit-ring orbit-1" aria-hidden="true"></div>
+  <div class="keynote-orbit-ring orbit-2" aria-hidden="true"></div>
+  <div class="keynote-orbit-ring orbit-3" aria-hidden="true"></div>
+
+  <div class="orbit-element orbit-el-1" aria-hidden="true">&#10022;</div>
+  <div class="orbit-element orbit-el-2" aria-hidden="true">&#10038;</div>
+  <div class="orbit-element orbit-el-3" aria-hidden="true">&#10047;</div>
+  <div class="orbit-element orbit-el-4" aria-hidden="true">&#10023;</div>
+
+  <div class="keynote-center">
+    <div class="keynote-photo" aria-label="Photo placeholder for Madison Butler">Photo<br>Placeholder</div>
+    <div class="keynote-label">Keynote Speaker</div>
+    <h2 class="keynote-name">Madison<br>Butler</h2>
+    <p class="keynote-title">
+      Founder of Blue Haired Unicorn<br>
+      &amp; Black Speakers Collection
+    </p>
+  </div>
+</section>
+
+<!-- ===== SECTION 5: BIG DIPPER CONSTELLATION ===== -->
+<section id="constellation" class="constellation-section" aria-label="Past speakers constellation">
+
+  <div class="constellation-title">Follow the Drinking Gourd</div>
+  <div class="constellation-subtitle">"The riverbank makes a very good road&hellip; Follow the Drinking Gourd."</div>
+
+  <div class="constellation-canvas">
+
+    <!-- Night sky background stars -->
+    <div class="bg-star" style="top:6%;left:4%;" aria-hidden="true"></div>
+    <div class="bg-star bright" style="top:12%;left:18%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:3%;left:33%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:20%;left:52%;" aria-hidden="true"></div>
+    <div class="bg-star bright" style="top:8%;left:70%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:32%;left:83%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:42%;left:10%;" aria-hidden="true"></div>
+    <div class="bg-star bright" style="top:58%;left:28%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:67%;left:68%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:78%;left:48%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:52%;left:88%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:38%;left:2%;" aria-hidden="true"></div>
+    <div class="bg-star bright" style="top:15%;left:90%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:73%;left:13%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:86%;left:78%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:4%;left:58%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:30%;left:46%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:88%;left:23%;" aria-hidden="true"></div>
+    <div class="bg-star bright" style="top:45%;left:55%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:62%;left:92%;" aria-hidden="true"></div>
+
+    <!-- Big Dipper SVG lines -->
+    <div class="constellation-lines" aria-hidden="true">
+      <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid meet">
+        <!-- Handle -->
+        <line x1="130" y1="490" x2="300" y2="395" stroke="var(--gold)" />
+        <line x1="300" y1="395" x2="500" y2="350" stroke="var(--gold)" />
+        <!-- Bowl -->
+        <line x1="500" y1="350" x2="730" y2="380" stroke="var(--cyan)" />
+        <line x1="730" y1="380" x2="760" y2="210" stroke="var(--cyan)" />
+        <line x1="760" y1="210" x2="520" y2="190" stroke="var(--green)" />
+        <line x1="520" y1="190" x2="500" y2="350" stroke="var(--green)" />
+        <!-- Pointer line to North Star -->
+        <line x1="520" y1="190" x2="760" y2="210" stroke="rgba(255,255,255,0.15)" class="pointer-line" />
+        <line x1="760" y1="210" x2="1030" y2="50" stroke="var(--gold)" class="pointer-line" />
+      </svg>
+    </div>
+
+    <!-- Handle tip — Angie Jones -->
+    <div class="speaker-node s1" onclick="this.classList.toggle('active')">
+      <div class="speaker-avatar">AJ</div>
+      <div class="speaker-name">Angie Jones</div>
+      <div class="speaker-detail">
+        <div class="speaker-detail-name">Angie Jones</div>
+        <div class="speaker-detail-role">VP of AI Agentic Foundation (AIAF). Legendary test automation engineer &amp; developer advocate.</div>
+        <div class="speaker-video-placeholder">
+          <div class="play-icon">&#9654;</div>
+          Watch Talk
+        </div>
+      </div>
+    </div>
+
+    <!-- Handle mid — Jerome Hardaway -->
+    <div class="speaker-node s2" onclick="this.classList.toggle('active')">
+      <div class="speaker-avatar">JH</div>
+      <div class="speaker-name">Jerome Hardaway</div>
+      <div class="speaker-detail">
+        <div class="speaker-detail-name">Jerome Hardaway</div>
+        <div class="speaker-detail-role">Founder, Vets Who Code. Empowering veterans through software development.</div>
+        <div class="speaker-video-placeholder">
+          <div class="play-icon">&#9654;</div>
+          Watch Talk
+        </div>
+      </div>
+    </div>
+
+    <!-- Bowl BL — Alaxandria Foreman -->
+    <div class="speaker-node s3" onclick="this.classList.toggle('active')">
+      <div class="speaker-avatar">AF</div>
+      <div class="speaker-name">Alaxandria Foreman</div>
+      <div class="speaker-detail">
+        <div class="speaker-detail-name">Alaxandria Foreman</div>
+        <div class="speaker-detail-role">Engineer, speaker, and advocate for diversity and inclusion in tech.</div>
+        <div class="speaker-video-placeholder">
+          <div class="play-icon">&#9654;</div>
+          Watch Talk
+        </div>
+      </div>
+    </div>
+
+    <!-- Bowl BR — Minda Harts -->
+    <div class="speaker-node s4" onclick="this.classList.toggle('active')">
+      <div class="speaker-avatar">MH</div>
+      <div class="speaker-name">Minda Harts</div>
+      <div class="speaker-detail">
+        <div class="speaker-detail-name">Minda Harts</div>
+        <div class="speaker-detail-role">Author of "The Memo." Workplace equity advocate and speaker.</div>
+        <div class="speaker-video-placeholder">
+          <div class="play-icon">&#9654;</div>
+          Watch Talk
+        </div>
+      </div>
+    </div>
+
+    <!-- Bowl TR (pointer) — Tim Banks -->
+    <div class="speaker-node s5" onclick="this.classList.toggle('active')">
+      <div class="speaker-avatar">TB</div>
+      <div class="speaker-name">Tim Banks</div>
+      <div class="speaker-detail">
+        <div class="speaker-detail-name">Tim Banks</div>
+        <div class="speaker-detail-role">Principal Cloud Economist. DevOps leader and community builder.</div>
+        <div class="speaker-video-placeholder">
+          <div class="play-icon">&#9654;</div>
+          Watch Talk
+        </div>
+      </div>
+    </div>
+
+    <!-- Bowl TL (pointer) — Wesley Faulkner -->
+    <div class="speaker-node s6" onclick="this.classList.toggle('active')">
+      <div class="speaker-avatar">WF</div>
+      <div class="speaker-name">Wesley Faulkner</div>
+      <div class="speaker-detail">
+        <div class="speaker-detail-name">Wesley Faulkner</div>
+        <div class="speaker-detail-role">Developer relations leader, community advocate, and tech culture champion.</div>
+        <div class="speaker-video-placeholder">
+          <div class="play-icon">&#9654;</div>
+          Watch Talk
+        </div>
+      </div>
+    </div>
+
+    <!-- North Star -->
+    <div class="north-star" aria-label="North Star: The Movement, 2026">
+      <div style="position:relative;display:inline-block;">
+        <div class="north-star-rays" aria-hidden="true"></div>
+        <div class="north-star-glow"></div>
+      </div>
+      <div class="north-star-label">North Star</div>
+      <div class="north-star-year">2026</div>
+      <div class="north-star-dest">The Movement</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SECTION 6: MISSION STREAM ===== -->
+<section id="mission" class="mission-section" aria-label="Our mission and programs">
+
+  <div class="mission-bg-stat" aria-hidden="true">20,000+</div>
+
+  <div class="mission-content">
+
+    <div class="mission-block">
+      <div class="mission-pullquote">
+        They said <span class="pullquote-red">"Black talent is hard to find."</span><br>
+        We filled a roster in <span class="pullquote-gold">16 days.</span>
+      </div>
+      <p class="mission-text">
+        <span class="inline-stat">20,000+</span> viewers at our inaugural event. A full speaker lineup
+        assembled in two weeks &mdash; what others claimed couldn't be done in a year.
+        <span class="inline-stat">3</span> events. <span class="inline-stat">79</span> videos.
+        <span class="inline-stat">2,500+</span> newsletter subscribers with a <span class="inline-stat">40%</span> open rate.
+        We didn't wait for permission. We built our own table.
+      </p>
+    </div>
+
+    <div class="mission-block">
+      <div class="mission-pullquote">
+        <span class="pullquote-green">Three pillars.</span><br>One movement.
+      </div>
+      <p class="mission-text">
+        20 curated sessions across engineering, data, security, entrepreneurship, and tech leadership &mdash;
+        plus a dinner cruise party on the water. Two days. One city.
+        No more asking. No more waiting. Building.
+      </p>
+    </div>
+
+    <div style="margin-top: 60px;">
+      <div class="program-card pc-1">
+        <h3>Juneteenth Conference</h3>
+        <p>Annual two-day gathering. 20 curated sessions across engineering, data, security, entrepreneurship, and tech leadership.</p>
+      </div>
+      <div class="program-card pc-2">
+        <h3>Tech Workforce Accelerator</h3>
+        <p>Hands-on project experience, mentorship, and career pipeline support for Black professionals entering or advancing in tech.</p>
+      </div>
+      <div class="program-card pc-3">
+        <h3>Mentorship Program</h3>
+        <p>Pairing aspiring technologists with experienced professionals for upskilling, portfolio building, and career guidance.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SECTION 7: THE INVITATION ===== -->
+<section id="invitation" class="invitation-section" aria-label="Register and get involved">
+
+  <div class="invitation-bg" aria-hidden="true"></div>
+
+  <div class="invitation-content">
+    <h2 class="invitation-headline">The table was built.<br>Now it's a movement.</h2>
+    <p class="invitation-sub">No more asking. No more waiting. Building.<br>June 19&ndash;20, 2026 &bull; Chicago, IL</p>
+
+    <div class="cta-group">
+      <a href="#" class="cta-btn cta-register" role="button">Register</a>
+      <a href="#" class="cta-btn cta-sponsor" role="button">Become a Sponsor</a>
+    </div>
+
+    <form class="newsletter-form" aria-label="Newsletter signup">
+      <input type="email" placeholder="your@email.com" aria-label="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="newsletter-note">Join 2,500+ subscribers. No spam, ever.</p>
+
+    <footer class="gathering-footer">
+      <p>
+        JuneteenthConf, Unl. &mdash; A nonprofit fiscally sponsored by YPOC Harrisburg (501(c)(3))<br>
+        <a href="#">@juneteenthconf</a> &bull;
+        <a href="#">YouTube</a> &bull;
+        <a href="#">LinkedIn</a> &bull;
+        <a href="#">info@juneteenthconf.com</a>
+      </p>
+      <p style="margin-top: 12px;">
+        Artwork by Havana Nguyen &bull; &copy; 2020&ndash;2026 JuneteenthConf
+      </p>
+    </footer>
+  </div>
+</section>
+
+<!-- Close other speaker detail cards when clicking outside -->
+<script>
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.speaker-node')) {
+      document.querySelectorAll('.speaker-node.active').forEach(function(node) {
+        node.classList.remove('active');
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

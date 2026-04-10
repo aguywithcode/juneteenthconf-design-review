@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juneteenth Conference 2026 — The Manifesto Unleashed</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwindcss.config = {
+      theme: {
+        extend: {
+          colors: {
+            jc: {
+              dark: '#231c2d',
+              red: '#c84342',
+              green: '#55ac64',
+              greenDark: '#1a2d19',
+              gold: '#D4A843',
+            }
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body {
+      background: #231c2d;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ======================== */
+    /* DESIGN BANNER            */
+    /* ======================== */
+    .design-banner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: #c84342;
+      color: #fff;
+      text-align: center;
+      padding: 6px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ======================== */
+    /* NAV                      */
+    /* ======================== */
+    .manifesto-nav {
+      position: fixed;
+      top: 30px;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transform: translateY(-120%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      background: rgba(35, 28, 45, 0.92);
+      backdrop-filter: blur(16px);
+    }
+    .manifesto-nav.visible { transform: translateY(0); }
+    .manifesto-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+    .manifesto-nav a:hover { color: #c84342; }
+
+    /* ======================== */
+    /* MARQUEE TICKER           */
+    /* ======================== */
+    .marquee-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 900;
+      background: #c84342;
+      overflow: hidden;
+      height: 36px;
+      display: flex;
+      align-items: center;
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee-track span {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0 24px;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ======================== */
+    /* SECTION BASE             */
+    /* ======================== */
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      padding: 80px 32px;
+      padding-bottom: 116px;
+      overflow: hidden;
+    }
+
+    /* ======================== */
+    /* HISTORICAL IMAGE LAYERS  */
+    /* ======================== */
+    .era-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .era-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+    .era-bg-1619::after {
+      background: rgba(35,28,45,0.92);
+    }
+    .era-bg-1865::after {
+      background: rgba(35,28,45,0.88);
+    }
+    .era-bg-1964::after {
+      background: rgba(35,28,45,0.84);
+    }
+    .era-bg-2020::after {
+      background: rgba(35,28,45,0.78);
+    }
+    .era-bg-2026::after {
+      background: linear-gradient(to bottom, rgba(35,28,45,0.7), rgba(35,28,45,0.85));
+    }
+
+    /* Placeholder pattern for historical images (in prod these would be real photos) */
+    .era-bg-1619 {
+      background: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23231c2d'/%3E%3Ctext x='200' y='200' text-anchor='middle' fill='%23332a3d' font-size='14' font-family='sans-serif'%3E%5B Historical image: Door of No Return, Goree Island %5D%3C/text%3E%3C/svg%3E");
+      background-color: #1a1525;
+    }
+    .era-bg-1865 {
+      background: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23231c2d'/%3E%3Ctext x='200' y='200' text-anchor='middle' fill='%23332a3d' font-size='14' font-family='sans-serif'%3E%5B Historical image: Emancipation celebration %5D%3C/text%3E%3C/svg%3E");
+      background-color: #1e1828;
+    }
+    .era-bg-1964 {
+      background: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23231c2d'/%3E%3Ctext x='200' y='200' text-anchor='middle' fill='%23332a3d' font-size='14' font-family='sans-serif'%3E%5B Historical image: March on Washington %5D%3C/text%3E%3C/svg%3E");
+      background-color: #211a2c;
+    }
+    .era-bg-2020 {
+      background: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23231c2d'/%3E%3Ctext x='200' y='200' text-anchor='middle' fill='%23332a3d' font-size='14' font-family='sans-serif'%3E%5B Historical image: 2020 protest / solidarity %5D%3C/text%3E%3C/svg%3E");
+      background-color: #251e30;
+    }
+    .era-bg-2026 {
+      background: url("data:image/svg+xml,%3Csvg width='400' height='400' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23231c2d'/%3E%3Ctext x='200' y='200' text-anchor='middle' fill='%23332a3d' font-size='14' font-family='sans-serif'%3E%5B Image: Chicago skyline / conference %5D%3C/text%3E%3C/svg%3E");
+      background-color: #2a2235;
+    }
+
+    /* ======================== */
+    /* INNOVATOR NAME TEXTURE   */
+    /* Names woven behind type  */
+    /* ======================== */
+    .name-texture {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.04;
+    }
+    .name-texture span {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      line-height: 2.4;
+      color: #fff;
+      white-space: nowrap;
+      display: inline;
+    }
+
+    /* ======================== */
+    /* SCROLL-REACTIVE TYPE     */
+    /* ======================== */
+    .scroll-scale {
+      transition: transform 0.1s linear;
+      will-change: transform;
+    }
+    .scroll-stretch {
+      transition: letter-spacing 0.15s ease-out, transform 0.15s ease-out;
+      will-change: letter-spacing, transform;
+    }
+    .scroll-opacity {
+      transition: opacity 0.2s ease-out;
+      will-change: opacity;
+    }
+
+    /* ======================== */
+    /* REVEAL ANIMATIONS        */
+    /* ======================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-80px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(80px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.7);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    .reveal-drop {
+      opacity: 0;
+      transform: translateY(-60px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-drop.visible { opacity: 1; transform: translateY(0); }
+
+    /* Stagger */
+    .stagger > *:nth-child(1) { transition-delay: 0s; }
+    .stagger > *:nth-child(2) { transition-delay: 0.15s; }
+    .stagger > *:nth-child(3) { transition-delay: 0.3s; }
+    .stagger > *:nth-child(4) { transition-delay: 0.45s; }
+    .stagger > *:nth-child(5) { transition-delay: 0.6s; }
+    .stagger > *:nth-child(6) { transition-delay: 0.75s; }
+    .stagger > *:nth-child(7) { transition-delay: 0.9s; }
+
+    /* ======================== */
+    /* TYPE CLASSES             */
+    /* ======================== */
+    .type-massive {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 0.9;
+      letter-spacing: -0.03em;
+    }
+    .type-outlined {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 2px currentColor;
+    }
+
+    /* ======================== */
+    /* ERA TYPOGRAPHY SCALE     */
+    /* ======================== */
+
+    /* 1619 — whisper */
+    .era-1619 {
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.4em;
+      font-size: clamp(10px, 1.1vw, 13px);
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 2.4;
+    }
+    .era-1619-year {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(14px, 2vw, 20px);
+      color: rgba(255,255,255,0.12);
+      letter-spacing: 0.5em;
+    }
+    .era-1619-word {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(28px, 5vw, 56px);
+      color: rgba(200,67,66,0.4);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+
+    /* 1865 — muted hope */
+    .era-1865 {
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.2em;
+      font-size: clamp(12px, 1.4vw, 16px);
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 2.2;
+    }
+    .era-1865-year {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(24px, 4vw, 48px);
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.2em;
+    }
+    .era-1865-word {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 6vw, 72px);
+      color: rgba(212,168,67,0.55);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* 1964 — growing */
+    .era-1964 {
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.1em;
+      font-size: clamp(13px, 1.6vw, 19px);
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      line-height: 1.9;
+    }
+    .era-1964-year {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(36px, 6vw, 72px);
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.08em;
+    }
+    .era-1964-word {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(44px, 8vw, 96px);
+      color: rgba(85,172,100,0.7);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    /* 2020 — bold, defiant */
+    .era-2020-year {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(48px, 10vw, 120px);
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0;
+    }
+    .era-2020-word {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(48px, 10vw, 130px);
+      color: #c84342;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    /* 2026 — FULL POWER */
+    .era-2026-year {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(72px, 16vw, 220px);
+      color: #D4A843;
+      letter-spacing: -0.04em;
+    }
+
+    /* ======================== */
+    /* SPOKEN WORD BUTTON       */
+    /* ======================== */
+    .spoken-word-btn {
+      position: fixed;
+      bottom: 52px;
+      left: 24px;
+      z-index: 950;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(35,28,45,0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.6);
+      padding: 10px 18px;
+      border-radius: 100px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    .spoken-word-btn:hover {
+      border-color: #c84342;
+      color: #fff;
+    }
+    .spoken-word-btn .play-icon {
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .spoken-word-btn .play-icon::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 6px solid currentColor;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      margin-left: 2px;
+    }
+    .spoken-word-btn.playing .play-icon::after {
+      border-left: none;
+      width: 8px;
+      height: 10px;
+      border-left: 2px solid currentColor;
+      border-right: 2px solid currentColor;
+      margin-left: 0;
+    }
+
+    /* ======================== */
+    /* SPEAKER TICKER           */
+    /* ======================== */
+    .speaker-ticker {
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      padding: 20px 0;
+    }
+    .speaker-ticker-track {
+      display: inline-flex;
+      animation: speakerScroll 25s linear infinite;
+    }
+    .speaker-ticker-track span {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: clamp(24px, 4vw, 48px);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: rgba(255,255,255,0.45);
+      padding: 0 20px;
+    }
+    .speaker-ticker-track span::after {
+      content: ' \2022';
+      color: #c84342;
+      padding-left: 20px;
+    }
+    @keyframes speakerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ======================== */
+    /* NAME WALL (participatory)*/
+    /* ======================== */
+    .name-wall {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+      justify-content: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .name-wall span {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 2;
+      transition: color 0.3s;
+    }
+    .name-wall span:hover {
+      color: #D4A843 !important;
+    }
+    .name-wall-input-wrap {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .name-wall-input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid rgba(255,255,255,0.2);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 8px 0;
+      width: 280px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .name-wall-input:focus { border-color: #D4A843; }
+    .name-wall-input::placeholder {
+      color: rgba(255,255,255,0.2);
+      text-transform: uppercase;
+    }
+    .name-wall-add {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .name-wall-add:hover {
+      border-color: #D4A843;
+      color: #D4A843;
+    }
+
+    /* ======================== */
+    /* STAT BG NUMBER           */
+    /* ======================== */
+    .stat-bg-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: clamp(100px, 30vw, 400px);
+      line-height: 1;
+      color: rgba(255,255,255,0.04);
+      text-align: center;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+    }
+
+    /* ======================== */
+    /* MISC                     */
+    /* ======================== */
+    .line-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, currentColor 20%, currentColor 80%, transparent);
+      opacity: 0.3;
+    }
+    .vertical-accent {
+      writing-mode: vertical-rl;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.25);
+      position: absolute;
+    }
+    .cta-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-block;
+    }
+    .cta-text:hover { letter-spacing: 0.05em; }
+    .newsletter-input {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      padding: 12px 0;
+      outline: none;
+      width: 100%;
+      max-width: 400px;
+      transition: border-color 0.3s;
+    }
+    .newsletter-input:focus { border-color: #c84342; }
+    .newsletter-input::placeholder { color: rgba(255,255,255,0.4); }
+    .newsletter-btn {
+      background: #c84342;
+      color: #fff;
+      border: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 12px 32px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .newsletter-btn:hover { background: #a83635; }
+    .footer-zone {
+      font-family: 'Inter', sans-serif;
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .footer-zone a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-zone a:hover { color: #c84342; }
+    .watermark {
+      position: fixed;
+      bottom: 50px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      opacity: 0.06;
+      z-index: 1;
+      pointer-events: none;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ======================== */
+    /* REDUCED MOTION           */
+    /* ======================== */
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track,
+      .speaker-ticker-track { animation: none !important; }
+      .reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-drop {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      .scroll-scale, .scroll-stretch, .scroll-opacity {
+        transition: none !important;
+        transform: none !important;
+        letter-spacing: inherit !important;
+      }
+      .manifesto-nav { transform: translateY(0) !important; transition: none !important; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 60px 20px 100px; }
+      .type-outlined { -webkit-text-stroke-width: 1px; }
+      .spoken-word-btn span.label-text { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Design Option Banner -->
+  <div class="design-banner" role="banner">Design Option F-2: The Manifesto &mdash; Unleashed</div>
+
+  <!-- Watermark -->
+  <div class="watermark" aria-hidden="true">JC</div>
+
+  <!-- Fixed Nav -->
+  <nav class="manifesto-nav" id="mainNav" aria-label="Main navigation">
+    <a href="#opening">JuneteenthConf</a>
+    <div style="display:flex; gap:24px;">
+      <a href="#journey">Journey</a>
+      <a href="#voices">Voices</a>
+      <a href="#table">The Table</a>
+      <a href="#register">Register</a>
+    </div>
+  </nav>
+
+  <!-- Spoken Word Button -->
+  <button class="spoken-word-btn" id="spokenWordBtn" aria-label="Listen to the manifesto as spoken word">
+    <span class="play-icon" aria-hidden="true"></span>
+    <span class="label-text">Listen to the manifesto</span>
+  </button>
+
+  <!-- ============================================ -->
+  <!-- PROLOGUE                                     -->
+  <!-- ============================================ -->
+  <section id="opening" style="min-height:100vh; z-index:1;">
+    <h1 class="sr-only">Juneteenth Conference 2026: Building Our Own Table — A 400-Year Journey</h1>
+
+    <!-- Innovator names as background texture -->
+    <div class="name-texture" aria-hidden="true">
+      <div style="transform:rotate(-3deg); margin-top:10vh; line-height:2.8;">
+        BENJAMIN BANNEKER &nbsp; LEWIS LATIMER &nbsp; GRANVILLE WOODS &nbsp; MADAM C.J. WALKER &nbsp; GARRETT MORGAN &nbsp; PERCY JULIAN &nbsp; KATHERINE JOHNSON &nbsp; MARK DEAN &nbsp; MARIAN CROAK &nbsp; LISA GELOBTER &nbsp; ROY CLAY SR &nbsp; GERALD LAWSON &nbsp; CLARENCE ELLIS &nbsp; SHIRLEY ANN JACKSON &nbsp; BENJAMIN BANNEKER &nbsp; LEWIS LATIMER &nbsp; GRANVILLE WOODS &nbsp; MADAM C.J. WALKER &nbsp; GARRETT MORGAN &nbsp; PERCY JULIAN &nbsp; KATHERINE JOHNSON &nbsp; MARK DEAN &nbsp; MARIAN CROAK &nbsp; LISA GELOBTER &nbsp; ROY CLAY SR &nbsp; GERALD LAWSON &nbsp; CLARENCE ELLIS &nbsp; SHIRLEY ANN JACKSON &nbsp; BENJAMIN BANNEKER &nbsp; LEWIS LATIMER &nbsp; GRANVILLE WOODS &nbsp; MADAM C.J. WALKER &nbsp; GARRETT MORGAN &nbsp; PERCY JULIAN &nbsp; KATHERINE JOHNSON &nbsp; MARK DEAN &nbsp; MARIAN CROAK &nbsp; LISA GELOBTER &nbsp; ROY CLAY SR &nbsp; GERALD LAWSON &nbsp; CLARENCE ELLIS &nbsp; SHIRLEY ANN JACKSON &nbsp; BENJAMIN BANNEKER &nbsp; LEWIS LATIMER &nbsp; GRANVILLE WOODS &nbsp; MADAM C.J. WALKER &nbsp; GARRETT MORGAN &nbsp; PERCY JULIAN &nbsp; KATHERINE JOHNSON &nbsp; MARK DEAN &nbsp; MARIAN CROAK &nbsp; LISA GELOBTER &nbsp; ROY CLAY SR &nbsp; GERALD LAWSON &nbsp; CLARENCE ELLIS &nbsp; SHIRLEY ANN JACKSON &nbsp;
+      </div>
+    </div>
+
+    <div class="vertical-accent" style="left:16px; top:50%; transform:translateY(-50%) rotate(180deg);" aria-hidden="true">
+      A 400-year story told in type
+    </div>
+
+    <div style="text-align:center; max-width:800px; margin:0 auto; position:relative; z-index:2;">
+      <div class="stagger">
+        <p class="reveal" style="font-family:'Inter',sans-serif; font-size:clamp(11px,1.1vw,14px); color:rgba(255,255,255,0.2); letter-spacing:0.5em; text-transform:uppercase; margin-bottom:64px;">
+          This is not a website. This is a manifesto.
+        </p>
+        <div class="reveal" style="margin-bottom:48px;">
+          <!-- Scroll-reactive: this text compresses as you scroll down -->
+          <div class="scroll-stretch" data-scroll-effect="compress" style="font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(48px,10vw,120px); text-transform:uppercase; letter-spacing:0.3em; color:rgba(255,255,255,0.08);">
+            400 YEARS
+          </div>
+        </div>
+        <p class="reveal" style="font-family:'Inter',sans-serif; font-size:clamp(13px,1.3vw,16px); color:rgba(255,255,255,0.35); letter-spacing:0.2em; text-transform:uppercase;">
+          Scroll to begin the journey
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ERA 1: 1619 — Stolen                         -->
+  <!-- ============================================ -->
+  <section id="journey" style="z-index:1;">
+    <div class="era-bg era-bg-1619" aria-hidden="true"></div>
+
+    <div style="max-width:900px; margin:0 auto; text-align:center; position:relative; z-index:2;">
+      <div class="stagger">
+        <div class="reveal">
+          <span class="era-1619-year">1 6 1 9</span>
+        </div>
+        <div class="reveal" style="margin-top:32px; margin-bottom:24px;">
+          <span class="era-1619-word scroll-stretch" data-scroll-effect="expand-slow">Stolen.</span>
+        </div>
+        <div class="reveal">
+          <p class="era-1619">Twenty and odd arrived at Point Comfort.</p>
+        </div>
+        <div class="reveal">
+          <p class="era-1619">Names erased. Languages forbidden. Families broken.</p>
+        </div>
+        <div class="reveal">
+          <p class="era-1619">They built everything. Owned nothing.</p>
+        </div>
+        <div class="reveal">
+          <p class="era-1619" style="margin-top:40px; color:rgba(255,255,255,0.08); letter-spacing:0.6em; font-size:clamp(9px,0.9vw,11px);">
+            Two hundred and forty-six years of this.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ERA 2: 1865 — Free on paper                  -->
+  <!-- ============================================ -->
+  <section style="z-index:1;">
+    <div class="era-bg era-bg-1865" aria-hidden="true"></div>
+
+    <div style="max-width:900px; margin:0 auto; text-align:center; position:relative; z-index:2;">
+      <div class="stagger">
+        <div class="reveal">
+          <span class="era-1865-year">1 8 6 5</span>
+        </div>
+        <div class="reveal" style="margin-top:28px; margin-bottom:20px;">
+          <span class="era-1865-word scroll-stretch" data-scroll-effect="expand-slow">Free on paper.</span>
+        </div>
+        <div class="reveal">
+          <p class="era-1865">June nineteenth. Galveston, Texas.</p>
+        </div>
+        <div class="reveal">
+          <p class="era-1865">The last to know they were no longer property.</p>
+        </div>
+        <div class="reveal">
+          <p class="era-1865">
+            <span style="color:rgba(212,168,67,0.65);">Freedom</span> announced two and a half years late.
+          </p>
+        </div>
+        <div class="reveal">
+          <p class="era-1865" style="margin-top:24px;">
+            Free. But not <span style="color:rgba(212,168,67,0.65);">equal.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ERA 3: 1964 — Demanding                      -->
+  <!-- ============================================ -->
+  <section style="z-index:1;">
+    <div class="era-bg era-bg-1964" aria-hidden="true"></div>
+
+    <div style="max-width:900px; margin:0 auto; text-align:center; position:relative; z-index:2;">
+      <div class="stagger">
+        <div class="reveal">
+          <span class="era-1964-year scroll-stretch" data-scroll-effect="expand">1 9 6 4</span>
+        </div>
+        <div class="reveal" style="margin-top:24px; margin-bottom:20px;">
+          <span class="era-1964-word">Demanding.</span>
+        </div>
+        <div class="reveal">
+          <p class="era-1964">Marching. Sitting in. Standing up.</p>
+        </div>
+        <div class="reveal">
+          <p class="era-1964">
+            <span style="color:rgba(85,172,100,0.85);">Rights</span> written into law that should have been birthright.
+          </p>
+        </div>
+        <div class="reveal">
+          <p class="era-1964">Still fighting for a seat at a table we didn't design.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ERA 4: 2020 — We built our own table         -->
+  <!-- ============================================ -->
+  <section style="z-index:1;">
+    <div class="era-bg era-bg-2020" aria-hidden="true"></div>
+
+    <!-- Innovator texture behind 2020 -->
+    <div class="name-texture" style="opacity:0.03;" aria-hidden="true">
+      <div style="transform:rotate(2deg); margin-top:5vh; line-height:2.6; font-size:16px; letter-spacing:0.15em;">
+        MARK DEAN &nbsp; MARIAN CROAK &nbsp; LISA GELOBTER &nbsp; KIMBERLY BRYANT &nbsp; TRISTAN WALKER &nbsp; ARLAN HAMILTON &nbsp; RESHMA SAUJANI &nbsp; TIMNIT GEBRU &nbsp; JOY BUOLAMWINI &nbsp; MARK DEAN &nbsp; MARIAN CROAK &nbsp; LISA GELOBTER &nbsp; KIMBERLY BRYANT &nbsp; TRISTAN WALKER &nbsp; ARLAN HAMILTON &nbsp; RESHMA SAUJANI &nbsp; TIMNIT GEBRU &nbsp; JOY BUOLAMWINI &nbsp; MARK DEAN &nbsp; MARIAN CROAK &nbsp; LISA GELOBTER &nbsp; KIMBERLY BRYANT &nbsp; TRISTAN WALKER &nbsp; ARLAN HAMILTON &nbsp;
+      </div>
+    </div>
+
+    <div style="max-width:1000px; margin:0 auto; text-align:center; position:relative; z-index:2;">
+      <div class="stagger">
+        <div class="reveal-scale">
+          <span class="era-2020-year scroll-scale" data-scroll-effect="grow">2020</span>
+        </div>
+        <div class="reveal-scale" style="margin-top:16px; margin-bottom:40px;">
+          <span class="era-2020-word">We built our<br>own table.</span>
+        </div>
+        <div class="reveal" style="max-width:650px; margin:0 auto;">
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(16px,2vw,22px); color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:20px;">
+            A pandemic. A reckoning. The world on fire.
+          </p>
+        </div>
+        <div class="reveal">
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(16px,2vw,22px); color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:20px;">
+            We proudly proclaimed that <span style="color:#c84342; font-weight:600;">Black Lives Matter.</span>
+          </p>
+        </div>
+        <div class="reveal">
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(16px,2vw,22px); color:rgba(255,255,255,0.7); line-height:1.7;">
+            They said <span style="color:rgba(255,255,255,0.35); font-style:italic;">"Black talent is hard to find."</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2020 defiance beat -->
+  <section style="z-index:1; min-height:80vh;">
+    <div class="era-bg era-bg-2020" aria-hidden="true"></div>
+    <div style="max-width:1000px; margin:0 auto; text-align:center; position:relative; z-index:2;">
+      <div class="reveal-scale">
+        <span class="type-massive scroll-scale" data-scroll-effect="grow" style="font-size:clamp(32px,7vw,90px); display:block; color:#c84342; letter-spacing:-0.02em; margin-bottom:12px;">
+          We filled a roster
+        </span>
+      </div>
+      <div class="reveal-scale">
+        <span class="type-massive" style="font-size:clamp(32px,7vw,90px); display:block; color:#c84342; letter-spacing:-0.02em; margin-bottom:12px;">
+          of brilliant Black speakers
+        </span>
+      </div>
+      <div class="reveal-scale">
+        <span class="type-massive" style="font-size:clamp(48px,12vw,160px); display:block; color:#fff; letter-spacing:-0.03em;">
+          in 16 days.
+        </span>
+      </div>
+      <div class="reveal" style="margin-top:32px; max-width:550px; margin-left:auto; margin-right:auto;">
+        <p style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.6vw,19px); color:rgba(255,255,255,0.45); line-height:1.7;">
+          What traditional conferences claimed they couldn't do in a year.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2020 spoken word close -->
+  <section style="z-index:1; min-height:70vh;">
+    <div style="max-width:800px; margin:0 auto; text-align:center; position:relative; z-index:2;">
+      <div class="stagger">
+        <div class="reveal">
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(18px,2.5vw,28px); color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:16px;">
+            We didn't wait for <span style="color:#c84342; font-weight:600;">permission.</span>
+          </p>
+        </div>
+        <div class="reveal">
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(18px,2.5vw,28px); color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:16px;">
+            We built our own <span style="color:#fff; font-weight:600;">stage.</span>
+          </p>
+        </div>
+        <div class="reveal">
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(18px,2.5vw,28px); color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:16px;">
+            Our own <span style="color:#c84342; font-weight:600;">spotlight.</span>
+          </p>
+        </div>
+        <div class="reveal">
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(18px,2.5vw,28px); color:rgba(255,255,255,0.7); line-height:1.7;">
+            Our own <span style="color:#D4A843; font-weight:600;">mic.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stat: 20,000+ -->
+  <section style="z-index:1; position:relative;">
+    <div class="stat-bg-number reveal-scale" aria-hidden="true">20,000+</div>
+    <div style="position:relative; z-index:2; text-align:center;">
+      <p class="reveal" style="font-family:'Inter',sans-serif; font-size:clamp(16px,2vw,22px); color:rgba(255,255,255,0.6); letter-spacing:0.1em; text-transform:uppercase;">
+        watched the first one
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ERA 5: 2026 — THE MOVEMENT. THE CLIMAX.      -->
+  <!-- MAXIMUM SIZE. THUNDERING. UNSTOPPABLE.       -->
+  <!-- ============================================ -->
+  <section style="z-index:1;">
+    <div class="era-bg era-bg-2026" aria-hidden="true"></div>
+
+    <div style="max-width:1200px; margin:0 auto; text-align:center; position:relative; z-index:2;">
+      <div class="stagger">
+        <div class="reveal-scale">
+          <span class="era-2026-year scroll-scale" data-scroll-effect="grow">2026</span>
+        </div>
+        <div class="reveal-drop" style="margin-top:8px;">
+          <span class="type-massive scroll-scale" data-scroll-effect="grow" style="font-size:clamp(56px,13vw,200px); display:block; color:#fff; letter-spacing:-0.04em;">Our</span>
+        </div>
+        <div class="reveal-scale">
+          <span class="type-massive" style="font-size:clamp(72px,18vw,280px); display:block; color:#c84342; letter-spacing:-0.05em;">
+            Table.
+          </span>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:48px;">
+        <p style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.8vw,20px); color:rgba(255,255,255,0.6); letter-spacing:0.15em; text-transform:uppercase;">
+          June 19&ndash;20 &bull; Chicago &bull; Juneteenth Conference
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2026 — THE DECLARATION -->
+  <section style="z-index:1; min-height:90vh;">
+    <div style="max-width:1100px; margin:0 auto; text-align:center; position:relative; z-index:2;">
+      <div class="stagger">
+        <div class="reveal-scale">
+          <span class="type-massive" style="font-size:clamp(36px,8vw,100px); display:block; color:rgba(255,255,255,0.9); letter-spacing:-0.02em; margin-bottom:8px;">
+            Now we turn this
+          </span>
+        </div>
+        <div class="reveal-scale">
+          <span class="type-massive" style="font-size:clamp(44px,10vw,140px); display:block; color:#D4A843; letter-spacing:-0.03em; margin-bottom:24px;">
+            into a movement.
+          </span>
+        </div>
+      </div>
+
+      <div class="line-divider" style="color:#c84342; margin:40px auto; max-width:200px;"></div>
+
+      <div class="stagger" style="margin-top:40px;">
+        <div class="reveal">
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(17px,2.2vw,26px); color:rgba(255,255,255,0.65); line-height:1.8; margin-bottom:12px;">
+            We will no longer wait for <span style="color:#c84342; font-weight:600;">acceptance.</span>
+          </p>
+        </div>
+        <div class="reveal">
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(17px,2.2vw,26px); color:rgba(255,255,255,0.65); line-height:1.8; margin-bottom:12px;">
+            We will no longer wait for <span style="color:#c84342; font-weight:600;">approval.</span>
+          </p>
+        </div>
+        <div class="reveal">
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(17px,2.2vw,26px); color:rgba(255,255,255,0.8); line-height:1.8; font-weight:500;">
+            We are building. <span style="color:#D4A843; font-weight:700;">Permanently.</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:48px; max-width:600px; margin-left:auto; margin-right:auto;">
+        <p style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.4vw,17px); color:rgba(255,255,255,0.4); line-height:1.8;">
+          Four hundred years from stolen to sovereign. From silence to stage. From asking for a seat to building our own table. From a moment to a <strong style="color:rgba(255,255,255,0.7);">movement.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- THE VOICES                                   -->
+  <!-- ============================================ -->
+  <section id="voices" style="z-index:1; padding-top:40px; padding-bottom:40px;">
+    <div class="reveal" style="margin-bottom:48px;">
+      <p style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.35); letter-spacing:0.2em; text-transform:uppercase; text-align:center; margin-bottom:24px;">
+        Voices who've graced our stage
+      </p>
+      <div class="speaker-ticker" aria-label="Past conference speakers">
+        <div class="speaker-ticker-track">
+          <span>Angie Jones</span><span>Tim Banks</span><span>Minda Harts</span><span>Jerome Hardaway</span><span>Alaxandria Foreman</span><span>Wesley Faulkner</span><span>Angie Jones</span><span>Tim Banks</span><span>Minda Harts</span><span>Jerome Hardaway</span><span>Alaxandria Foreman</span><span>Wesley Faulkner</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:64px;">
+      <p class="reveal" style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.5vw,18px); color:rgba(255,255,255,0.35); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:24px;">
+        And this year&hellip;
+      </p>
+      <div class="reveal-scale">
+        <span class="type-massive scroll-scale" data-scroll-effect="grow" style="font-size:clamp(48px,12vw,180px); color:#D4A843; display:block; letter-spacing:-0.03em;">Madison</span>
+        <span class="type-massive" style="font-size:clamp(48px,12vw,180px); color:#D4A843; display:block; letter-spacing:-0.03em;">Butler</span>
+      </div>
+      <div class="reveal" style="margin-top:32px; max-width:600px; margin-left:auto; margin-right:auto;">
+        <p style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.5vw,18px); color:rgba(255,255,255,0.65); line-height:1.7;">
+          Founder of <strong style="color:#fff;">Blue Haired Unicorn</strong> &amp; <strong style="color:#fff;">Black Speakers Collection</strong>. Redefining who gets to speak, who gets to lead, and who gets a seat at the table.
+        </p>
+        <p style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.35); margin-top:12px; letter-spacing:0.1em; text-transform:uppercase;">
+          Keynote Speaker
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- THE MISSION                                  -->
+  <!-- ============================================ -->
+  <section id="mission" style="z-index:1;">
+    <div style="max-width:1100px; margin:0 auto; width:100%;">
+      <div class="reveal" style="margin-bottom:80px; display:flex; flex-wrap:wrap; align-items:flex-end; gap:24px 48px;">
+        <h2 class="type-outlined" style="font-size:clamp(48px,10vw,120px); -webkit-text-stroke-color:#c84342; flex-shrink:0;">Conference</h2>
+        <p style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.5vw,17px); color:rgba(255,255,255,0.55); max-width:400px; line-height:1.7; padding-bottom:12px;">
+          Two days. 20 curated sessions across engineering, data, security, entrepreneurship, and tech leadership. An attendee dinner cruise to close it out.
+        </p>
+      </div>
+      <div class="line-divider" style="color:#55ac64; margin-bottom:80px;"></div>
+      <div class="reveal" style="margin-bottom:80px; display:flex; flex-wrap:wrap; align-items:flex-end; gap:24px 48px;">
+        <h2 class="type-outlined" style="font-size:clamp(48px,10vw,120px); -webkit-text-stroke-color:#55ac64; flex-shrink:0;">Accelerator</h2>
+        <p style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.5vw,17px); color:rgba(255,255,255,0.55); max-width:400px; line-height:1.7; padding-bottom:12px;">
+          Hands-on project experience, mentorship, and career pipeline support for Black professionals entering or advancing in tech.
+        </p>
+      </div>
+      <div class="line-divider" style="color:#D4A843; margin-bottom:80px;"></div>
+      <div class="reveal" style="display:flex; flex-wrap:wrap; align-items:flex-end; gap:24px 48px;">
+        <h2 class="type-outlined" style="font-size:clamp(48px,10vw,120px); -webkit-text-stroke-color:#D4A843; flex-shrink:0;">Mentorship</h2>
+        <p style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.5vw,17px); color:rgba(255,255,255,0.55); max-width:400px; line-height:1.7; padding-bottom:12px;">
+          Pairing aspiring technologists with experienced professionals for upskilling, portfolio building, and career guidance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- THE NUMBERS                                  -->
+  <!-- ============================================ -->
+  <section style="z-index:1;">
+    <div style="text-align:center;">
+      <p class="reveal" style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.25); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:48px;">By the numbers</p>
+      <div style="display:grid; grid-template-columns:1fr; gap:80px; max-width:800px; margin:0 auto;">
+        <div class="reveal-scale">
+          <span class="type-massive" style="font-size:clamp(64px,16vw,200px); color:rgba(255,255,255,0.08); display:block;" aria-hidden="true">20,000+</span>
+          <span class="type-massive" style="font-size:clamp(36px,6vw,64px); color:#fff; display:block; margin-top:-24px;">20,000+</span>
+          <p style="font-family:'Inter',sans-serif; font-size:16px; color:rgba(255,255,255,0.45); margin-top:8px;">first-day viewers</p>
+        </div>
+        <div class="reveal-scale">
+          <span class="type-massive" style="font-size:clamp(64px,16vw,200px); color:rgba(255,255,255,0.08); display:block;" aria-hidden="true">79</span>
+          <span class="type-massive" style="font-size:clamp(36px,6vw,64px); color:#c84342; display:block; margin-top:-24px;">79</span>
+          <p style="font-family:'Inter',sans-serif; font-size:16px; color:rgba(255,255,255,0.45); margin-top:8px;">sessions on YouTube</p>
+        </div>
+        <div class="reveal-scale">
+          <span class="type-massive" style="font-size:clamp(64px,16vw,200px); color:rgba(255,255,255,0.08); display:block;" aria-hidden="true">2,500+</span>
+          <span class="type-massive" style="font-size:clamp(36px,6vw,64px); color:#D4A843; display:block; margin-top:-24px;">2,500+</span>
+          <p style="font-family:'Inter',sans-serif; font-size:16px; color:rgba(255,255,255,0.45); margin-top:8px;">in our community</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- ADD YOUR NAME TO THE TABLE                   -->
+  <!-- ============================================ -->
+  <section id="table" style="z-index:1;">
+    <div style="text-align:center; max-width:1000px; margin:0 auto; position:relative; z-index:2;">
+      <div class="reveal">
+        <p style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.3); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:16px;">
+          This table is for everyone
+        </p>
+        <span class="type-massive" style="font-size:clamp(28px,6vw,72px); display:block; color:rgba(255,255,255,0.9); margin-bottom:40px;">
+          Add your name to the table.
+        </span>
+      </div>
+
+      <!-- Name wall -->
+      <div class="reveal name-wall" id="nameWall" aria-label="Community name wall">
+        <!-- Seed names — these represent real community -->
+        <span style="font-size:18px; color:rgba(255,255,255,0.15);">Michael B.</span>
+        <span style="font-size:14px; color:rgba(200,67,66,0.3);">Madison B.</span>
+        <span style="font-size:22px; color:rgba(255,255,255,0.1);">Brandi J.B.</span>
+        <span style="font-size:12px; color:rgba(212,168,67,0.25);">Kimeka C.</span>
+        <span style="font-size:16px; color:rgba(85,172,100,0.2);">Cotishea A.</span>
+        <span style="font-size:20px; color:rgba(255,255,255,0.12);">Courtney G.</span>
+        <span style="font-size:13px; color:rgba(200,67,66,0.2);">Lyn M.</span>
+        <span style="font-size:17px; color:rgba(255,255,255,0.08);">Angie J.</span>
+        <span style="font-size:15px; color:rgba(212,168,67,0.2);">Jerome H.</span>
+        <span style="font-size:21px; color:rgba(85,172,100,0.15);">Tim B.</span>
+        <span style="font-size:11px; color:rgba(255,255,255,0.1);">Minda H.</span>
+        <span style="font-size:19px; color:rgba(200,67,66,0.25);">Wesley F.</span>
+        <span style="font-size:14px; color:rgba(255,255,255,0.12);">Alaxandria F.</span>
+      </div>
+
+      <div class="reveal name-wall-input-wrap">
+        <label for="name-input" class="sr-only">Your name</label>
+        <input type="text" id="name-input" class="name-wall-input" placeholder="Your name" maxlength="40" autocomplete="name">
+        <button type="button" class="name-wall-add" id="addNameBtn">Take your seat</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- THE CALL                                     -->
+  <!-- ============================================ -->
+  <section id="register" style="z-index:1;">
+    <div style="text-align:center; max-width:1000px; margin:0 auto;">
+      <div class="reveal-scale">
+        <span class="type-massive scroll-scale" data-scroll-effect="grow" style="font-size:clamp(40px,10vw,140px); display:block;">Your seat</span>
+        <span class="type-massive" style="font-size:clamp(40px,10vw,140px); display:block;">is <span style="color:#D4A843;">ready.</span></span>
+      </div>
+
+      <div style="margin-top:64px; display:flex; flex-wrap:wrap; justify-content:center; gap:32px 64px;">
+        <a href="#" class="cta-text reveal" style="font-size:clamp(32px,6vw,72px); color:#c84342;">Register</a>
+        <a href="#" class="cta-text reveal" style="font-size:clamp(32px,6vw,72px); color:#55ac64;">Sponsor</a>
+      </div>
+
+      <div class="line-divider" style="color:#fff; margin:80px 0 48px;"></div>
+
+      <!-- Newsletter -->
+      <div class="reveal" style="margin-bottom:64px;">
+        <p style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.45); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:20px;">
+          Join 2,500+ in our community
+        </p>
+        <form style="display:flex; flex-wrap:wrap; justify-content:center; gap:16px; align-items:flex-end;" onsubmit="event.preventDefault();" aria-label="Newsletter signup">
+          <label for="email-input" class="sr-only">Email address</label>
+          <input type="email" id="email-input" class="newsletter-input" placeholder="your@email.com" autocomplete="email" required>
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <div class="reveal footer-zone" style="text-align:center;">
+        <p style="margin-bottom:24px;">
+          <strong style="color:rgba(255,255,255,0.8);">June 19&ndash;20, 2026</strong> &bull; Chicago, IL
+        </p>
+        <p style="margin-bottom:8px;">JuneteenthConf, Unl. &mdash; Fiscally sponsored by YPOC Harrisburg (501(c)(3))</p>
+        <p style="margin-bottom:24px;"><a href="mailto:info@juneteenthconf.com">info@juneteenthconf.com</a></p>
+        <div style="display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-bottom:32px;">
+          <a href="#">Twitter</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">YouTube</a>
+          <a href="#">Instagram</a>
+        </div>
+        <p style="font-size:12px; color:rgba(255,255,255,0.25);">
+          Artwork by Havana Nguyen &bull; &copy; 2020&ndash;2026 JuneteenthConf
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div style="height:36px;"></div>
+
+  <!-- Marquee Ticker -->
+  <div class="marquee-container" role="marquee" aria-label="Conference details ticker">
+    <div class="marquee-track">
+      <span>June 19-20, 2026</span><span>Chicago</span><span>Juneteenth Conference</span><span>Building Our Own Table</span><span>June 19-20, 2026</span><span>Chicago</span><span>Juneteenth Conference</span><span>Building Our Own Table</span><span>June 19-20, 2026</span><span>Chicago</span><span>Juneteenth Conference</span><span>Building Our Own Table</span>
+    </div>
+  </div>
+
+  <script>
+    // =============================================
+    // Scroll-triggered reveals
+    // =============================================
+    const revealSelectors = '.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-drop';
+
+    function initReveals() {
+      const elements = document.querySelectorAll(revealSelectors);
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+      elements.forEach(el => observer.observe(el));
+    }
+
+    // =============================================
+    // Scroll-reactive typography
+    // =============================================
+    function initScrollType() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const elements = document.querySelectorAll('[data-scroll-effect]');
+
+      function updateScrollType() {
+        const vh = window.innerHeight;
+
+        elements.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          // How far into viewport (0 = just entered bottom, 1 = at top)
+          const progress = Math.max(0, Math.min(1, 1 - (rect.top / vh)));
+          const effect = el.dataset.scrollEffect;
+
+          switch (effect) {
+            case 'compress': {
+              // Letter-spacing goes from wide to tight as you scroll
+              const spacing = 0.3 - (progress * 0.35);
+              el.style.letterSpacing = spacing + 'em';
+              break;
+            }
+            case 'expand-slow': {
+              // Letter-spacing slowly expands
+              const spacing = 0.3 + (progress * 0.15);
+              el.style.letterSpacing = spacing + 'em';
+              break;
+            }
+            case 'expand': {
+              const spacing = 0.08 + (progress * 0.12);
+              el.style.letterSpacing = spacing + 'em';
+              break;
+            }
+            case 'grow': {
+              // Scale from 0.92 to 1.0 as it enters viewport
+              const scale = 0.92 + (progress * 0.08);
+              el.style.transform = `scale(${scale})`;
+              break;
+            }
+          }
+        });
+      }
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            updateScrollType();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      updateScrollType();
+    }
+
+    // =============================================
+    // Nav show/hide
+    // =============================================
+    function initNav() {
+      const nav = document.getElementById('mainNav');
+      let lastScrollY = 0;
+      let ticking = false;
+
+      function updateNav() {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY < 200) {
+          nav.classList.remove('visible');
+        } else if (currentScrollY < lastScrollY - 5) {
+          nav.classList.add('visible');
+        } else if (currentScrollY > lastScrollY + 5) {
+          nav.classList.remove('visible');
+        }
+        lastScrollY = currentScrollY;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateNav);
+          ticking = true;
+        }
+      }, { passive: true });
+    }
+
+    // =============================================
+    // Add your name to the table
+    // =============================================
+    function initNameWall() {
+      const wall = document.getElementById('nameWall');
+      const input = document.getElementById('name-input');
+      const btn = document.getElementById('addNameBtn');
+
+      const colors = [
+        'rgba(200,67,66,0.4)',
+        'rgba(212,168,67,0.35)',
+        'rgba(85,172,100,0.3)',
+        'rgba(255,255,255,0.2)',
+        'rgba(255,255,255,0.15)',
+        'rgba(200,67,66,0.3)',
+        'rgba(212,168,67,0.25)',
+      ];
+      const sizes = [12, 14, 16, 18, 20, 22, 24];
+
+      function addName() {
+        const name = input.value.trim();
+        if (!name) return;
+
+        const span = document.createElement('span');
+        span.textContent = name;
+        span.style.fontSize = sizes[Math.floor(Math.random() * sizes.length)] + 'px';
+        span.style.color = colors[Math.floor(Math.random() * colors.length)];
+        span.style.opacity = '0';
+        span.style.transform = 'scale(0.5)';
+        span.style.transition = 'opacity 0.6s ease, transform 0.6s ease, color 0.3s';
+
+        wall.appendChild(span);
+
+        // Animate in
+        requestAnimationFrame(() => {
+          span.style.opacity = '1';
+          span.style.transform = 'scale(1)';
+        });
+
+        // Brief gold highlight
+        setTimeout(() => {
+          span.style.color = '#D4A843';
+          setTimeout(() => {
+            span.style.color = colors[Math.floor(Math.random() * colors.length)];
+          }, 1200);
+        }, 600);
+
+        input.value = '';
+        input.focus();
+      }
+
+      btn.addEventListener('click', addName);
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') addName();
+      });
+    }
+
+    // =============================================
+    // Spoken word button (UI hint — no real audio)
+    // =============================================
+    function initSpokenWord() {
+      const btn = document.getElementById('spokenWordBtn');
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('playing');
+        // In production, this would trigger Web Audio API
+        // or an audio element with the spoken word recording
+      });
+    }
+
+    // =============================================
+    // Reduced motion
+    // =============================================
+    function checkReducedMotion() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll(revealSelectors).forEach(el => el.classList.add('visible'));
+        document.getElementById('mainNav').classList.add('visible');
+      }
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      checkReducedMotion();
+      initReveals();
+      initScrollType();
+      initNav();
+      initNameWall();
+      initSpokenWord();
+    });
+  </script>
+
+</body>
+</html>
