@@ -409,6 +409,62 @@
             opacity: 1; transform: scale(1);
         }
 
+        /* ── Memorial Portraits ── */
+        .memorial-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 680px;
+            margin: 0 auto 48px;
+        }
+        @media (max-width: 640px) {
+            .memorial-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        .memorial-portrait {
+            text-align: center;
+            opacity: 0; transform: translateY(20px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+        .memorial-portrait:nth-child(2) { transition-delay: 0.2s; }
+        .memorial-portrait:nth-child(3) { transition-delay: 0.4s; }
+        .memorial-portrait:nth-child(4) { transition-delay: 0.6s; }
+        .memorial-portrait.visible {
+            opacity: 1; transform: translateY(0);
+        }
+        .memorial-photo {
+            width: 140px; height: 140px; border-radius: 50%;
+            margin: 0 auto 16px; overflow: hidden;
+            border: 2px solid rgba(200, 67, 66, 0.4);
+            box-shadow: 0 0 40px rgba(200, 67, 66, 0.15);
+        }
+        .memorial-photo img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+        .memorial-photo-placeholder {
+            width: 140px; height: 140px; border-radius: 50%;
+            margin: 0 auto 16px; overflow: hidden;
+            border: 2px solid rgba(200, 67, 66, 0.4);
+            box-shadow: 0 0 40px rgba(200, 67, 66, 0.15);
+            background: linear-gradient(135deg, #2d1a1a 0%, #1a1015 100%);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .memorial-photo-placeholder .memorial-candle {
+            font-size: 36px; opacity: 0.7;
+        }
+        .memorial-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600; font-size: 15px;
+            color: #f0ede6; margin-bottom: 4px;
+        }
+        .memorial-years {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px; opacity: 0.4;
+            letter-spacing: 1px;
+        }
+
         /* ── Remember Them scene ── */
         .scene-remember {
             background: #000; min-height: 70vh;
@@ -918,13 +974,45 @@
 
             <div class="scene-divider reveal" style="margin-bottom: 40px; background: #c84342;"></div>
 
-            <p class="reveal font-display" style="font-size: clamp(24px, 4vw, 42px); font-weight: 300; line-height: 1.4; margin-bottom: 32px; color: rgba(240, 237, 230, 0.85);">
+            <p class="reveal font-display" style="font-size: clamp(24px, 4vw, 42px); font-weight: 300; line-height: 1.4; margin-bottom: 48px; color: rgba(240, 237, 230, 0.85);">
                 A pandemic. A reckoning.<br>
                 <span style="color: #c84342; font-weight: 600;">A refusal to wait any longer.</span>
             </p>
 
+            <!-- Memorial Portraits -->
+            <div class="memorial-grid" style="margin-bottom: 48px;">
+                <div class="memorial-portrait reveal">
+                    <div class="memorial-photo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Floyd_portrait_%2849999239916%29.jpg" alt="George Floyd" loading="lazy">
+                    </div>
+                    <div class="memorial-name">George Floyd</div>
+                    <div class="memorial-years">1973 &ndash; 2020</div>
+                </div>
+                <div class="memorial-portrait reveal">
+                    <div class="memorial-photo-placeholder">
+                        <span class="memorial-candle">&#x1F56F;</span>
+                    </div>
+                    <div class="memorial-name">Breonna Taylor</div>
+                    <div class="memorial-years">1993 &ndash; 2020</div>
+                </div>
+                <div class="memorial-portrait reveal">
+                    <div class="memorial-photo-placeholder">
+                        <span class="memorial-candle">&#x1F56F;</span>
+                    </div>
+                    <div class="memorial-name">Ahmaud Arbery</div>
+                    <div class="memorial-years">1994 &ndash; 2020</div>
+                </div>
+                <div class="memorial-portrait reveal">
+                    <div class="memorial-photo-placeholder">
+                        <span class="memorial-candle">&#x1F56F;</span>
+                    </div>
+                    <div class="memorial-name">Michael Brown</div>
+                    <div class="memorial-years">1996 &ndash; 2014</div>
+                </div>
+            </div>
+
             <p class="reveal font-body" style="font-size: 16px; line-height: 2; opacity: 0.5; max-width: 560px; margin-bottom: 40px;">
-                George Floyd. Breonna Taylor. Ahmaud Arbery. The world watched. We proudly proclaimed that Black Lives Matter. The tech industry posted black squares and made promises.
+                The world watched. We proudly proclaimed that Black Lives Matter. The tech industry posted black squares and made promises.
             </p>
 
             <p class="reveal from-right font-display" style="font-size: clamp(18px, 2.5vw, 28px); font-weight: 500; color: rgba(240, 237, 230, 0.7); margin-bottom: 40px; line-height: 1.5;">
@@ -1276,6 +1364,15 @@
                 });
             }, { threshold: 0.3 });
             rememberEls.forEach(function (el) { rememberObserver.observe(el); });
+
+            // Memorial portraits — staggered reveal
+            var memorialEls = document.querySelectorAll('.memorial-portrait');
+            var memorialObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.2 });
+            memorialEls.forEach(function (el) { memorialObserver.observe(el); });
 
             // Ken Burns — trigger via visible class already added by main observer
             // Madison reveal
