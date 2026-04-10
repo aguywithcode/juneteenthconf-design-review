@@ -1051,25 +1051,48 @@
       </div>
     </div>
 
-    <div style="text-align:center; margin-top:64px;">
-      <p class="reveal" style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.5vw,18px); color:rgba(255,255,255,0.35); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:24px;">
+    <div style="margin-top:64px; text-align:center;">
+      <p class="reveal" style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.5vw,18px); color:rgba(255,255,255,0.35); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:48px;">
         And this year&hellip;
       </p>
-      <div class="reveal-scale">
-        <span class="type-massive scroll-scale" data-scroll-effect="grow" style="font-size:clamp(48px,12vw,180px); color:#D4A843; display:block; letter-spacing:-0.03em;">Madison</span>
-        <span class="type-massive" style="font-size:clamp(48px,12vw,180px); color:#D4A843; display:block; letter-spacing:-0.03em;">Butler</span>
+
+      <!-- Magazine spread: photo left, name + bio right -->
+      <div class="reveal" style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; max-width:1100px; margin:0 auto; text-align:left;">
+        <!-- Photo — large, rectangular, full presence -->
+        <div style="position:relative;">
+          <img src="madison-butler.jpeg" alt="Madison Butler, keynote speaker" style="width:100%; max-width:480px; aspect-ratio:3/4; object-fit:cover; object-position:top; display:block; filter:grayscale(20%); opacity:0.92; border-left:4px solid rgba(212,168,67,0.5);">
+          <div style="position:absolute; bottom:0; left:0; right:0; height:40%; background:linear-gradient(to top, rgba(35,28,45,0.6), transparent); pointer-events:none;" aria-hidden="true"></div>
+        </div>
+
+        <!-- Name + bio -->
+        <div>
+          <span class="type-massive scroll-scale" data-scroll-effect="grow" style="font-size:clamp(40px,8vw,120px); color:#D4A843; display:block; letter-spacing:-0.03em; line-height:0.95;">Madison</span>
+          <span class="type-massive" style="font-size:clamp(40px,8vw,120px); color:#D4A843; display:block; letter-spacing:-0.03em; line-height:0.95; margin-bottom:28px;">Butler</span>
+          <p style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:20px;">
+            Keynote Speaker
+          </p>
+          <p style="font-family:'Inter',sans-serif; font-size:clamp(15px,1.6vw,19px); color:rgba(255,255,255,0.65); line-height:1.7;">
+            Founder of <strong style="color:#fff;">Blue Haired Unicorn</strong> &amp; <strong style="color:#fff;">Black Speakers Collection</strong>. Redefining who gets to speak, who gets to lead, and who gets a seat at the table.
+          </p>
+        </div>
       </div>
-      <div class="reveal" style="margin-top:40px;">
-        <img src="madison-butler.jpeg" alt="Madison Butler, keynote speaker" style="width:160px; height:160px; object-fit:cover; object-position:top; border-radius:50%; border:3px solid rgba(212,168,67,0.4); display:block; margin:0 auto; filter:grayscale(30%); opacity:0.9;">
-      </div>
-      <div class="reveal" style="margin-top:28px; max-width:600px; margin-left:auto; margin-right:auto;">
-        <p style="font-family:'Inter',sans-serif; font-size:clamp(14px,1.5vw,18px); color:rgba(255,255,255,0.65); line-height:1.7;">
-          Founder of <strong style="color:#fff;">Blue Haired Unicorn</strong> &amp; <strong style="color:#fff;">Black Speakers Collection</strong>. Redefining who gets to speak, who gets to lead, and who gets a seat at the table.
-        </p>
-        <p style="font-family:'Inter',sans-serif; font-size:14px; color:rgba(255,255,255,0.35); margin-top:12px; letter-spacing:0.1em; text-transform:uppercase;">
-          Keynote Speaker
-        </p>
-      </div>
+
+      <!-- Mobile stack: single column fallback -->
+      <style>
+        @media (max-width: 768px) {
+          .reveal [style*="grid-template-columns:1fr 1fr"] {
+            grid-template-columns: 1fr !important;
+            text-align: center !important;
+          }
+          .reveal [style*="grid-template-columns:1fr 1fr"] img {
+            max-width: 100% !important;
+            margin: 0 auto !important;
+            aspect-ratio: 4/3 !important;
+            border-left: none !important;
+            border-bottom: 4px solid rgba(212,168,67,0.5) !important;
+          }
+        }
+      </style>
     </div>
   </section>
 
