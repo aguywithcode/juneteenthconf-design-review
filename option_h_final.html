@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juneteenth Conference 2026 — Building Our Own Table</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        jc: {
+                            black: '#231c2d',
+                            purple: '#2d2438',
+                            green: { light: '#55ac64', dark: '#1a2d19' },
+                            red: '#c84342',
+                            gold: '#D4A843',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* ── Base ── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #231c2d; color: #f0ede6; overflow-x: hidden; }
+
+        /* ── Design Sample Banner ── */
+        .design-banner {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: linear-gradient(90deg, #c84342 0%, #D4A843 50%, #55ac64 100%);
+            color: #fff; text-align: center; padding: 6px 16px;
+            font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 600;
+            letter-spacing: 2px; text-transform: uppercase;
+        }
+
+        /* ── Revision Nav ── */
+        .revision-nav {
+            position: fixed; top: 28px; left: 0; right: 0; z-index: 999;
+            background: rgba(20, 16, 28, 0.92); backdrop-filter: blur(6px);
+            display: flex; align-items: center; justify-content: center;
+            gap: 4px; padding: 5px 12px;
+            font-family: 'Space Grotesk', sans-serif; font-size: 12px;
+            border-bottom: 1px solid rgba(240, 237, 230, 0.06);
+        }
+        .revision-nav a {
+            color: rgba(240, 237, 230, 0.45); text-decoration: none;
+            padding: 2px 7px; border-radius: 4px;
+            transition: color 0.2s, background 0.2s;
+        }
+        .revision-nav a:hover { color: #f0ede6; background: rgba(240, 237, 230, 0.08); }
+        .revision-nav .rev-current {
+            color: #D4A843; font-weight: 700;
+            background: rgba(212, 168, 67, 0.1);
+        }
+        .revision-nav .rev-sep { color: rgba(240, 237, 230, 0.15); font-size: 10px; }
+
+        /* ── Scroll Progress Bar ── */
+        .scroll-progress {
+            position: fixed; top: 54px; left: 0; height: 3px; z-index: 998;
+            background: linear-gradient(90deg, #231c2d, #c84342 30%, #D4A843 60%, #55ac64);
+            width: 0%; transition: width 0.1s linear;
+        }
+
+        /* ── Minimal Fixed Nav ── */
+        .scroll-nav {
+            position: fixed; top: 57px; left: 0; right: 0; z-index: 997;
+            background: rgba(35, 28, 45, 0.92); backdrop-filter: blur(12px);
+            padding: 12px 24px; display: flex; justify-content: space-between; align-items: center;
+            transform: translateY(-100%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            border-bottom: 1px solid rgba(212, 168, 67, 0.15);
+        }
+        .scroll-nav.visible { transform: translateY(0); }
+        .scroll-nav a {
+            color: #f0ede6; text-decoration: none; font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px; letter-spacing: 1px; text-transform: uppercase; opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+        .scroll-nav a:hover { opacity: 1; }
+        .scroll-nav .nav-cta {
+            background: #c84342; padding: 6px 16px; border-radius: 4px; opacity: 1;
+            font-weight: 600; font-size: 12px;
+        }
+
+        /* ── Fixed Social Links ── */
+        .social-float {
+            position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
+            z-index: 996; display: flex; flex-direction: column; gap: 16px;
+        }
+        .social-float a {
+            width: 36px; height: 36px; border-radius: 50%;
+            border: 1px solid rgba(240, 237, 230, 0.2);
+            display: flex; align-items: center; justify-content: center;
+            color: #f0ede6; text-decoration: none; font-size: 14px;
+            transition: all 0.3s; background: rgba(35, 28, 45, 0.6);
+            backdrop-filter: blur(8px);
+        }
+        .social-float a:hover {
+            border-color: #D4A843; color: #D4A843; transform: scale(1.15);
+        }
+
+        /* ── Scene Base ── */
+        .scene {
+            min-height: 100vh; position: relative;
+            display: flex; align-items: center; justify-content: center;
+            padding: 80px 24px; overflow: hidden;
+        }
+
+        /* ── Reveal Animations ── */
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.from-left { transform: translateX(-60px) translateY(0); }
+        .reveal.from-right { transform: translateX(60px) translateY(0); }
+        .reveal.scale-in { transform: scale(0.85); }
+        .reveal.visible {
+            opacity: 1; transform: translateY(0) translateX(0) scale(1);
+        }
+        .reveal-slow { transition-duration: 1.4s; }
+
+        /* stagger children */
+        .reveal-stagger .reveal:nth-child(1) { transition-delay: 0s; }
+        .reveal-stagger .reveal:nth-child(2) { transition-delay: 0.15s; }
+        .reveal-stagger .reveal:nth-child(3) { transition-delay: 0.3s; }
+        .reveal-stagger .reveal:nth-child(4) { transition-delay: 0.45s; }
+        .reveal-stagger .reveal:nth-child(5) { transition-delay: 0.6s; }
+        .reveal-stagger .reveal:nth-child(6) { transition-delay: 0.75s; }
+        .stagger > *:nth-child(1) { transition-delay: 0s; }
+        .stagger > *:nth-child(2) { transition-delay: 0.15s; }
+        .stagger > *:nth-child(3) { transition-delay: 0.3s; }
+        .stagger > *:nth-child(4) { transition-delay: 0.45s; }
+        .stagger > *:nth-child(5) { transition-delay: 0.6s; }
+
+        /* ── Stat Counter ── */
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; color: #D4A843;
+        }
+
+        /* ── Illustration Badge ── */
+        .illustration-badge {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: linear-gradient(135deg, #c84342, #D4A843);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 18px; color: #fff;
+        }
+
+        /* ── Scene Backgrounds ── */
+        .scene-passage { background: #0a0810; }
+        .scene-denied { background: linear-gradient(180deg, #0a0810 0%, #15101e 100%); }
+        .scene-freedom { background: linear-gradient(180deg, #15101e 0%, #1a2d19 100%); }
+        .scene-building { background: linear-gradient(180deg, #1a2d19 0%, #231c2d 100%); }
+        .scene-reckoning { background: linear-gradient(180deg, #231c2d 0%, #2d1a1a 100%); }
+        .scene-table { background: linear-gradient(180deg, #2d1a1a 0%, #2d2438 100%); }
+        .scene-2026 { background: linear-gradient(180deg, #2d2438 0%, #1a1520 100%); }
+        .scene-invitation { background: linear-gradient(180deg, #1a1520 0%, #231c2d 100%); }
+
+        /* ── Grain Overlay ── */
+        .scene::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* ── Scroll Prompt Pulse ── */
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.4; transform: translateY(0); }
+            50% { opacity: 0.8; transform: translateY(8px); }
+        }
+        .scroll-prompt { animation: scrollPulse 2.5s ease-in-out infinite; }
+
+        /* ── Title Reveal ── */
+        @keyframes titleReveal {
+            0% { clip-path: inset(0 100% 0 0); opacity: 0; }
+            100% { clip-path: inset(0 0% 0 0); opacity: 1; }
+        }
+        .title-word {
+            display: inline-block;
+            animation: titleReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            opacity: 0;
+        }
+        .title-word:nth-child(1) { animation-delay: 0.3s; }
+        .title-word:nth-child(2) { animation-delay: 0.6s; }
+        .title-word:nth-child(3) { animation-delay: 0.9s; }
+        .title-word:nth-child(4) { animation-delay: 1.2s; }
+
+        /* ── Timeline Year Watermark ── */
+        .timeline-year {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; letter-spacing: 3px;
+            color: rgba(212, 168, 67, 0.3);
+            font-size: clamp(60px, 12vw, 140px);
+            position: absolute; right: 5%; top: 50%;
+            transform: translateY(-50%);
+            z-index: 0; user-select: none;
+        }
+
+        /* ── Scene Image ── */
+        .scene-image {
+            width: 100%; border-radius: 12px; overflow: hidden;
+            margin: 32px 0; position: relative;
+        }
+        .scene-image img {
+            width: 100%; height: auto; display: block; object-fit: cover;
+        }
+        .img-archival img { filter: grayscale(0.6) sepia(0.3) brightness(0.8); }
+        .img-transitional img { filter: grayscale(0.3) sepia(0.1) brightness(0.85); }
+        .img-modern img { filter: grayscale(0.15) brightness(0.9); }
+        .img-vibrant img { filter: none; }
+        .scene-image figcaption {
+            font-size: 14px; color: rgba(255, 255, 255, 0.6); margin-top: 10px;
+            font-style: italic;
+        }
+        .img-fade-edges::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(180deg,
+                rgba(10,8,16,0.6) 0%, transparent 20%, transparent 80%, rgba(10,8,16,0.8) 100%);
+            pointer-events: none;
+        }
+        .scene-image-full {
+            position: relative; width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            max-height: 50vh; overflow: hidden;
+        }
+        .scene-image-full img { width: 100%; height: 50vh; object-fit: cover; }
+        .scene-image-full::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(180deg,
+                rgba(10,8,16,0.7) 0%, transparent 30%, transparent 70%, rgba(10,8,16,0.7) 100%);
+            pointer-events: none;
+        }
+
+        /* ── Chain Motif ── */
+        .chain-break {
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; margin: 32px 0; opacity: 0.2; position: relative;
+        }
+        .chain-link {
+            width: 24px; height: 2px; background: #f0ede6; border-radius: 1px;
+            transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        @keyframes chainShatterLeft {
+            0% { transform: translateX(0) rotate(0); opacity: 0.5; }
+            50% { transform: translateX(-30px) rotate(-25deg); opacity: 0.7; }
+            100% { transform: translateX(-60px) rotate(-45deg); opacity: 0; }
+        }
+        @keyframes chainShatterRight {
+            0% { transform: translateX(0) rotate(0); opacity: 0.5; }
+            50% { transform: translateX(30px) rotate(25deg); opacity: 0.7; }
+            100% { transform: translateX(60px) rotate(45deg); opacity: 0; }
+        }
+        @keyframes chainShatterCenter {
+            0% { transform: scaleX(1); opacity: 0.5; }
+            30% { transform: scaleX(1.5); opacity: 1; background: #D4A843; }
+            100% { transform: scaleX(0); opacity: 0; }
+        }
+        .chain-animated.visible .chain-link:nth-child(1) { animation: chainShatterLeft 1.2s 0.3s ease-out forwards; }
+        .chain-animated.visible .chain-link:nth-child(2) { animation: chainShatterLeft 1.2s 0.15s ease-out forwards; }
+        .chain-animated.visible .chain-link:nth-child(3) { animation: chainShatterCenter 0.8s 0s ease-out forwards; }
+        .chain-animated.visible .chain-link:nth-child(4) { animation: chainShatterRight 1.2s 0.15s ease-out forwards; }
+        .chain-animated.visible .chain-link:nth-child(5) { animation: chainShatterRight 1.2s 0.3s ease-out forwards; }
+        .chain-flash {
+            position: absolute; left: 50%; top: 50%;
+            width: 0; height: 2px; background: #D4A843;
+            transform: translate(-50%, -50%); opacity: 0; border-radius: 2px;
+        }
+        .chain-animated.visible .chain-flash { animation: chainFlash 1s 0.5s ease-out forwards; }
+        @keyframes chainFlash {
+            0% { width: 0; opacity: 0; }
+            30% { width: 200px; opacity: 1; }
+            100% { width: 400px; opacity: 0; }
+        }
+
+        /* ── Ken Burns on images ── */
+        .ken-burns img { transition: transform 8s ease-out; transform: scale(1); }
+        .ken-burns.visible img { transform: scale(1.08); }
+        .ken-burns-pan img { transition: transform 10s ease-out; transform: scale(1.05) translateX(0); }
+        .ken-burns-pan.visible img { transform: scale(1.12) translateX(-2%); }
+
+        /* ── Legend portrait pulse/glow ── */
+        @keyframes legendGlow {
+            0%, 100% { box-shadow: 0 0 8px rgba(212, 168, 67, 0.1); }
+            50% { box-shadow: 0 0 20px rgba(212, 168, 67, 0.35); }
+        }
+        .legend-card.visible .legend-portrait { animation: legendGlow 3s ease-in-out infinite; }
+
+        /* ── Stat explosion ── */
+        @keyframes statExplode {
+            0% { transform: scale(0.3); opacity: 0; filter: blur(10px); }
+            60% { transform: scale(1.15); opacity: 1; filter: blur(0); }
+            100% { transform: scale(1); opacity: 1; filter: blur(0); }
+        }
+        .stat-explode.visible .stat-value {
+            animation: statExplode 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* ── Cinematic Madison reveal ── */
+        .madison-reveal { position: relative; }
+        .madison-glow {
+            position: absolute; top: 50%; left: 50%;
+            width: 280px; height: 280px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(212,168,67,0.3) 0%, transparent 70%);
+            border-radius: 50%; opacity: 0;
+            transition: opacity 1.5s ease-out, transform 2s ease-out;
+        }
+        .madison-reveal.visible .madison-glow {
+            opacity: 1; animation: madisonPulse 4s ease-in-out infinite;
+        }
+        @keyframes madisonPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+        }
+        .madison-photo-wrap {
+            position: relative; z-index: 2;
+            width: 220px; height: 220px; border-radius: 50%;
+            margin: 0 auto 24px; overflow: hidden;
+            border: 3px solid rgba(212,168,67,0.5);
+            box-shadow: 0 0 80px rgba(212,168,67,0.2), 0 0 160px rgba(212,168,67,0.05);
+            opacity: 0; transform: scale(0.7);
+            transition: opacity 1.4s 0.3s ease-out, transform 1.8s 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .madison-reveal.visible .madison-photo-wrap { opacity: 1; transform: scale(1); }
+
+        /* ── Memorial Portraits ── */
+        .memorial-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 24px; max-width: 680px; margin: 0 auto 48px;
+        }
+        @media (max-width: 640px) {
+            .memorial-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        }
+        .memorial-portrait {
+            text-align: center; opacity: 0; transform: translateY(20px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+        .memorial-portrait:nth-child(2) { transition-delay: 0.2s; }
+        .memorial-portrait:nth-child(3) { transition-delay: 0.4s; }
+        .memorial-portrait:nth-child(4) { transition-delay: 0.6s; }
+        .memorial-portrait.visible { opacity: 1; transform: translateY(0); }
+        .memorial-photo {
+            width: 140px; height: 140px; border-radius: 50%;
+            margin: 0 auto 16px; overflow: hidden;
+            border: 2px solid rgba(200, 67, 66, 0.4);
+            box-shadow: 0 0 40px rgba(200, 67, 66, 0.15);
+        }
+        .memorial-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .memorial-photo-placeholder {
+            width: 140px; height: 140px; border-radius: 50%;
+            margin: 0 auto 16px; overflow: hidden;
+            border: 2px solid rgba(200, 67, 66, 0.4);
+            box-shadow: 0 0 40px rgba(200, 67, 66, 0.15);
+            background: linear-gradient(135deg, #2d1a1a 0%, #1a1015 100%);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .memorial-photo-placeholder .memorial-candle { font-size: 36px; opacity: 0.7; }
+        .memorial-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600; font-size: 17px;
+            color: #ffffff; margin-bottom: 6px;
+        }
+        .memorial-years {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px; color: rgba(255, 255, 255, 0.65); letter-spacing: 1px;
+        }
+
+        /* ── Remember Them scene ── */
+        .scene-remember { background: #000; min-height: 70vh; }
+        .remember-text {
+            opacity: 0; transform: scale(0.95);
+            transition: opacity 2s ease-out, transform 2s ease-out;
+        }
+        .remember-text.visible { opacity: 1; transform: scale(1); }
+
+        /* ── Particle canvas ── */
+        #particleCanvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0; pointer-events: none; opacity: 0.6;
+        }
+
+        /* ── Scene Divider ── */
+        .scene-divider {
+            width: 60px; height: 2px;
+            background: linear-gradient(90deg, #c84342, #D4A843);
+        }
+
+        /* ── Legend Cards ── */
+        .legend-card {
+            position: absolute; z-index: 2;
+            display: flex; align-items: center; gap: 14px;
+            max-width: 280px;
+            opacity: 0; transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .legend-card.left { left: 3%; transform: translateX(-30px); }
+        .legend-card.right { right: 3%; flex-direction: row-reverse; text-align: right; transform: translateX(30px); }
+        .legend-card.visible { opacity: 1; transform: translateX(0); }
+        .legend-portrait {
+            width: 80px; height: 80px; border-radius: 50%; flex-shrink: 0;
+            overflow: hidden; border: 2px solid rgba(212, 168, 67, 0.25);
+            background: rgba(45, 36, 56, 0.8);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .legend-portrait img { width: 100%; height: 100%; object-fit: cover; }
+        .legend-portrait.placeholder {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600; font-size: 20px; color: rgba(212, 168, 67, 0.4);
+        }
+        .legend-portrait-archival img { filter: grayscale(0.6) sepia(0.3); }
+        .legend-portrait-transitional img { filter: grayscale(0.3) sepia(0.1); }
+        .legend-info { flex: 1; }
+        .legend-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 13px; font-weight: 600; color: #D4A843; margin-bottom: 2px;
+        }
+        .legend-years {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px; color: rgba(255, 255, 255, 0.55); letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+        .legend-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px; color: rgba(255, 255, 255, 0.6); line-height: 1.5;
+        }
+        .legend-card::before {
+            content: ''; position: absolute; top: 50%;
+            height: 1px; background: rgba(212, 168, 67, 0.1); pointer-events: none;
+        }
+        .legend-card.left::before { right: -40px; width: 40px; }
+        .legend-card.right::before { left: -40px; width: 40px; }
+
+        /* ═══ MASSIVE TYPE (from G) ═══ */
+        .type-massive {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+            text-transform: uppercase; line-height: 0.9; letter-spacing: -0.03em;
+        }
+        .type-outlined {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+            text-transform: uppercase; line-height: 1; color: transparent;
+            -webkit-text-stroke: 2px currentColor;
+        }
+        .text-3d {
+            text-shadow: 1px 1px 0 rgba(200,67,66,0.3), 2px 2px 0 rgba(200,67,66,0.2),
+                         3px 3px 0 rgba(200,67,66,0.1), 4px 4px 8px rgba(0,0,0,0.3);
+        }
+        .bleed-left { margin-left: -2vw; }
+        .bleed-right { margin-right: -2vw; text-align: right; }
+
+        /* ═══ CTA TEXT (from G) ═══ */
+        .cta-text {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 700;
+            text-transform: uppercase; letter-spacing: -0.02em;
+            text-decoration: none; display: inline-block;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cta-text:hover { letter-spacing: 0.05em; text-shadow: 0 0 40px currentColor; }
+
+        /* ═══ LINE DIVIDER ═══ */
+        .line-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, currentColor 20%, currentColor 80%, transparent);
+            opacity: 0.3;
+        }
+
+        /* ═══ PROGRAM BLOCK (from G) ═══ */
+        .program-block {
+            display: flex; flex-wrap: wrap; align-items: flex-end; gap: 24px 48px;
+        }
+
+        /* ═══ CHAOS → ORDER (from G) ═══ */
+        .chaos-container {
+            position: relative; width: 100%; height: 60vh;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .chaos-word {
+            position: absolute; font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; text-transform: uppercase;
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity, font-size, color, left, top;
+        }
+
+        /* ═══ SPEAKER TICKER (from G) ═══ */
+        .speaker-ticker {
+            overflow: hidden; white-space: nowrap;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding: 20px 0;
+        }
+        .speaker-ticker-track {
+            display: inline-flex;
+            animation: speakerScroll 30s linear infinite;
+        }
+        .speaker-ticker-track span {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+            font-size: clamp(24px, 4vw, 48px); text-transform: uppercase;
+            letter-spacing: 0.05em; color: rgba(255,255,255,0.35); padding: 0 20px;
+        }
+        .speaker-ticker-track span::after {
+            content: ' \2022'; color: #c84342; padding-left: 20px;
+        }
+        @keyframes speakerScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ═══ NAME WALL (from G) ═══ */
+        .name-wall {
+            display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: center;
+            max-width: 900px; margin: 0 auto; perspective: 600px;
+        }
+        .name-wall span {
+            font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.08em; line-height: 2.2;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .name-wall span:hover {
+            color: #D4A843 !important;
+            text-shadow: 0 0 20px rgba(212,168,67,0.4);
+        }
+        @keyframes etchIn {
+            0% { opacity: 0; transform: scale(0.3) rotateX(40deg); filter: blur(4px); text-shadow: 0 0 0 transparent; }
+            40% { opacity: 0.7; transform: scale(1.1) rotateX(-5deg); filter: blur(1px); text-shadow: 0 0 30px rgba(212,168,67,0.8); }
+            70% { text-shadow: 0 0 15px rgba(212,168,67,0.5); }
+            100% { opacity: 1; transform: scale(1) rotateX(0deg); filter: blur(0); text-shadow: 0 0 0 transparent; }
+        }
+        .name-etch { animation: etchIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .name-wall-input {
+            background: transparent; border: none;
+            border-bottom: 2px solid rgba(255,255,255,0.15);
+            color: #fff; font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.08em; padding: 8px 0; width: 280px; outline: none;
+            transition: border-color 0.3s;
+        }
+        .name-wall-input:focus { border-color: #D4A843; }
+        .name-wall-input::placeholder { color: rgba(255,255,255,0.15); text-transform: uppercase; }
+        .name-wall-add {
+            background: transparent; border: 1.5px solid rgba(255,255,255,0.2);
+            color: #fff; font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+            font-size: 13px; text-transform: uppercase; letter-spacing: 0.15em;
+            padding: 10px 24px; cursor: pointer; transition: all 0.3s;
+        }
+        .name-wall-add:hover { border-color: #D4A843; color: #D4A843; }
+
+        /* ═══ BOTTOM MARQUEE (from G) ═══ */
+        .marquee-container {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 900;
+            background: #c84342; overflow: hidden; height: 36px;
+            display: flex; align-items: center;
+        }
+        .marquee-track {
+            display: flex; white-space: nowrap; animation: marquee 30s linear infinite;
+        }
+        .marquee-track span {
+            font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600;
+            letter-spacing: 0.15em; text-transform: uppercase; color: #fff; padding: 0 24px;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ═══ SPOKEN WORD BTN (from G) ═══ */
+        .spoken-word-btn {
+            position: fixed; bottom: 52px; left: 24px; z-index: 950;
+            display: flex; align-items: center; gap: 10px;
+            background: rgba(35,28,45,0.85); backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5);
+            padding: 10px 18px; border-radius: 100px; cursor: pointer;
+            font-family: 'Inter', sans-serif; font-size: 12px;
+            letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.3s;
+        }
+        .spoken-word-btn:hover { border-color: #c84342; color: #fff; }
+        .spoken-word-btn .play-icon {
+            width: 20px; height: 20px; border: 1.5px solid currentColor;
+            border-radius: 50%; display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0;
+        }
+        .spoken-word-btn .play-icon::after {
+            content: ''; width: 0; height: 0;
+            border-left: 6px solid currentColor;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            margin-left: 2px;
+        }
+
+        /* ═══ NEWSLETTER (from G) ═══ */
+        .newsletter-input {
+            background: transparent; border: none;
+            border-bottom: 2px solid rgba(255,255,255,0.25);
+            color: #fff; font-family: 'Inter', sans-serif; font-size: 16px;
+            padding: 12px 0; outline: none; width: 100%; max-width: 400px;
+            transition: border-color 0.3s;
+        }
+        .newsletter-input:focus { border-color: #c84342; }
+        .newsletter-input::placeholder { color: rgba(255,255,255,0.35); }
+        .newsletter-btn {
+            background: #c84342; color: #fff; border: none;
+            font-family: 'Space Grotesk', sans-serif; font-weight: 600;
+            font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em;
+            padding: 12px 32px; cursor: pointer; transition: background 0.3s;
+        }
+        .newsletter-btn:hover { background: #a83635; }
+
+        /* ═══ FOOTER ═══ */
+        .footer-zone {
+            font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.5);
+            font-size: 14px; line-height: 1.8;
+        }
+        .footer-zone a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s; }
+        .footer-zone a:hover { color: #c84342; }
+
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        }
+
+        /* Hide legends on small screens */
+        @media (max-width: 1100px) { .legend-card { display: none; } }
+
+        /* ── Reduced Motion ── */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .legend-card { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .title-word { animation: none; opacity: 1; }
+            .scroll-prompt { animation: none; opacity: 0.5; }
+            html { scroll-behavior: auto; }
+            .scroll-nav, .social-float a { transition: none; }
+            .memorial-portrait { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .remember-text { opacity: 1 !important; transform: none !important; }
+            .chaos-word { transition: none !important; }
+            .name-etch { animation: none !important; opacity: 1 !important; }
+            .marquee-track, .speaker-ticker-track { animation: none !important; }
+            .ken-burns img, .ken-burns-pan img { transition: none !important; }
+            #particleCanvas { display: none; }
+            .stat-explode .stat-value { animation: none !important; opacity: 1 !important; transform: none !important; }
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            .social-float { display: none; }
+            .scene { padding: 60px 20px; }
+            .timeline-year {
+                position: relative; right: auto; top: auto;
+                transform: none; text-align: center;
+                margin-bottom: 24px; font-size: clamp(48px, 15vw, 80px);
+            }
+            .type-outlined { -webkit-text-stroke-width: 1px; }
+            .bleed-left { margin-left: -1vw; }
+            .bleed-right { margin-right: -1vw; }
+            .spoken-word-btn .label-text { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Design Sample Banner -->
+    <div class="design-banner">Design Option H: The Final Vision</div>
+
+    <!-- Revision Nav -->
+    <nav class="revision-nav">
+        <a href="index.html">&larr; Gallery</a>
+        <span class="rev-sep">|</span>
+        <a href="option_a_same_dna.html">A</a>
+        <a href="option_b_afrofuturist.html">B</a>
+        <a href="option_d_scroll_story.html">D</a>
+        <a href="option_d2_scroll_story_visual.html">D-2</a>
+        <a href="option_d3_scroll_story_legends.html">D-3</a>
+        <a href="option_d4_scroll_story_final.html">D-4</a>
+        <a href="option_e_the_gathering.html">E</a>
+        <a href="option_e2_the_gathering.html">E-2</a>
+        <a href="option_e3_the_gathering.html">E-3</a>
+        <a href="option_f_manifesto.html">F</a>
+        <a href="option_f2_manifesto.html">F-2</a>
+        <a href="option_f3_manifesto.html">F-3</a>
+        <a href="option_g_remix.html">G</a>
+        <a href="#" class="rev-current">H</a>
+    </nav>
+
+    <!-- Fixed layers -->
+    <canvas id="particleCanvas" aria-hidden="true"></canvas>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Minimal Fixed Nav -->
+    <nav class="scroll-nav" id="scrollNav" aria-label="Primary navigation">
+        <a href="#opening" style="font-weight: 600; letter-spacing: 2px;">JuneteenthConf</a>
+        <div style="display: flex; gap: 24px; align-items: center;">
+            <a href="#freedom" class="hidden md:inline">History</a>
+            <a href="#table" class="hidden md:inline">The Conference</a>
+            <a href="#twenty26" class="hidden md:inline">2026</a>
+            <a href="#register" class="nav-cta">Register</a>
+        </div>
+    </nav>
+
+    <!-- Fixed Social Links -->
+    <div class="social-float" id="socialFloat">
+        <a href="#" aria-label="Twitter / X" title="@juneteenthconf">&#120143;</a>
+        <a href="#" aria-label="LinkedIn" title="LinkedIn">in</a>
+        <a href="#" aria-label="YouTube" title="YouTube">&#9654;</a>
+        <a href="#" aria-label="Instagram" title="Instagram">&#9675;</a>
+    </div>
+
+    <!-- Spoken word button -->
+    <button class="spoken-word-btn" id="spokenWordBtn" aria-label="Listen to the manifesto as spoken word">
+        <span class="play-icon" aria-hidden="true"></span>
+        <span class="label-text">Listen to the manifesto</span>
+    </button>
+
+    <!-- Bottom marquee -->
+    <div class="marquee-container" role="marquee" aria-label="Conference details">
+        <div class="marquee-track">
+            <span>June 19-20, 2026</span><span>Chicago</span><span>Juneteenth Conference</span><span>Building Our Own Table</span><span>June 19-20, 2026</span><span>Chicago</span><span>Juneteenth Conference</span><span>Building Our Own Table</span><span>June 19-20, 2026</span><span>Chicago</span><span>Juneteenth Conference</span><span>Building Our Own Table</span>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- PART 1: D-4's CINEMATIC SCROLL NARRATIVE               -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 1: OPENING FRAME                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene" id="opening" style="background: #0a0810; min-height: 100vh; flex-direction: column;">
+        <div style="position: absolute; top: 60px; left: 32px;">
+            <div class="illustration-badge reveal" aria-label="JuneteenthConf logo">JC</div>
+        </div>
+
+        <div style="text-align: center; max-width: 900px; position: relative; z-index: 1;">
+            <h1 class="font-display" style="font-size: clamp(48px, 10vw, 110px); font-weight: 700; line-height: 0.95; letter-spacing: -2px; margin-bottom: 40px;">
+                <span class="title-word">BUILDING</span>
+                <span class="title-word">OUR</span><br>
+                <span class="title-word">OWN</span>
+                <span class="title-word" style="color: #D4A843;">TABLE</span>
+            </h1>
+            <p class="font-body" style="font-size: 14px; letter-spacing: 4px; text-transform: uppercase; opacity: 0.4; margin-bottom: 60px;">
+                Juneteenth Conference 2026
+            </p>
+        </div>
+
+        <div class="scroll-prompt" style="position: absolute; bottom: 40px; text-align: center;">
+            <p class="font-body" style="font-size: 12px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.4;">Scroll to begin</p>
+            <div style="margin-top: 12px; font-size: 20px; opacity: 0.4;">&#8595;</div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 2: THE PASSAGE — 1619                -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene scene-passage" id="passage" style="flex-direction: column;">
+        <div class="legend-card left" style="top: 25%;">
+            <div class="legend-portrait legend-portrait-archival">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Benjamin_Banneker.jpg" alt="Benjamin Banneker" loading="lazy">
+            </div>
+            <div class="legend-info">
+                <div class="legend-name">Benjamin Banneker</div>
+                <div class="legend-years">1731 &ndash; 1806</div>
+                <div class="legend-desc">Almanac author, surveyor of Washington D.C. Proved Black intellect in an era that denied it.</div>
+            </div>
+        </div>
+
+        <div class="timeline-year reveal reveal-slow" aria-hidden="true">1619</div>
+        <div style="max-width: 800px; width: 100%; position: relative; z-index: 1;">
+            <div class="scene-divider reveal" style="margin-bottom: 40px;"></div>
+            <p class="reveal reveal-slow font-display" style="font-size: clamp(24px, 4vw, 42px); font-weight: 300; line-height: 1.5; color: rgba(240, 237, 230, 0.7);">
+                They crossed an ocean in darkness.
+            </p>
+
+            <figure class="scene-image img-archival img-fade-edges reveal scale-in ken-burns" style="margin: 48px 0;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Slaveshipposter.jpg"
+                     alt="Diagram of the slave ship Brookes, 1788"
+                     loading="lazy" style="max-height: 50vh; object-fit: contain; background: #0a0810;">
+                <figcaption>Stowage of the British slave ship Brookes, 1788. Public domain.</figcaption>
+            </figure>
+
+            <div class="chain-break reveal" style="margin: 48px 0;">
+                <div class="chain-link"></div><div class="chain-link"></div><div class="chain-link"></div><div class="chain-link"></div><div class="chain-link"></div>
+            </div>
+
+            <p class="reveal font-body" style="font-size: 16px; line-height: 2; opacity: 0.5; max-width: 520px;">
+                Stolen from their homes. Stripped of their names, their languages, their humanity. For 246 years, they were denied not just a seat at the table &mdash; but the right to be seen as human.
+            </p>
+            <p class="reveal font-display" style="font-size: 18px; font-weight: 500; color: rgba(200, 67, 66, 0.6); margin-top: 40px; letter-spacing: 1px;">
+                They built the table. They served the table. They were never invited to sit.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 3: DENIED A SEAT                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene scene-denied" id="denied" style="flex-direction: column;">
+        <div class="legend-card right" style="top: 30%;">
+            <div class="legend-portrait legend-portrait-archival">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Portrait_of_Lewis_H._Latimer%2C_%2270_years_young.%22_%2815c3faa218974bf2a9925a6a82daa182%29.jpg"
+                     alt="Lewis Howard Latimer" loading="lazy">
+            </div>
+            <div class="legend-info">
+                <div class="legend-name">Lewis Howard Latimer</div>
+                <div class="legend-years">1848 &ndash; 1928</div>
+                <div class="legend-desc">Improved the lightbulb. Drafted patents for Alexander Graham Bell. Denied credit for generations.</div>
+            </div>
+        </div>
+
+        <div style="max-width: 800px; width: 100%; position: relative; z-index: 1;">
+            <figure class="scene-image img-archival img-fade-edges reveal scale-in ken-burns-pan" style="margin-bottom: 48px;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4a/%22Colored%22_drinking_fountain_from_mid-20th_century_with_african-american_drinking.jpg"
+                     alt="A man drinking from a segregated 'Colored' water fountain"
+                     loading="lazy" style="max-height: 55vh; object-fit: cover; width: 100%;">
+                <figcaption>"Colored" drinking fountain, mid-20th century. Public domain.</figcaption>
+            </figure>
+
+            <div class="reveal-stagger" style="display: flex; flex-direction: column; gap: 48px;">
+                <div class="reveal from-left">
+                    <p class="font-display" style="font-size: clamp(14px, 2vw, 18px); letter-spacing: 4px; text-transform: uppercase; opacity: 0.3; margin-bottom: 12px;">1787</p>
+                    <p class="font-body" style="font-size: 16px; line-height: 1.8; opacity: 0.5;">Three-Fifths of a person. Counted for representation, excluded from it.</p>
+                </div>
+                <div class="reveal from-right">
+                    <p class="font-display" style="font-size: clamp(14px, 2vw, 18px); letter-spacing: 4px; text-transform: uppercase; opacity: 0.3; margin-bottom: 12px;">1857</p>
+                    <p class="font-body" style="font-size: 16px; line-height: 1.8; opacity: 0.5;">&ldquo;No rights which the white man was bound to respect.&rdquo; &mdash; Dred Scott v. Sandford</p>
+                </div>
+                <div class="reveal from-left">
+                    <p class="font-display" style="font-size: clamp(14px, 2vw, 18px); letter-spacing: 4px; text-transform: uppercase; opacity: 0.3; margin-bottom: 12px;">1896</p>
+                    <p class="font-body" style="font-size: 16px; line-height: 1.8; opacity: 0.5;">Separate but equal. Different tables entirely.</p>
+                </div>
+            </div>
+
+            <div class="chain-break reveal" style="margin: 56px 0;">
+                <div class="chain-link"></div><div class="chain-link"></div><div class="chain-link"></div><div class="chain-link"></div><div class="chain-link"></div>
+            </div>
+
+            <p class="reveal font-display" style="font-size: clamp(20px, 3.5vw, 36px); font-weight: 300; line-height: 1.5; text-align: center; opacity: 0.7;">
+                Centuries of being told:<br>
+                <span style="color: rgba(200, 67, 66, 0.7); font-weight: 600;">&ldquo;This table is not for you.&rdquo;</span>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 4: FREEDOM — 1865                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene scene-freedom" id="freedom" style="flex-direction: column;">
+        <div class="legend-card left" style="top: 20%;">
+            <div class="legend-portrait placeholder">GW</div>
+            <div class="legend-info">
+                <div class="legend-name">Granville T. Woods</div>
+                <div class="legend-years">1856 &ndash; 1910</div>
+                <div class="legend-desc">&ldquo;Black Edison.&rdquo; Railway telegraph, electric railway. 60+ patents.</div>
+            </div>
+        </div>
+        <div class="legend-card right" style="top: 75%;">
+            <div class="legend-portrait legend-portrait-archival">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/Madam_C._J._Walker_by_Addison_N._Scurlock.jpg" alt="Madam C.J. Walker" loading="lazy">
+            </div>
+            <div class="legend-info">
+                <div class="legend-name">Madam C.J. Walker</div>
+                <div class="legend-years">1867 &ndash; 1919</div>
+                <div class="legend-desc">First female self-made millionaire in America. Hair care empire built from nothing.</div>
+            </div>
+        </div>
+
+        <div class="timeline-year reveal reveal-slow" aria-hidden="true">1865</div>
+        <div style="max-width: 800px; width: 100%; position: relative; z-index: 1;">
+            <div class="scene-divider reveal" style="margin-bottom: 40px; background: linear-gradient(90deg, #55ac64, #D4A843);"></div>
+            <p class="reveal font-display" style="font-size: clamp(28px, 5vw, 52px); font-weight: 600; line-height: 1.3; margin-bottom: 24px;">June 19th, 1865.</p>
+            <p class="reveal font-display" style="font-size: clamp(20px, 3vw, 32px); font-weight: 300; color: #55ac64; margin-bottom: 40px;">Galveston, Texas. The last to hear the news.</p>
+            <p class="reveal font-body" style="font-size: 16px; line-height: 2; opacity: 0.6; max-width: 580px; margin-bottom: 32px;">
+                Two and a half years after the Emancipation Proclamation, Union soldiers arrived in Texas to announce that enslaved people were free. Freedom, delayed &mdash; but not denied.
+            </p>
+
+            <figure class="scene-image img-archival reveal scale-in ken-burns" style="margin: 40px 0;">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Emancipation_Day_celebration_-_1900-06-19.jpg"
+                     alt="Emancipation Day celebration, June 19, 1900"
+                     loading="lazy" style="max-height: 50vh; object-fit: cover; width: 100%; border-radius: 12px;">
+                <figcaption>Emancipation Day celebration, June 19, 1900. Public domain.</figcaption>
+            </figure>
+
+            <!-- Animated chain shatter -->
+            <div class="chain-break chain-animated reveal" style="margin: 48px 0; opacity: 0.5;">
+                <div class="chain-link"></div><div class="chain-link"></div><div class="chain-link"></div><div class="chain-link"></div><div class="chain-link"></div>
+                <div class="chain-flash"></div>
+            </div>
+
+            <p class="reveal reveal-slow font-display" style="font-size: clamp(18px, 2.5vw, 26px); font-weight: 400; color: #D4A843; text-align: center; letter-spacing: 1px;">
+                The chains broke. The building began.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 5: THE BUILDING — THROUGH HISTORY    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene scene-building" id="building" style="flex-direction: column; min-height: 130vh;">
+        <div class="legend-card left" style="top: 15%;">
+            <div class="legend-portrait legend-portrait-archival">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/George_Washington_Carver_c1910.jpg" alt="George Washington Carver" loading="lazy">
+            </div>
+            <div class="legend-info">
+                <div class="legend-name">George Washington Carver</div>
+                <div class="legend-years">1864 &ndash; 1943</div>
+                <div class="legend-desc">Agricultural scientist. 300+ products from peanuts. Revolutionized Southern farming.</div>
+            </div>
+        </div>
+        <div class="legend-card right" style="top: 45%;">
+            <div class="legend-portrait legend-portrait-archival">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Garrett_Morgan.jpg" alt="Garrett Morgan" loading="lazy">
+            </div>
+            <div class="legend-info">
+                <div class="legend-name">Garrett Morgan</div>
+                <div class="legend-years">1877 &ndash; 1963</div>
+                <div class="legend-desc">Invented the traffic signal and gas mask. Saved lives with innovations he was rarely credited for.</div>
+            </div>
+        </div>
+        <div class="legend-card left" style="top: 75%;">
+            <div class="legend-portrait legend-portrait-transitional">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Katherine_Johnson_at_NASA%2C_in_1966.jpg" alt="Katherine Johnson at NASA" loading="lazy">
+            </div>
+            <div class="legend-info">
+                <div class="legend-name">Katherine Johnson</div>
+                <div class="legend-years">1918 &ndash; 2020</div>
+                <div class="legend-desc">NASA mathematician. Calculated orbital trajectory for John Glenn. Hidden figure, towering legacy.</div>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; width: 100%; position: relative; z-index: 1;">
+            <div class="scene-divider reveal" style="margin-bottom: 40px; background: linear-gradient(90deg, #D4A843, #55ac64);"></div>
+            <p class="reveal font-display" style="font-size: clamp(24px, 4vw, 40px); font-weight: 300; margin-bottom: 56px; line-height: 1.4;">
+                From freedom, they didn't just survive.<br><span style="color: #D4A843; font-weight: 600;">They built.</span>
+            </p>
+
+            <div class="reveal from-left" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; margin-bottom: 48px;">
+                <figure class="scene-image img-archival" style="margin: 0;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Tuskegee_Institute_in_1882.jpg" alt="Tuskegee Institute, 1882" loading="lazy" style="border-radius: 12px; width: 100%; max-height: 280px; object-fit: cover;">
+                    <figcaption>Tuskegee Institute, 1882. Public domain.</figcaption>
+                </figure>
+                <div style="padding: 16px 0;">
+                    <p class="font-display" style="font-size: 14px; letter-spacing: 3px; color: rgba(212, 168, 67, 0.5); margin-bottom: 8px;">1881</p>
+                    <p class="font-display" style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Tuskegee Institute</p>
+                    <p class="font-body" style="font-size: 15px; color: rgba(255, 255, 255, 0.6); line-height: 1.7;">Booker T. Washington builds an institution from nothing. HBCUs become launchpads for Black excellence.</p>
+                </div>
+            </div>
+
+            <div class="reveal from-right" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; margin-bottom: 48px;">
+                <div style="padding: 16px 0;">
+                    <p class="font-display" style="font-size: 14px; letter-spacing: 3px; color: rgba(85, 172, 100, 0.5); margin-bottom: 8px;">1921</p>
+                    <p class="font-display" style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Black Wall Street</p>
+                    <p class="font-body" style="font-size: 15px; color: rgba(255, 255, 255, 0.6); line-height: 1.7;">Greenwood, Tulsa. Black commerce thriving &mdash; until it was burned to the ground. They rebuilt.</p>
+                </div>
+                <figure class="scene-image img-archival" style="margin: 0;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Tulsa-1921-booker.jpg" alt="Tulsa, 1921" loading="lazy" style="border-radius: 12px; width: 100%; max-height: 280px; object-fit: cover;">
+                    <figcaption>Tulsa, 1921. Public domain.</figcaption>
+                </figure>
+            </div>
+
+            <div class="reveal scale-in" style="margin-bottom: 48px;">
+                <figure class="scene-image-full img-transitional img-fade-edges">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/1963_march_on_washington.jpg" alt="March on Washington, August 28, 1963" loading="lazy">
+                </figure>
+                <div style="text-align: center; margin-top: 16px;">
+                    <p class="font-display" style="font-size: 14px; letter-spacing: 3px; color: rgba(200, 67, 66, 0.5); margin-bottom: 8px;">1964</p>
+                    <p class="font-display" style="font-size: 20px; font-weight: 600; margin-bottom: 8px;">Civil Rights Act</p>
+                    <p class="font-body" style="font-size: 15px; color: rgba(255, 255, 255, 0.6); line-height: 1.7;">After centuries of being denied, the law finally said: every table is your table.</p>
+                    <p class="font-body" style="font-size: 14px; color: rgba(255, 255, 255, 0.55); margin-top: 10px; font-style: italic;">March on Washington, August 28, 1963. Public domain.</p>
+                </div>
+            </div>
+
+            <p class="reveal font-display" style="font-size: clamp(16px, 2.5vw, 22px); font-weight: 400; opacity: 0.6; text-align: center; line-height: 1.6;">
+                Every generation built. Every generation was told it wasn't enough.<br>
+                <span style="color: #D4A843;">So we kept building.</span>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 5.5: REMEMBER THEM                   -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene scene-remember" style="flex-direction: column; min-height: 70vh;">
+        <div style="text-align: center; position: relative; z-index: 1;">
+            <p class="remember-text font-display" style="font-size: clamp(24px, 4vw, 42px); font-weight: 300; letter-spacing: 3px; color: rgba(240, 237, 230, 0.6);">
+                Remember them.
+            </p>
+            <p class="remember-text font-body" style="font-size: 15px; color: rgba(255, 255, 255, 0.5); margin-top: 24px; letter-spacing: 2px;">
+                Every name erased. Every invention stolen. Every life denied.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 6: THE RECKONING — 2020              -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene scene-reckoning" id="reckoning" style="flex-direction: column;">
+        <div class="legend-card right" style="top: 25%;">
+            <div class="legend-portrait placeholder">MD</div>
+            <div class="legend-info">
+                <div class="legend-name">Mark Dean</div>
+                <div class="legend-years">1957 &ndash;</div>
+                <div class="legend-desc">Co-invented the ISA bus. Led the team that built the first gigahertz processor at IBM.</div>
+            </div>
+        </div>
+        <div class="legend-card left" style="top: 70%;">
+            <div class="legend-portrait placeholder">MC</div>
+            <div class="legend-info">
+                <div class="legend-name">Marian Croak</div>
+                <div class="legend-years">1955 &ndash;</div>
+                <div class="legend-desc">Pioneered VoIP technology. 200+ patents. VP of Engineering at Google.</div>
+            </div>
+        </div>
+
+        <div class="timeline-year reveal reveal-slow" aria-hidden="true">2020</div>
+        <div style="max-width: 700px; width: 100%; position: relative; z-index: 1;">
+            <div class="scene-divider reveal" style="margin-bottom: 40px; background: #c84342;"></div>
+
+            <p class="reveal font-display" style="font-size: clamp(24px, 4vw, 42px); font-weight: 300; line-height: 1.4; margin-bottom: 48px; color: rgba(240, 237, 230, 0.85);">
+                A pandemic. A reckoning.<br>
+                <span style="color: #c84342; font-weight: 600;">A refusal to wait any longer.</span>
+            </p>
+
+            <!-- Memorial Portraits -->
+            <div class="memorial-grid" style="margin-bottom: 48px;">
+                <div class="memorial-portrait reveal">
+                    <div class="memorial-photo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Floyd_portrait_%2849999239916%29.jpg" alt="George Floyd" loading="lazy">
+                    </div>
+                    <div class="memorial-name">George Floyd</div>
+                    <div class="memorial-years">1973 &ndash; 2020</div>
+                </div>
+                <div class="memorial-portrait reveal">
+                    <div class="memorial-photo-placeholder"><span class="memorial-candle">&#x1F56F;</span></div>
+                    <div class="memorial-name">Breonna Taylor</div>
+                    <div class="memorial-years">1993 &ndash; 2020</div>
+                </div>
+                <div class="memorial-portrait reveal">
+                    <div class="memorial-photo-placeholder"><span class="memorial-candle">&#x1F56F;</span></div>
+                    <div class="memorial-name">Ahmaud Arbery</div>
+                    <div class="memorial-years">1994 &ndash; 2020</div>
+                </div>
+                <div class="memorial-portrait reveal">
+                    <div class="memorial-photo-placeholder"><span class="memorial-candle">&#x1F56F;</span></div>
+                    <div class="memorial-name">Michael Brown</div>
+                    <div class="memorial-years">1996 &ndash; 2014</div>
+                </div>
+            </div>
+
+            <p class="reveal font-body" style="font-size: 16px; line-height: 2; opacity: 0.5; max-width: 560px; margin-bottom: 40px;">
+                The world watched. We proudly proclaimed that Black Lives Matter. The tech industry posted black squares and made promises.
+            </p>
+            <p class="reveal from-right font-display" style="font-size: clamp(18px, 2.5vw, 28px); font-weight: 500; color: rgba(240, 237, 230, 0.7); margin-bottom: 40px; line-height: 1.5;">
+                They said <span style="color: #c84342; font-weight: 600;">&ldquo;Black talent is hard to find.&rdquo;</span>
+            </p>
+            <p class="reveal from-left font-display" style="font-size: clamp(20px, 3vw, 34px); font-weight: 600; color: #D4A843; margin-bottom: 48px; line-height: 1.4;">
+                We filled a roster of world-class Black speakers in 16 days.
+            </p>
+
+            <div class="reveal-stagger" style="display: flex; flex-wrap: wrap; gap: 40px; margin-bottom: 32px;">
+                <div class="reveal stat-explode">
+                    <div class="stat-value" style="font-size: clamp(36px, 6vw, 64px);" data-count="20000">0</div>
+                    <p class="font-body" style="font-size: 14px; opacity: 0.5; margin-top: 4px; letter-spacing: 1px;">watched live</p>
+                </div>
+                <div class="reveal stat-explode">
+                    <div class="stat-value" style="font-size: clamp(36px, 6vw, 64px);">16</div>
+                    <p class="font-body" style="font-size: 14px; opacity: 0.5; margin-top: 4px; letter-spacing: 1px;">days to build it</p>
+                </div>
+                <div class="reveal stat-explode">
+                    <div class="stat-value" style="font-size: clamp(36px, 6vw, 64px);">0</div>
+                    <p class="font-body" style="font-size: 14px; opacity: 0.5; margin-top: 4px; letter-spacing: 1px;">permissions asked</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 7: 2026 — THE BIG REVEAL             -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene scene-2026" id="twenty26" style="flex-direction: column; min-height: 130vh;">
+        <div class="legend-card right" style="top: 15%;">
+            <div class="legend-portrait placeholder">LG</div>
+            <div class="legend-info">
+                <div class="legend-name">Lisa Gelobter</div>
+                <div class="legend-years">Internet pioneer</div>
+                <div class="legend-desc">Helped develop Shockwave and Flash. Made the early internet move. Literally.</div>
+            </div>
+        </div>
+
+        <div style="max-width: 900px; width: 100%; text-align: center; position: relative; z-index: 1;">
+            <!-- Chicago Skyline -->
+            <div class="reveal scale-in" style="margin-bottom: 48px;">
+                <figure class="scene-image-full img-vibrant">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Chicago_September_2016-23.jpg" alt="Chicago skyline at dusk" loading="lazy">
+                </figure>
+            </div>
+
+            <div class="scene-divider reveal" style="margin: 0 auto 48px;"></div>
+            <p class="reveal font-display" style="font-size: clamp(16px, 2.5vw, 22px); font-weight: 300; letter-spacing: 4px; text-transform: uppercase; opacity: 0.5; margin-bottom: 24px;">This is not a comeback</p>
+            <p class="reveal font-display" style="font-size: clamp(22px, 3.5vw, 38px); font-weight: 600; color: #c84342; margin-bottom: 48px; line-height: 1.4;">This is an escalation.</p>
+
+            <h2 class="reveal scale-in font-display" style="font-size: clamp(48px, 9vw, 100px); font-weight: 700; line-height: 1; margin-bottom: 16px;">June 19&ndash;20</h2>
+            <h3 class="reveal font-display" style="font-size: clamp(28px, 5vw, 56px); font-weight: 300; color: #D4A843; margin-bottom: 32px;">Chicago, 2026</h3>
+
+            <p class="reveal font-body" style="font-size: 16px; line-height: 2; opacity: 0.55; max-width: 540px; margin: 0 auto 48px;">
+                The table was built in 2020. In 2026, it becomes permanent. Institutional. A movement. No more asking. No more waiting. Building.
+            </p>
+
+            <!-- Keynote Reveal — Cinematic Madison Butler -->
+            <div class="madison-reveal reveal" style="margin-top: 24px;">
+                <p class="font-body" style="font-size: 13px; letter-spacing: 3px; text-transform: uppercase; opacity: 0.4; margin-bottom: 24px;">Keynote Speaker</p>
+                <div style="position: relative; display: flex; justify-content: center; margin-bottom: 24px;">
+                    <div class="madison-glow"></div>
+                    <div class="madison-photo-wrap">
+                        <img src="madison-butler.jpeg" alt="Madison Butler — Keynote Speaker" style="width: 100%; height: 100%; object-fit: cover; object-position: top;">
+                    </div>
+                </div>
+                <h3 class="font-display" style="font-size: clamp(28px, 4vw, 44px); font-weight: 600; margin-bottom: 8px;">Madison Butler</h3>
+                <p class="font-body" style="font-size: 16px; opacity: 0.6; margin-bottom: 32px;">Founder, Blue Haired Unicorn &amp; Black Speakers Collection</p>
+            </div>
+
+            <div class="reveal" style="margin-top: 48px; padding: 40px; border: 1px solid rgba(212,168,67,0.2); border-radius: 16px; background: rgba(212,168,67,0.05);">
+                <p class="font-display" style="font-size: clamp(20px, 3vw, 32px); font-weight: 600; color: #D4A843; letter-spacing: 2px;">&ldquo;Building Our Own Table&rdquo;</p>
+                <p class="font-body" style="font-size: 14px; opacity: 0.5; margin-top: 12px;">We will no longer wait for acceptance or approval.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- PART 2: G's TYPOGRAPHIC ENERGY — POST-TIMELINE         -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 8: CHAOS → ORDER                     -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene" style="min-height: 80vh; background: linear-gradient(180deg, #1a1520, #231c2d);">
+        <div class="chaos-container" id="chaosContainer" style="position: relative; z-index: 2;">
+            <div class="chaos-word" id="cw-building" style="font-size: clamp(40px, 9vw, 110px); color: rgba(255,255,255,0.8);">Building</div>
+            <div class="chaos-word" id="cw-our" style="font-size: clamp(36px, 7vw, 90px); color: rgba(200,67,66,0.9);">Our</div>
+            <div class="chaos-word" id="cw-own" style="font-size: clamp(36px, 7vw, 90px); color: rgba(212,168,67,0.9);">Own</div>
+            <div class="chaos-word" id="cw-table" style="font-size: clamp(52px, 12vw, 150px); color: #c84342;">Table</div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 9: SPEAKER TICKER                    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene" style="min-height: auto; padding-top: 40px; padding-bottom: 40px; background: linear-gradient(180deg, #231c2d, #2d2438);">
+        <div style="width: 100%; position: relative; z-index: 2;">
+            <div class="reveal" style="margin-bottom: 48px;">
+                <p style="font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.3); letter-spacing: 0.2em; text-transform: uppercase; text-align: center; margin-bottom: 24px;">Voices who've graced our stage</p>
+                <div class="speaker-ticker" id="speakerTicker" aria-label="Past conference speakers">
+                    <div class="speaker-ticker-track" id="speakerTrack">
+                        <span>Angie Jones</span><span>Tim Banks</span><span>Minda Harts</span><span>Jerome Hardaway</span><span>Alaxandria Foreman</span><span>Wesley Faulkner</span><span>Angie Jones</span><span>Tim Banks</span><span>Minda Harts</span><span>Jerome Hardaway</span><span>Alaxandria Foreman</span><span>Wesley Faulkner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 10: PROGRAMS — OUTLINED TYPE         -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene" id="table" style="min-height: auto; background: linear-gradient(180deg, #2d2438, #231c2d);">
+        <div style="max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 2;">
+            <div class="reveal program-block" style="margin-bottom: 80px;">
+                <h2 class="type-outlined" style="font-size: clamp(48px, 10vw, 120px); -webkit-text-stroke-color: #c84342; flex-shrink: 0;">Conference</h2>
+                <p style="font-family: 'Inter', sans-serif; font-size: clamp(14px, 1.5vw, 17px); color: rgba(255,255,255,0.5); max-width: 400px; line-height: 1.7; padding-bottom: 12px;">Two days. 20 curated sessions across engineering, data, security, entrepreneurship, and tech leadership. An attendee dinner cruise to close it out.</p>
+            </div>
+            <div class="line-divider" style="color: #55ac64; margin-bottom: 80px;"></div>
+            <div class="reveal program-block" style="margin-bottom: 80px;">
+                <h2 class="type-outlined" style="font-size: clamp(48px, 10vw, 120px); -webkit-text-stroke-color: #55ac64; flex-shrink: 0;">Accelerator</h2>
+                <p style="font-family: 'Inter', sans-serif; font-size: clamp(14px, 1.5vw, 17px); color: rgba(255,255,255,0.5); max-width: 400px; line-height: 1.7; padding-bottom: 12px;">Hands-on project experience, mentorship, and career pipeline support for Black professionals entering or advancing in tech.</p>
+            </div>
+            <div class="line-divider" style="color: #D4A843; margin-bottom: 80px;"></div>
+            <div class="reveal program-block">
+                <h2 class="type-outlined" style="font-size: clamp(48px, 10vw, 120px); -webkit-text-stroke-color: #D4A843; flex-shrink: 0;">Mentorship</h2>
+                <p style="font-family: 'Inter', sans-serif; font-size: clamp(14px, 1.5vw, 17px); color: rgba(255,255,255,0.5); max-width: 400px; line-height: 1.7; padding-bottom: 12px;">Pairing aspiring technologists with experienced professionals for upskilling, portfolio building, and career guidance.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 11: ADD YOUR NAME TO THE TABLE       -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene" style="min-height: auto; background: linear-gradient(180deg, #231c2d, #1a1520);">
+        <div style="text-align: center; max-width: 1000px; margin: 0 auto; position: relative; z-index: 2;">
+            <div class="reveal">
+                <p style="font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.25); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px;">This table is for everyone</p>
+                <span class="type-massive" style="font-size: clamp(28px, 6vw, 72px); display: block; color: rgba(255,255,255,0.85); margin-bottom: 40px;">Add your name to the table.</span>
+            </div>
+            <div class="reveal name-wall" id="nameWall" aria-label="Community name wall">
+                <span style="font-size:18px; color:rgba(255,255,255,0.12);">Michael B.</span>
+                <span style="font-size:14px; color:rgba(200,67,66,0.25);">Madison B.</span>
+                <span style="font-size:22px; color:rgba(255,255,255,0.08);">Brandi J.B.</span>
+                <span style="font-size:12px; color:rgba(212,168,67,0.2);">Kimeka C.</span>
+                <span style="font-size:16px; color:rgba(85,172,100,0.18);">Cotishea A.</span>
+                <span style="font-size:20px; color:rgba(255,255,255,0.1);">Courtney G.</span>
+                <span style="font-size:13px; color:rgba(200,67,66,0.18);">Lyn M.</span>
+                <span style="font-size:17px; color:rgba(255,255,255,0.07);">Angie J.</span>
+                <span style="font-size:15px; color:rgba(212,168,67,0.18);">Jerome H.</span>
+                <span style="font-size:21px; color:rgba(85,172,100,0.12);">Tim B.</span>
+                <span style="font-size:11px; color:rgba(255,255,255,0.08);">Minda H.</span>
+                <span style="font-size:19px; color:rgba(200,67,66,0.2);">Wesley F.</span>
+                <span style="font-size:14px; color:rgba(255,255,255,0.1);">Alaxandria F.</span>
+            </div>
+            <div class="reveal" style="display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; margin-top: 32px;">
+                <label for="name-input" class="sr-only">Your name</label>
+                <input type="text" id="name-input" class="name-wall-input" placeholder="Your name" maxlength="40" autocomplete="name">
+                <button type="button" class="name-wall-add" id="addNameBtn">Take your seat</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- SCENE 12: THE CALL — Registration + Footer -->
+    <!-- ═══════════════════════════════════════════ -->
+    <section class="scene scene-invitation" id="register" style="min-height: 100vh;">
+        <div style="text-align: center; max-width: 1000px; margin: 0 auto; position: relative; z-index: 2;">
+            <div class="reveal scale-in">
+                <span class="type-massive" style="font-size: clamp(40px, 10vw, 140px); display: block;">Your seat</span>
+                <span class="type-massive" style="font-size: clamp(40px, 10vw, 140px); display: block;">is <span style="color: #D4A843;">ready.</span></span>
+            </div>
+            <div style="margin-top: 64px; display: flex; flex-wrap: wrap; justify-content: center; gap: 32px 64px;">
+                <a href="#" class="cta-text reveal" style="font-size: clamp(32px, 6vw, 72px); color: #c84342;">Register</a>
+                <a href="#" class="cta-text reveal" style="font-size: clamp(32px, 6vw, 72px); color: #55ac64;">Sponsor</a>
+            </div>
+            <div class="line-divider" style="color: #fff; margin: 80px 0 48px;"></div>
+
+            <div class="reveal" style="margin-bottom: 64px;">
+                <p style="font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(255,255,255,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px;">Join 2,500+ in our community</p>
+                <form style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; align-items: flex-end;" onsubmit="event.preventDefault();" aria-label="Newsletter signup">
+                    <label for="email-input" class="sr-only">Email address</label>
+                    <input type="email" id="email-input" class="newsletter-input" placeholder="your@email.com" autocomplete="email" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+
+            <div class="reveal footer-zone" style="text-align: center;">
+                <p style="margin-bottom: 24px;"><strong style="color: rgba(255,255,255,0.8);">June 19&ndash;20, 2026</strong> &bull; Chicago, IL</p>
+                <p style="margin-bottom: 8px;">JuneteenthConf, Unl. &mdash; Fiscally sponsored by YPOC Harrisburg (501(c)(3))</p>
+                <p style="margin-bottom: 24px;"><a href="mailto:info@juneteenthconf.com">info@juneteenthconf.com</a></p>
+                <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 32px;">
+                    <a href="#">Twitter</a><a href="#">LinkedIn</a><a href="#">YouTube</a><a href="#">Instagram</a>
+                </div>
+                <p style="font-size: 12px; color: rgba(255,255,255,0.2);">Artwork by Havana Nguyen &bull; &copy; 2020&ndash;2026 JuneteenthConf</p>
+                <p style="font-size: 10px; color: rgba(255,255,255,0.12); margin-top: 8px;">Historical images: Wikimedia Commons / Library of Congress. All public domain.</p>
+            </div>
+        </div>
+    </section>
+
+    <div style="height: 36px;"></div>
+
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- JAVASCRIPT                                 -->
+    <!-- ═══════════════════════════════════════════ -->
+    <script>
+    (function() {
+        'use strict';
+
+        var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // ── 1. SCROLL PROGRESS ──
+        var progressBar = document.getElementById('scrollProgress');
+        function updateProgress() {
+            var docH = document.documentElement.scrollHeight - window.innerHeight;
+            progressBar.style.width = (docH > 0 ? (window.scrollY / docH) * 100 : 0) + '%';
+        }
+
+        // ── 2. NAV (show on scroll up) ──
+        var scrollNav = document.getElementById('scrollNav');
+        var lastScrollY = 0;
+        function updateNav() {
+            var y = window.scrollY;
+            if (y > window.innerHeight * 0.8 && y < lastScrollY - 5) scrollNav.classList.add('visible');
+            else if (y < 200 || y > lastScrollY + 5) scrollNav.classList.remove('visible');
+            lastScrollY = y;
+        }
+
+        // ── 3. REVEALS ──
+        function initReveals() {
+            if (prefersReducedMotion) return;
+
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        var counter = e.target.querySelector('[data-count]') || (e.target.dataset.count ? e.target : null);
+                        if (counter && counter.dataset.count && !counter.dataset.counted) {
+                            animateCounter(counter);
+                            counter.dataset.counted = 'true';
+                        }
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+
+            // Legend cards
+            var legendObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.2 });
+            document.querySelectorAll('.legend-card').forEach(function(el) { legendObs.observe(el); });
+
+            // Memorial portraits
+            var memObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.2 });
+            document.querySelectorAll('.memorial-portrait').forEach(function(el) { memObs.observe(el); });
+
+            // Remember text
+            var remObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.3 });
+            document.querySelectorAll('.remember-text').forEach(function(el) { remObs.observe(el); });
+
+            // Madison reveal
+            var madObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.2 });
+            document.querySelectorAll('.madison-reveal').forEach(function(el) { madObs.observe(el); });
+
+            // Stat explosions
+            var statObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.3 });
+            document.querySelectorAll('.stat-explode').forEach(function(el) { statObs.observe(el); });
+
+            // Ken Burns
+            var kbObs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('.ken-burns, .ken-burns-pan').forEach(function(el) { kbObs.observe(el); });
+        }
+
+        // ── 4. COUNTER ──
+        function animateCounter(el) {
+            var target = parseInt(el.dataset.count, 10);
+            var start = performance.now();
+            var suffix = target >= 1000 ? '+' : '';
+            function step(now) {
+                var p = Math.min((now - start) / 1800, 1);
+                var eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(eased * target).toLocaleString() + suffix;
+                if (p < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+        }
+
+        // ── 5. CHAOS → ORDER ──
+        function initChaos() {
+            if (prefersReducedMotion) return;
+            var container = document.getElementById('chaosContainer');
+            if (!container) return;
+            var words = container.querySelectorAll('.chaos-word');
+            var scatter = [
+                { top: '8%', left: '15%', rot: -18, scale: 0.7 },
+                { top: '75%', left: '70%', rot: 12, scale: 0.9 },
+                { top: '20%', left: '72%', rot: -8, scale: 0.6 },
+                { top: '65%', left: '10%', rot: 22, scale: 1.1 },
+            ];
+            words.forEach(function(w, i) {
+                var p = scatter[i];
+                w.style.top = p.top; w.style.left = p.left;
+                w.style.transform = 'rotate(' + p.rot + 'deg) scale(' + p.scale + ')';
+                w.style.opacity = '0.3';
+            });
+            var done = false;
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting && !done) {
+                        done = true;
+                        setTimeout(function() {
+                            words.forEach(function(w) {
+                                w.style.position = 'relative'; w.style.top = 'auto'; w.style.left = 'auto';
+                                w.style.transform = 'rotate(0deg) scale(1)'; w.style.opacity = '1';
+                            });
+                            container.style.flexDirection = 'column';
+                            container.style.alignItems = 'center';
+                            container.style.gap = '0px';
+                        }, 600);
+                    }
+                });
+            }, { threshold: 0.5 });
+            obs.observe(container);
+        }
+
+        // ── 6. SPEAKER TICKER ACCELERATION ──
+        function initTickerAccel() {
+            if (prefersReducedMotion) return;
+            var ticker = document.getElementById('speakerTicker');
+            var track = document.getElementById('speakerTrack');
+            if (!ticker || !track) return;
+            var obs = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var vh = window.innerHeight;
+                        window.addEventListener('scroll', function() {
+                            var r = ticker.getBoundingClientRect();
+                            var p = Math.max(0, Math.min(1, 1 - (r.top / vh)));
+                            track.style.animationDuration = Math.max(30 - (p * 26), 4) + 's';
+                        }, { passive: true });
+                    }
+                });
+            }, { threshold: 0.05 });
+            obs.observe(ticker);
+        }
+
+        // ── 7. NAME WALL ──
+        function initNameWall() {
+            var wall = document.getElementById('nameWall');
+            var input = document.getElementById('name-input');
+            var btn = document.getElementById('addNameBtn');
+            if (!wall || !input || !btn) return;
+            var colors = ['rgba(200,67,66,0.35)', 'rgba(212,168,67,0.3)', 'rgba(85,172,100,0.25)', 'rgba(255,255,255,0.18)', 'rgba(255,255,255,0.12)'];
+            var sizes = [13, 15, 17, 19, 21, 23, 25];
+            function addName() {
+                var name = input.value.trim();
+                if (!name) return;
+                var span = document.createElement('span');
+                span.textContent = name;
+                span.style.fontSize = sizes[Math.floor(Math.random() * sizes.length)] + 'px';
+                span.style.color = '#D4A843';
+                span.classList.add('name-etch');
+                wall.appendChild(span);
+                setTimeout(function() {
+                    span.style.transition = 'color 1.5s ease';
+                    span.style.color = colors[Math.floor(Math.random() * colors.length)];
+                }, 1000);
+                input.value = ''; input.focus();
+            }
+            btn.addEventListener('click', addName);
+            input.addEventListener('keydown', function(e) { if (e.key === 'Enter') addName(); });
+        }
+
+        // ── 8. PARTICLES (D4's color-shifting canvas) ──
+        function initParticles() {
+            if (prefersReducedMotion) return;
+            var canvas = document.getElementById('particleCanvas');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var particles = [];
+            var count = 60;
+
+            function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+            resize();
+            window.addEventListener('resize', resize);
+
+            for (var i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.3, vy: -Math.random() * 0.5 - 0.1,
+                    size: Math.random() * 2 + 0.5,
+                    opacity: Math.random() * 0.4 + 0.1,
+                    pulse: Math.random() * Math.PI * 2
+                });
+            }
+
+            function getColor() {
+                var docH = document.documentElement.scrollHeight - window.innerHeight;
+                var p = docH > 0 ? window.scrollY / docH : 0;
+                if (p < 0.3) { var t = p / 0.3; return { r: Math.round(60 + t * 140), g: Math.round(20 + t * 47), b: Math.round(30 + t * 36) }; }
+                else if (p < 0.6) { var t2 = (p - 0.3) / 0.3; return { r: Math.round(200 - t2 * 12), g: Math.round(67 + t2 * 101), b: Math.round(66 - t2 * 1) }; }
+                else { var t3 = (p - 0.6) / 0.4; return { r: Math.round(188 - t3 * 103), g: Math.round(168 + t3 * 4), b: Math.round(65 + t3 * 35) }; }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                var c = getColor();
+                for (var i = 0; i < particles.length; i++) {
+                    var p = particles[i];
+                    p.x += p.vx; p.y += p.vy; p.pulse += 0.02;
+                    if (p.y < -10) { p.y = canvas.height + 10; p.x = Math.random() * canvas.width; }
+                    if (p.x < -10) p.x = canvas.width + 10;
+                    if (p.x > canvas.width + 10) p.x = -10;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + (p.opacity * (0.5 + 0.5 * Math.sin(p.pulse))) + ')';
+                    ctx.fill();
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        // ── 9. SPOKEN WORD BUTTON ──
+        function initSpokenWord() {
+            var btn = document.getElementById('spokenWordBtn');
+            if (btn) btn.addEventListener('click', function() { this.classList.toggle('playing'); });
+        }
+
+        // ── REDUCED MOTION FALLBACK ──
+        function checkReducedMotion() {
+            if (!prefersReducedMotion) return;
+            document.querySelectorAll('.reveal, .legend-card').forEach(function(el) { el.classList.add('visible'); });
+            document.querySelectorAll('.memorial-portrait').forEach(function(el) { el.classList.add('visible'); });
+            document.querySelectorAll('.remember-text').forEach(function(el) { el.classList.add('visible'); });
+            scrollNav.classList.add('visible');
+            document.querySelectorAll('.chaos-word').forEach(function(w) {
+                w.style.position = 'relative'; w.style.top = 'auto'; w.style.left = 'auto';
+                w.style.transform = 'none'; w.style.opacity = '1';
+            });
+            var cc = document.getElementById('chaosContainer');
+            if (cc) { cc.style.flexDirection = 'column'; cc.style.alignItems = 'center'; }
+        }
+
+        // ── SCROLL HANDLER ──
+        var ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                requestAnimationFrame(function() { updateProgress(); updateNav(); ticking = false; });
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // ── INIT ──
+        checkReducedMotion();
+        initReveals();
+        initChaos();
+        initTickerAccel();
+        initNameWall();
+        initParticles();
+        initSpokenWord();
+        updateProgress();
+    })();
+    </script>
+
+</body>
+</html>
