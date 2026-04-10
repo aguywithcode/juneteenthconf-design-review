@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JuneteenthConf 2026 — Design Review</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        jc: {
+                            black: '#231c2d',
+                            purple: '#2d2438',
+                            red: '#c84342',
+                            gold: '#D4A843',
+                            green: '#55ac64',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        body: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #231c2d; color: #f0ede6; min-height: 100vh; }
+        .option-card {
+            background: rgba(45, 36, 56, 0.5);
+            border: 1px solid rgba(240, 237, 230, 0.08);
+            border-radius: 12px; padding: 28px;
+            text-decoration: none; color: #f0ede6;
+            transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+            display: block;
+        }
+        .option-card:hover {
+            border-color: rgba(212, 168, 67, 0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .option-letter {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 13px;
+            letter-spacing: 3px; text-transform: uppercase;
+            opacity: 0.4; margin-bottom: 12px;
+        }
+        .option-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600; font-size: 20px;
+            margin-bottom: 8px;
+        }
+        .option-desc {
+            font-size: 14px; line-height: 1.6; opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div style="max-width: 720px; margin: 0 auto; padding: 64px 24px 48px;">
+
+        <header style="margin-bottom: 56px;">
+            <h1 class="font-display" style="font-size: 28px; font-weight: 700; margin-bottom: 12px;">JuneteenthConf 2026 — Design Review</h1>
+            <p class="font-body" style="font-size: 15px; opacity: 0.5; line-height: 1.6;">Select a design direction to preview. Share your feedback with the board.</p>
+        </header>
+
+        <div style="display: grid; gap: 16px; margin-bottom: 56px;">
+
+            <a href="option_a_same_dna.html" class="option-card">
+                <div class="option-letter">Option A</div>
+                <div class="option-title">Same DNA, Modern Craft</div>
+                <div class="option-desc">Refined evolution. Warm, polished, illustration-forward.</div>
+            </a>
+
+            <a href="option_b_afrofuturist.html" class="option-card">
+                <div class="option-letter">Option B</div>
+                <div class="option-title">Afrofuturist Bold</div>
+                <div class="option-desc">Dark, powerful, geometric. Statement piece.</div>
+            </a>
+
+            <a href="option_d_scroll_story.html" class="option-card">
+                <div class="option-letter">Option D</div>
+                <div class="option-title">Scroll Story</div>
+                <div class="option-desc">Cinematic narrative. Scroll through 400 years from 1619 to 2026.</div>
+            </a>
+
+            <a href="option_e_the_gathering.html" class="option-card">
+                <div class="option-letter">Option E</div>
+                <div class="option-title">The Gathering</div>
+                <div class="option-desc">Living collage. Big Dipper constellation. Art installation.</div>
+            </a>
+
+            <a href="option_f_the_manifesto.html" class="option-card">
+                <div class="option-letter">Option F</div>
+                <div class="option-title">The Manifesto</div>
+                <div class="option-desc">Typography IS the design. Spoken word in type. 400 years from whisper to thunder.</div>
+            </a>
+
+        </div>
+
+        <footer style="border-top: 1px solid rgba(240, 237, 230, 0.08); padding-top: 24px;">
+            <p class="font-body" style="font-size: 12px; opacity: 0.3; line-height: 1.7;">These are design direction mockups with placeholder content. The final site will include real photography, generated graphics, and video content.</p>
+        </footer>
+
+    </div>
+</body>
+</html>

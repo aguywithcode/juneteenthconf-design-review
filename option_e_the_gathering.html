@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juneteenth Conference 2026 — Design Option E: The Gathering</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --black: #231c2d;
+    --dark-green: #1a2d19;
+    --red: #c84342;
+    --green: #55ac64;
+    --gold: #D4A843;
+    --cyan: #45B7D1;
+    --glass-bg: rgba(35, 28, 45, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: #f0ece2;
+    overflow-x: hidden;
+    line-height: 1.5;
+  }
+
+  /* ===== DESIGN BANNER ===== */
+  .design-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: linear-gradient(90deg, var(--red), var(--gold), var(--cyan), var(--green));
+    color: #000;
+    text-align: center;
+    padding: 8px 16px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ===== SIDE NAV ===== */
+  .side-nav {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .side-nav a {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    display: block;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .side-nav a:hover,
+  .side-nav a.active {
+    background: var(--gold);
+    box-shadow: 0 0 12px var(--gold);
+    transform: scale(1.4);
+  }
+
+  .side-nav a::after {
+    content: attr(aria-label);
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--gold);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .side-nav a:hover::after { opacity: 1; }
+
+  /* ===== FLOATING SOCIALS ===== */
+  .floating-socials {
+    position: fixed;
+    left: 24px;
+    bottom: 40px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    text-decoration: none;
+    color: #f0ece2;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    animation: halo-pulse 3s ease-in-out infinite;
+  }
+
+  .social-icon:nth-child(1) { --halo-color: var(--cyan); animation-delay: 0s; }
+  .social-icon:nth-child(2) { --halo-color: var(--red); animation-delay: 0.5s; }
+  .social-icon:nth-child(3) { --halo-color: var(--green); animation-delay: 1s; }
+  .social-icon:nth-child(4) { --halo-color: var(--gold); animation-delay: 1.5s; }
+
+  .social-icon:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px var(--halo-color);
+  }
+
+  /* ===== SOUND TOGGLE ===== */
+  .sound-toggle {
+    position: fixed;
+    left: 24px;
+    top: 60px;
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: #f0ece2;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .sound-toggle:hover {
+    box-shadow: 0 0 16px var(--cyan);
+    transform: scale(1.1);
+  }
+
+  /* ===== SECTION: THE CANVAS ===== */
+  .canvas-section {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-top: 36px;
+  }
+
+  .canvas-bg-grain {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .canvas-composition {
+    position: relative;
+    width: 100%;
+    max-width: 1400px;
+    min-height: 100vh;
+    padding: 60px 40px;
+  }
+
+  /* Fragmented type */
+  .frag-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    position: absolute;
+    line-height: 0.85;
+    user-select: none;
+  }
+
+  .frag-j { font-size: clamp(80px, 14vw, 180px); color: var(--red); top: 8%; left: 5%; transform: rotate(-4deg); animation: float-slow 8s ease-in-out infinite; }
+  .frag-u { font-size: clamp(60px, 10vw, 140px); color: var(--green); top: 4%; left: 18%; transform: rotate(2deg); animation: float-med 6s ease-in-out infinite 0.5s; }
+  .frag-n { font-size: clamp(50px, 8vw, 110px); color: var(--gold); top: 12%; left: 32%; transform: rotate(-1deg); animation: float-slow 9s ease-in-out infinite 1s; }
+  .frag-e1 { font-size: clamp(70px, 12vw, 160px); color: var(--cyan); top: 2%; left: 44%; transform: rotate(3deg); animation: float-med 7s ease-in-out infinite 0.3s; }
+  .frag-t { font-size: clamp(55px, 9vw, 120px); color: var(--red); top: 10%; left: 60%; transform: rotate(-5deg); animation: float-slow 8s ease-in-out infinite 1.5s; }
+  .frag-e2 { font-size: clamp(65px, 11vw, 150px); color: var(--green); top: 3%; left: 72%; transform: rotate(1deg); animation: float-med 6.5s ease-in-out infinite 0.7s; }
+  .frag-enth { font-size: clamp(40px, 7vw, 100px); color: var(--gold); top: 16%; left: 82%; transform: rotate(-2deg); animation: float-slow 7.5s ease-in-out infinite 2s; }
+
+  .frag-conf {
+    font-size: clamp(28px, 4vw, 56px);
+    color: rgba(240, 236, 226, 0.6);
+    top: 28%;
+    left: 10%;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    transform: rotate(-1deg);
+    animation: float-med 10s ease-in-out infinite;
+  }
+
+  .frag-2026 {
+    font-size: clamp(120px, 22vw, 320px);
+    color: rgba(212, 168, 67, 0.12);
+    top: 18%;
+    left: 25%;
+    z-index: 0;
+    animation: float-slow 12s ease-in-out infinite 1s;
+  }
+
+  .frag-chicago {
+    font-size: clamp(24px, 3.5vw, 48px);
+    color: var(--cyan);
+    top: 38%;
+    right: 10%;
+    letter-spacing: 0.15em;
+    transform: rotate(6deg);
+    animation: float-med 7s ease-in-out infinite 0.8s;
+  }
+
+  .frag-theme {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: clamp(18px, 2.5vw, 36px);
+    color: #f0ece2;
+    top: 48%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    letter-spacing: 0.08em;
+    animation: pulse-subtle 4s ease-in-out infinite;
+    white-space: nowrap;
+  }
+
+  /* Illustration badge */
+  .illustration-badge {
+    position: absolute;
+    width: clamp(100px, 16vw, 220px);
+    height: clamp(100px, 16vw, 220px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dark-green), var(--black));
+    border: 2px solid var(--green);
+    top: 55%;
+    left: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: var(--green);
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: float-slow 9s ease-in-out infinite 2s;
+    box-shadow: 0 0 40px rgba(85, 172, 100, 0.15);
+    z-index: 2;
+  }
+
+  /* Historical ghost fragments in canvas */
+  .hist-ghost {
+    position: absolute;
+    font-family: 'Space Grotesk', sans-serif;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+  }
+
+  .ghost-1619 {
+    font-size: clamp(60px, 10vw, 140px);
+    color: rgba(200, 67, 66, 0.07);
+    top: 60%;
+    right: 5%;
+    transform: rotate(3deg);
+    animation: float-slow 11s ease-in-out infinite 1s;
+  }
+
+  .ghost-1865 {
+    font-size: clamp(50px, 9vw, 130px);
+    color: rgba(85, 172, 100, 0.08);
+    top: 70%;
+    left: 30%;
+    transform: rotate(-2deg);
+    animation: float-med 10s ease-in-out infinite 2s;
+  }
+
+  .ghost-equal {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(14px, 2vw, 24px);
+    color: rgba(212, 168, 67, 0.2);
+    top: 78%;
+    right: 20%;
+    transform: rotate(4deg);
+    letter-spacing: 0.1em;
+    animation: float-slow 8s ease-in-out infinite 3s;
+  }
+
+  .ghost-free {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: clamp(16px, 2.5vw, 28px);
+    color: rgba(85, 172, 100, 0.15);
+    top: 85%;
+    left: 12%;
+    transform: rotate(-3deg);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: float-med 9s ease-in-out infinite 1.5s;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(240, 236, 226, 0.4);
+    animation: bounce-hint 2s ease-in-out infinite;
+  }
+
+  .scroll-hint span {
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 18px;
+  }
+
+  /* ===== SECTION: FLOATING INFO CARDS ===== */
+  .cards-section {
+    min-height: 100vh;
+    position: relative;
+    padding: 120px 40px;
+  }
+
+  .info-card {
+    position: absolute;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 32px 40px;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.4s ease;
+    z-index: 2;
+  }
+
+  .info-card:hover {
+    transform: scale(1.05) !important;
+    z-index: 10;
+  }
+
+  .card-date {
+    top: 8%;
+    left: 8%;
+    transform: rotate(-2deg);
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212, 168, 67, 0.1);
+    animation: float-card-1 7s ease-in-out infinite;
+  }
+
+  .card-date .card-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .card-date .card-value {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .card-location {
+    top: 5%;
+    right: 12%;
+    transform: rotate(1.5deg);
+    border-color: var(--cyan);
+    box-shadow: 0 0 30px rgba(69, 183, 209, 0.1);
+    animation: float-card-2 8s ease-in-out infinite 1s;
+  }
+
+  .card-location .card-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+
+  .card-location .card-value {
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .card-register {
+    top: 45%;
+    left: 15%;
+    transform: rotate(-1deg);
+    background: var(--red);
+    border-color: var(--red);
+    cursor: pointer;
+    animation: float-card-3 6s ease-in-out infinite 0.5s;
+    box-shadow: 0 0 40px rgba(200, 67, 66, 0.25);
+  }
+
+  .card-register:hover {
+    box-shadow: 0 0 60px rgba(200, 67, 66, 0.5) !important;
+    background: #d95554;
+  }
+
+  .card-register .card-value {
+    font-size: clamp(24px, 3vw, 40px);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
+  .card-register .card-arrow {
+    font-size: 28px;
+    margin-left: 16px;
+  }
+
+  .card-sponsor {
+    top: 50%;
+    right: 8%;
+    transform: rotate(2.5deg);
+    border-color: var(--green);
+    cursor: pointer;
+    animation: float-card-4 7.5s ease-in-out infinite 2s;
+    box-shadow: 0 0 30px rgba(85, 172, 100, 0.15);
+  }
+
+  .card-sponsor:hover {
+    box-shadow: 0 0 60px rgba(85, 172, 100, 0.4) !important;
+    border-color: var(--green);
+  }
+
+  .card-sponsor .card-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  .card-sponsor .card-value {
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 600;
+    color: var(--green);
+  }
+
+  /* Theme card — tilted at center */
+  .card-theme {
+    top: 25%;
+    left: 35%;
+    transform: rotate(-3deg);
+    border-color: var(--gold);
+    max-width: 360px;
+    animation: float-card-2 9s ease-in-out infinite 1.5s;
+  }
+
+  .card-theme .card-value {
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1.4;
+  }
+
+  /* ===== SECTION: THE JOURNEY ===== */
+  .journey-section {
+    position: relative;
+    min-height: 100vh;
+    padding: 100px 40px;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--black) 0%, rgba(26, 45, 25, 0.3) 50%, var(--black) 100%);
+  }
+
+  .journey-section::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(200, 67, 66, 0.4) 15%,
+      rgba(212, 168, 67, 0.4) 40%,
+      rgba(85, 172, 100, 0.4) 65%,
+      rgba(69, 183, 209, 0.5) 85%,
+      transparent 100%
+    );
+    z-index: 0;
+  }
+
+  .journey-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(14px, 1.5vw, 18px);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(240, 236, 226, 0.4);
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .journey-canvas {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+
+  .epoch {
+    position: relative;
+    margin-bottom: 80px;
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .epoch:nth-child(odd) { justify-content: flex-start; }
+  .epoch:nth-child(even) { justify-content: flex-end; }
+
+  .epoch-marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  .epoch-content {
+    max-width: 460px;
+    position: relative;
+  }
+
+  .epoch:nth-child(odd) .epoch-content { padding-right: 60px; text-align: right; margin-right: auto; margin-left: 0; }
+  .epoch:nth-child(even) .epoch-content { padding-left: 60px; text-align: left; margin-left: auto; margin-right: 0; }
+
+  .epoch-year {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(48px, 7vw, 90px);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .epoch-phrase {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(16px, 2vw, 22px);
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .epoch-text {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(13px, 1.4vw, 16px);
+    color: rgba(240, 236, 226, 0.5);
+    line-height: 1.7;
+  }
+
+  /* Epoch color themes */
+  .epoch-origin .epoch-marker { background: var(--red); box-shadow: 0 0 20px rgba(200, 67, 66, 0.4); }
+  .epoch-origin .epoch-year { color: var(--red); }
+  .epoch-origin .epoch-phrase { color: rgba(200, 67, 66, 0.7); }
+
+  .epoch-emancipation .epoch-marker { background: var(--gold); box-shadow: 0 0 20px rgba(212, 168, 67, 0.4); }
+  .epoch-emancipation .epoch-year { color: var(--gold); }
+  .epoch-emancipation .epoch-phrase { color: rgba(212, 168, 67, 0.8); }
+
+  .epoch-rights .epoch-marker { background: var(--green); box-shadow: 0 0 20px rgba(85, 172, 100, 0.4); }
+  .epoch-rights .epoch-year { color: var(--green); }
+  .epoch-rights .epoch-phrase { color: rgba(85, 172, 100, 0.8); }
+
+  .epoch-tech .epoch-marker { background: var(--cyan); box-shadow: 0 0 20px rgba(69, 183, 209, 0.4); }
+  .epoch-tech .epoch-year { color: var(--cyan); }
+  .epoch-tech .epoch-phrase { color: rgba(69, 183, 209, 0.8); }
+
+  .epoch-built .epoch-marker { background: var(--red); box-shadow: 0 0 24px rgba(200, 67, 66, 0.5); }
+  .epoch-built .epoch-year { color: var(--red); }
+  .epoch-built .epoch-phrase { color: rgba(240, 236, 226, 0.9); font-style: normal; font-weight: 600; }
+
+  .epoch-now .epoch-marker { background: #fff; box-shadow: 0 0 24px rgba(255, 255, 255, 0.5); animation: glow-pulse-white 3s ease-in-out infinite; }
+  .epoch-now .epoch-year {
+    background: linear-gradient(135deg, var(--gold), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .epoch-now .epoch-phrase { color: var(--gold); font-style: normal; font-weight: 600; }
+
+  /* Ghost watermark dates */
+  .journey-ghost {
+    position: absolute;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .jg-chains {
+    font-size: clamp(80px, 15vw, 200px);
+    color: rgba(200, 67, 66, 0.04);
+    top: 5%;
+    left: -5%;
+    transform: rotate(-8deg);
+  }
+
+  .jg-freedom {
+    font-size: clamp(60px, 12vw, 180px);
+    color: rgba(85, 172, 100, 0.04);
+    bottom: 15%;
+    right: -5%;
+    transform: rotate(5deg);
+  }
+
+  @keyframes glow-pulse-white {
+    0%, 100% { box-shadow: 0 0 24px rgba(255, 255, 255, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(255, 255, 255, 0.6); }
+  }
+
+  /* ===== SECTION: KEYNOTE REVEAL ===== */
+  .keynote-section {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+    overflow: hidden;
+  }
+
+  .keynote-orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 168, 67, 0.08);
+    animation: spin-slow 60s linear infinite;
+  }
+
+  .orbit-1 { width: 600px; height: 600px; }
+  .orbit-2 { width: 900px; height: 900px; animation-duration: 90s; animation-direction: reverse; }
+  .orbit-3 { width: 1200px; height: 1200px; animation-duration: 120s; }
+
+  .keynote-center {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+  }
+
+  .keynote-photo {
+    width: clamp(200px, 30vw, 380px);
+    height: clamp(200px, 30vw, 380px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dark-green), var(--black));
+    border: 3px solid var(--gold);
+    margin: 0 auto 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 0 80px rgba(212, 168, 67, 0.15), 0 0 160px rgba(212, 168, 67, 0.05);
+    animation: glow-pulse 4s ease-in-out infinite;
+  }
+
+  .keynote-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 16px;
+  }
+
+  .keynote-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 700;
+    line-height: 0.9;
+    margin-bottom: 24px;
+    background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .keynote-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(14px, 2vw, 22px);
+    font-weight: 300;
+    color: rgba(240, 236, 226, 0.7);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Orbiting elements around keynote */
+  .orbit-element {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+
+  .orbit-el-1 { top: 5%; left: 15%; animation: float-slow 8s ease-in-out infinite; }
+  .orbit-el-2 { top: 20%; right: 10%; animation: float-med 6s ease-in-out infinite 1s; }
+  .orbit-el-3 { bottom: 15%; left: 10%; animation: float-slow 9s ease-in-out infinite 2s; }
+  .orbit-el-4 { bottom: 10%; right: 20%; animation: float-med 7s ease-in-out infinite 0.5s; }
+
+  /* ===== SECTION: SPEAKER CONSTELLATION ===== */
+  .constellation-section {
+    min-height: 100vh;
+    position: relative;
+    padding: 100px 40px;
+    overflow: hidden;
+  }
+
+  .constellation-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(14px, 1.5vw, 18px);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .constellation-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(13px, 1.3vw, 16px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(240, 236, 226, 0.35);
+    text-align: center;
+    margin-bottom: 80px;
+    letter-spacing: 0.05em;
+  }
+
+  .constellation-canvas {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 700px;
+    margin: 0 auto;
+  }
+
+  .constellation-lines {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .constellation-lines svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .constellation-lines line {
+    stroke-width: 1.5;
+    opacity: 0.35;
+  }
+
+  .constellation-lines .pointer-line {
+    stroke-dasharray: 6 8;
+    opacity: 0.2;
+    stroke-width: 1;
+  }
+
+  .speaker-node {
+    position: absolute;
+    text-align: center;
+    z-index: 2;
+    cursor: pointer;
+    transition: all 0.4s ease;
+  }
+
+  .speaker-node:hover {
+    z-index: 10;
+    transform: scale(1.15);
+  }
+
+  .speaker-node:hover .speaker-name {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .speaker-avatar {
+    width: clamp(50px, 7vw, 80px);
+    height: clamp(50px, 7vw, 80px);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--dark-green), var(--black));
+    border: 2px solid var(--glass-border);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: rgba(240, 236, 226, 0.5);
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+  }
+
+  .speaker-node:hover .speaker-avatar {
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(212, 168, 67, 0.3);
+  }
+
+  .speaker-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  /*
+   * Big Dipper layout — "Follow the Drinking Gourd"
+   * Handle: s1 (tip) → s2 (mid) — curving from bottom-left
+   * Bowl:   s3 (bottom-left) → s4 (bottom-right) → s5 (top-right) → s6 (top-left)
+   * The two "pointer stars" (s5, s6) aim toward the North Star at top-right
+   */
+
+  /* Handle — tip */
+  .s1 { top: 68%; left: 8%; animation: float-slow 8s ease-in-out infinite; }
+  .s1 .speaker-avatar { border-color: var(--gold); }
+  .s1 .speaker-name { color: var(--gold); }
+
+  /* Handle — mid */
+  .s2 { top: 55%; left: 22%; animation: float-med 7s ease-in-out infinite 0.5s; }
+  .s2 .speaker-avatar { border-color: var(--gold); }
+  .s2 .speaker-name { color: var(--gold); }
+
+  /* Bowl — bottom-left */
+  .s3 { top: 48%; left: 38%; animation: float-slow 9s ease-in-out infinite 1s; }
+  .s3 .speaker-avatar { border-color: var(--cyan); }
+  .s3 .speaker-name { color: var(--cyan); }
+
+  /* Bowl — bottom-right */
+  .s4 { top: 52%; left: 58%; animation: float-med 6.5s ease-in-out infinite 1.5s; }
+  .s4 .speaker-avatar { border-color: var(--cyan); }
+  .s4 .speaker-name { color: var(--cyan); }
+
+  /* Bowl — top-right (pointer star) */
+  .s5 { top: 28%; left: 60%; animation: float-slow 8.5s ease-in-out infinite 0.8s; }
+  .s5 .speaker-avatar { border-color: var(--green); }
+  .s5 .speaker-name { color: var(--green); }
+
+  /* Bowl — top-left (pointer star) */
+  .s6 { top: 25%; left: 40%; animation: float-med 7.5s ease-in-out infinite 2s; }
+  .s6 .speaker-avatar { border-color: var(--green); }
+  .s6 .speaker-name { color: var(--green); }
+
+  /* North Star — the guiding light */
+  .north-star {
+    position: absolute;
+    top: 4%;
+    right: 12%;
+    z-index: 3;
+    text-align: center;
+  }
+
+  .north-star-glow {
+    width: clamp(16px, 2.5vw, 28px);
+    height: clamp(16px, 2.5vw, 28px);
+    border-radius: 50%;
+    background: #fff;
+    margin: 0 auto 12px;
+    box-shadow:
+      0 0 20px rgba(255, 255, 255, 0.8),
+      0 0 60px rgba(212, 168, 67, 0.5),
+      0 0 120px rgba(212, 168, 67, 0.2);
+    animation: north-star-pulse 3s ease-in-out infinite;
+  }
+
+  .north-star-rays {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(60px, 8vw, 100px);
+    height: clamp(60px, 8vw, 100px);
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: north-star-rays-pulse 4s ease-in-out infinite;
+  }
+
+  .north-star-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  .north-star-year {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(20px, 3vw, 36px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-top: 4px;
+  }
+
+  .north-star-dest {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(240, 236, 226, 0.5);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  /* Scattered dim background stars */
+  .bg-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(240, 236, 226, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bg-star:nth-child(odd) { animation: twinkle 4s ease-in-out infinite; }
+  .bg-star:nth-child(even) { animation: twinkle 5s ease-in-out infinite 2s; }
+
+  @keyframes north-star-pulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 60px rgba(212,168,67,0.5), 0 0 120px rgba(212,168,67,0.2); }
+    50% { box-shadow: 0 0 30px rgba(255,255,255,1), 0 0 80px rgba(212,168,67,0.7), 0 0 160px rgba(212,168,67,0.3); }
+  }
+
+  @keyframes north-star-rays-pulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 0.8; }
+  }
+
+  /* ===== SECTION: MISSION STREAM ===== */
+  .mission-section {
+    position: relative;
+    padding: 120px 40px;
+    overflow: hidden;
+    min-height: 100vh;
+  }
+
+  .mission-bg-stat {
+    position: absolute;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(100px, 20vw, 300px);
+    color: rgba(212, 168, 67, 0.06);
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .mission-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .mission-block {
+    margin-bottom: 100px;
+    position: relative;
+  }
+
+  .mission-pullquote {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(28px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 32px;
+    max-width: 800px;
+  }
+
+  .pullquote-red { color: var(--red); transform: rotate(-1deg); display: inline-block; }
+  .pullquote-green { color: var(--green); }
+  .pullquote-gold { color: var(--gold); }
+
+  .mission-text {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(16px, 1.8vw, 20px);
+    line-height: 1.8;
+    color: rgba(240, 236, 226, 0.75);
+    max-width: 640px;
+  }
+
+  .mission-block:nth-child(even) {
+    text-align: right;
+    margin-left: auto;
+  }
+
+  .mission-block:nth-child(even) .mission-text {
+    margin-left: auto;
+  }
+
+  .inline-stat {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 1.4em;
+  }
+
+  .program-card {
+    display: inline-block;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 12px;
+    padding: 24px 32px;
+    margin: 12px 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    transition: all 0.3s ease;
+    vertical-align: top;
+    max-width: 340px;
+  }
+
+  .program-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .program-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .program-card p {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(240, 236, 226, 0.65);
+  }
+
+  .pc-1 { border-color: var(--red); transform: rotate(-1deg); }
+  .pc-1 h3 { color: var(--red); }
+  .pc-2 { border-color: var(--green); transform: rotate(1.5deg); }
+  .pc-2 h3 { color: var(--green); }
+  .pc-3 { border-color: var(--cyan); transform: rotate(-0.5deg); }
+  .pc-3 h3 { color: var(--cyan); }
+
+  /* ===== SECTION: THE INVITATION ===== */
+  .invitation-section {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 40px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .invitation-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(212, 168, 67, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .invitation-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .invitation-headline {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(40px, 8vw, 100px);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--gold), #fff, var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .invitation-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: 300;
+    color: rgba(240, 236, 226, 0.6);
+    margin-bottom: 60px;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+
+  .cta-btn {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 20px 48px;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .cta-register {
+    background: var(--red);
+    color: #fff;
+    box-shadow: 0 0 40px rgba(200, 67, 66, 0.3);
+  }
+
+  .cta-register:hover {
+    box-shadow: 0 0 60px rgba(200, 67, 66, 0.6);
+    transform: translateY(-4px) scale(1.03);
+  }
+
+  .cta-sponsor {
+    background: transparent;
+    color: var(--green);
+    border: 2px solid var(--green);
+    box-shadow: 0 0 30px rgba(85, 172, 100, 0.15);
+  }
+
+  .cta-sponsor:hover {
+    background: var(--green);
+    color: #fff;
+    box-shadow: 0 0 60px rgba(85, 172, 100, 0.4);
+    transform: translateY(-4px) scale(1.03);
+  }
+
+  /* Newsletter */
+  .newsletter-form {
+    display: flex;
+    gap: 0;
+    max-width: 480px;
+    margin: 0 auto 48px;
+    border-radius: 60px;
+    overflow: hidden;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 16px 24px;
+    background: transparent;
+    border: none;
+    color: #f0ece2;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    outline: none;
+  }
+
+  .newsletter-form input::placeholder {
+    color: rgba(240, 236, 226, 0.4);
+  }
+
+  .newsletter-form button {
+    padding: 16px 28px;
+    background: var(--gold);
+    border: none;
+    color: var(--black);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .newsletter-form button:hover {
+    background: #e6bb4e;
+  }
+
+  .newsletter-note {
+    font-size: 13px;
+    color: rgba(240, 236, 226, 0.4);
+    margin-top: -36px;
+    margin-bottom: 48px;
+  }
+
+  /* Footer */
+  .gathering-footer {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(240, 236, 226, 0.35);
+    line-height: 1.8;
+  }
+
+  .gathering-footer a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .gathering-footer a:hover { color: #fff; }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(var(--base-rot, 0deg)); }
+    50% { transform: translateY(-15px) rotate(var(--base-rot, 0deg)); }
+  }
+
+  @keyframes float-med {
+    0%, 100% { transform: translateY(0) rotate(var(--base-rot, 0deg)); }
+    50% { transform: translateY(-10px) rotate(var(--base-rot, 0deg)); }
+  }
+
+  @keyframes float-card-1 {
+    0%, 100% { transform: rotate(-2deg) translateY(0); }
+    50% { transform: rotate(-2deg) translateY(-12px); }
+  }
+
+  @keyframes float-card-2 {
+    0%, 100% { transform: rotate(1.5deg) translateY(0); }
+    50% { transform: rotate(1.5deg) translateY(-10px); }
+  }
+
+  @keyframes float-card-3 {
+    0%, 100% { transform: rotate(-1deg) translateY(0); }
+    50% { transform: rotate(-1deg) translateY(-14px); }
+  }
+
+  @keyframes float-card-4 {
+    0%, 100% { transform: rotate(2.5deg) translateY(0); }
+    50% { transform: rotate(2.5deg) translateY(-11px); }
+  }
+
+  @keyframes pulse-subtle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 80px rgba(212, 168, 67, 0.15), 0 0 160px rgba(212, 168, 67, 0.05); }
+    50% { box-shadow: 0 0 100px rgba(212, 168, 67, 0.25), 0 0 200px rgba(212, 168, 67, 0.1); }
+  }
+
+  @keyframes spin-slow {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  @keyframes halo-pulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(var(--halo-color), 0); }
+    50% { box-shadow: 0 0 16px var(--halo-color, rgba(255,255,255,0.2)); }
+  }
+
+  @keyframes bounce-hint {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ===== ACCESSIBILITY: REDUCED MOTION ===== */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .side-nav { right: 12px; gap: 12px; }
+    .floating-socials { left: 12px; bottom: 24px; }
+    .sound-toggle { left: 12px; }
+
+    .info-card {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      bottom: auto !important;
+      transform: rotate(0deg) !important;
+      margin: 16px auto;
+      max-width: 400px;
+      animation: none !important;
+    }
+
+    .cards-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .constellation-canvas {
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 24px;
+      padding: 20px;
+    }
+
+    .constellation-lines { display: none; }
+
+    .speaker-node {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      animation: none !important;
+    }
+
+    .speaker-name {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* Journey responsive */
+    .journey-section::before { left: 24px; }
+    .epoch { flex-direction: column; }
+    .epoch:nth-child(odd) .epoch-content,
+    .epoch:nth-child(even) .epoch-content {
+      text-align: left;
+      padding-left: 40px;
+      padding-right: 0;
+      margin: 0;
+    }
+    .epoch-marker { left: 24px !important; }
+    .hist-ghost { display: none; }
+  }
+
+  @media (max-width: 768px) {
+    .canvas-composition { padding: 40px 20px; }
+
+    .frag-title {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
+      display: inline;
+      transform: none !important;
+      animation: none !important;
+    }
+
+    .canvas-composition {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      min-height: auto;
+      padding-top: 80px;
+      padding-bottom: 40px;
+    }
+
+    .frag-2026 {
+      position: absolute !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+    }
+
+    .frag-theme {
+      width: 100%;
+      position: relative !important;
+      margin-top: 24px;
+    }
+
+    .frag-chicago {
+      transform: none !important;
+    }
+
+    .illustration-badge {
+      position: relative !important;
+      margin: 24px auto;
+    }
+
+    .scroll-hint { position: relative; margin-top: 32px; }
+
+    .side-nav { display: none; }
+
+    .keynote-name { font-size: clamp(36px, 10vw, 80px); }
+
+    .orbit-1, .orbit-2, .orbit-3 { display: none; }
+    .orbit-element { display: none; }
+
+    .mission-block:nth-child(even) {
+      text-align: left;
+    }
+    .mission-block:nth-child(even) .mission-text {
+      margin-left: 0;
+    }
+
+    .program-card {
+      display: block;
+      margin: 12px 0;
+      max-width: 100%;
+      transform: none !important;
+    }
+
+    .cta-btn {
+      padding: 16px 36px;
+      font-size: 15px;
+    }
+
+    .newsletter-form {
+      border-radius: 12px;
+      flex-direction: column;
+    }
+
+    .newsletter-form button {
+      border-radius: 0 0 12px 12px;
+    }
+  }
+
+  /* ===== SKIP LINK ===== */
+  .skip-link {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--gold);
+    color: var(--black);
+    padding: 12px 24px;
+    z-index: 99999;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: top 0.3s;
+  }
+
+  .skip-link:focus {
+    top: 36px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Skip Link -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- Design Banner -->
+<div class="design-banner" role="banner">Design Option E: The Gathering</div>
+
+<!-- Side Navigation -->
+<nav class="side-nav" aria-label="Section navigation">
+  <a href="#canvas" aria-label="Opening"></a>
+  <a href="#cards" aria-label="Details"></a>
+  <a href="#journey" aria-label="The Journey"></a>
+  <a href="#keynote" aria-label="Keynote"></a>
+  <a href="#constellation" aria-label="Speakers"></a>
+  <a href="#mission" aria-label="Mission"></a>
+  <a href="#invitation" aria-label="Register"></a>
+</nav>
+
+<!-- Floating Socials -->
+<div class="floating-socials" aria-label="Social media links">
+  <a href="#" class="social-icon" aria-label="Twitter" role="link">&#120143;</a>
+  <a href="#" class="social-icon" aria-label="YouTube" role="link">&#9654;</a>
+  <a href="#" class="social-icon" aria-label="LinkedIn" role="link">in</a>
+  <a href="#" class="social-icon" aria-label="Instagram" role="link">&#9741;</a>
+</div>
+
+<!-- Sound Toggle Placeholder -->
+<button class="sound-toggle" aria-label="Toggle ambient sound" title="Sound on/off">
+  &#9835;
+</button>
+
+<!-- ===== SECTION 1: THE CANVAS ===== -->
+<section id="canvas" class="canvas-section" aria-label="Juneteenth Conference 2026 hero">
+  <div class="canvas-bg-grain"></div>
+  <div class="canvas-composition" id="main-content">
+    <span class="frag-title frag-j" aria-hidden="true">J</span>
+    <span class="frag-title frag-u" aria-hidden="true">U</span>
+    <span class="frag-title frag-n" aria-hidden="true">N</span>
+    <span class="frag-title frag-e1" aria-hidden="true">E</span>
+    <span class="frag-title frag-t" aria-hidden="true">T</span>
+    <span class="frag-title frag-e2" aria-hidden="true">E</span>
+    <span class="frag-title frag-enth" aria-hidden="true">ENTH</span>
+    <span class="frag-title frag-conf">CONFERENCE</span>
+    <span class="frag-title frag-2026" aria-hidden="true">2026</span>
+    <span class="frag-title frag-chicago">CHICAGO</span>
+    <p class="frag-title frag-theme">"Building Our Own Table"</p>
+
+    <!-- Screen reader accessible title -->
+    <h1 class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">
+      Juneteenth Conference 2026 — Building Our Own Table — June 19-20, Chicago, IL
+    </h1>
+
+    <!-- Historical ghost fragments woven into the collage -->
+    <span class="hist-ghost ghost-1619" aria-hidden="true">1619</span>
+    <span class="hist-ghost ghost-1865" aria-hidden="true">1865</span>
+    <span class="hist-ghost ghost-equal" aria-hidden="true">"Absolutely Equal"</span>
+    <span class="hist-ghost ghost-free" aria-hidden="true">Freedom</span>
+
+    <div class="illustration-badge" aria-label="Conference illustration placeholder">
+      Illustration<br>Badge
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      Explore
+      <span>&darr;</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SECTION 2: FLOATING INFO CARDS ===== -->
+<section id="cards" class="cards-section" aria-label="Conference details">
+
+  <div class="info-card card-date">
+    <div class="card-label">Save the Date</div>
+    <div class="card-value">JUNE<br>19–20</div>
+  </div>
+
+  <div class="info-card card-location">
+    <div class="card-label">Location</div>
+    <div class="card-value">Chicago,<br>Illinois</div>
+  </div>
+
+  <div class="info-card card-theme">
+    <div class="card-value">"Building Our Own Table"</div>
+  </div>
+
+  <a href="#invitation" class="info-card card-register" role="button" aria-label="Register for the conference">
+    <div class="card-value">Register <span class="card-arrow">&rarr;</span></div>
+  </a>
+
+  <a href="#invitation" class="info-card card-sponsor" role="button" aria-label="Become a sponsor">
+    <div class="card-label">Join Us</div>
+    <div class="card-value">Become a Sponsor</div>
+  </a>
+
+</section>
+
+<!-- ===== SECTION 2.5: THE JOURNEY — 400 YEARS ===== -->
+<section id="journey" class="journey-section" aria-label="The 400-year journey to this gathering">
+
+  <!-- Ghost watermarks -->
+  <span class="journey-ghost jg-chains" aria-hidden="true">CHAINS</span>
+  <span class="journey-ghost jg-freedom" aria-hidden="true">FREE</span>
+
+  <div class="journey-title">The Journey to This Table</div>
+
+  <div class="journey-canvas">
+
+    <!-- 1619 — The Beginning -->
+    <div class="epoch epoch-origin">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">1619</div>
+        <div class="epoch-phrase">The first enslaved Africans arrive at Point Comfort, Virginia</div>
+        <p class="epoch-text">
+          20 and odd Negroes. Torn from home, stripped of name and nation.
+          Four hundred years ago, a story of resilience began.
+        </p>
+      </div>
+    </div>
+
+    <!-- 1865 — Juneteenth -->
+    <div class="epoch epoch-emancipation">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">1865</div>
+        <div class="epoch-phrase">"All enslaved people are&hellip; absolutely equal"</div>
+        <p class="epoch-text">
+          June 19th, Galveston, Texas. General Order No. 3.
+          Two and a half years after the Emancipation Proclamation,
+          the last enslaved people in Texas finally learn they are free.
+          The chains break. Juneteenth is born.
+        </p>
+      </div>
+    </div>
+
+    <!-- 1960s — Civil Rights -->
+    <div class="epoch epoch-rights">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">1964</div>
+        <div class="epoch-phrase">We shall not be moved</div>
+        <p class="epoch-text">
+          From sit-ins to the March on Washington, from Selma to the Civil Rights Act.
+          A generation demanded a seat at the table &mdash; and was told to wait.
+          They didn't wait.
+        </p>
+      </div>
+    </div>
+
+    <!-- 2000s — Tech Revolution -->
+    <div class="epoch epoch-tech">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">2000s</div>
+        <div class="epoch-phrase">The digital frontier</div>
+        <p class="epoch-text">
+          Black engineers, founders, and visionaries build the technologies that power the world &mdash;
+          while fighting for representation in the rooms where decisions are made.
+          The seat at the table was never enough.
+        </p>
+      </div>
+    </div>
+
+    <!-- 2020 — We Built Our Own Table -->
+    <div class="epoch epoch-built">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">2020</div>
+        <div class="epoch-phrase">We built our own table.</div>
+        <p class="epoch-text">
+          A pandemic. A reckoning. The world proclaimed Black Lives Matter while conferences
+          still claimed "Black talent is hard to find." We filled a roster of brilliant Black
+          speakers in 16 days. What they said couldn't be done in a year, we did in two weeks.
+          We didn't wait for permission. We built it ourselves.
+        </p>
+      </div>
+    </div>
+
+    <!-- 2026 — The Movement -->
+    <div class="epoch epoch-now">
+      <div class="epoch-marker"></div>
+      <div class="epoch-content">
+        <div class="epoch-year">2026</div>
+        <div class="epoch-phrase">Now we turn this into a movement.</div>
+        <p class="epoch-text">
+          This isn't a comeback. This is an escalation. The table was built in 2020.
+          In 2026, it becomes permanent. Institutional. A movement.
+          No more asking. No more waiting. Building.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SECTION 3: KEYNOTE REVEAL ===== -->
+<section id="keynote" class="keynote-section" aria-label="Keynote speaker">
+
+  <div class="keynote-orbit-ring orbit-1" aria-hidden="true" style="top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="keynote-orbit-ring orbit-2" aria-hidden="true" style="top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="keynote-orbit-ring orbit-3" aria-hidden="true" style="top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+
+  <div class="orbit-element orbit-el-1" aria-hidden="true">&#10022;</div>
+  <div class="orbit-element orbit-el-2" aria-hidden="true">&#10038;</div>
+  <div class="orbit-element orbit-el-3" aria-hidden="true">&#10047;</div>
+  <div class="orbit-element orbit-el-4" aria-hidden="true">&#10023;</div>
+
+  <div class="keynote-center">
+    <div class="keynote-photo" aria-label="Photo placeholder for Madison Butler">
+      Photo<br>Placeholder
+    </div>
+    <div class="keynote-label">Keynote Speaker</div>
+    <h2 class="keynote-name">Madison<br>Butler</h2>
+    <p class="keynote-title">
+      Founder of Blue Haired Unicorn<br>
+      &amp; Black Speakers Collection
+    </p>
+  </div>
+</section>
+
+<!-- ===== SECTION 4: SPEAKER CONSTELLATION ===== -->
+<section id="constellation" class="constellation-section" aria-label="Past speakers">
+
+  <div class="constellation-title">Follow the Drinking Gourd</div>
+  <div class="constellation-subtitle">"The riverbank makes a very good road&hellip; Follow the Drinking Gourd."</div>
+
+  <div class="constellation-canvas">
+
+    <!-- Background stars for night sky feel -->
+    <div class="bg-star" style="top:8%;left:5%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:15%;left:20%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:3%;left:35%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:22%;left:55%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:10%;left:72%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:35%;left:85%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:45%;left:12%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:62%;left:30%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:70%;left:70%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:80%;left:50%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:55%;left:90%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:40%;left:3%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:18%;left:92%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:75%;left:15%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:88%;left:80%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:5%;left:60%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:32%;left:48%;" aria-hidden="true"></div>
+    <div class="bg-star" style="top:90%;left:25%;" aria-hidden="true"></div>
+
+    <!--
+      SVG connection lines — Big Dipper shape
+      Handle: s1(tip, 130,490) → s2(mid, 300,395) → s3(bowl-BL, 500,350)
+      Bowl:   s3(500,350) → s4(BR, 730,380) → s5(TR, 760,210) → s6(TL, 520,190) → s3(500,350)
+      Pointer: s6(520,190) → s5(760,210) extended ~5x to North Star at (1030,50)
+    -->
+    <div class="constellation-lines" aria-hidden="true">
+      <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid meet">
+        <!-- Handle -->
+        <line x1="130" y1="490" x2="300" y2="395" stroke="var(--gold)" />
+        <line x1="300" y1="395" x2="500" y2="350" stroke="var(--gold)" />
+        <!-- Bowl -->
+        <line x1="500" y1="350" x2="730" y2="380" stroke="var(--cyan)" />
+        <line x1="730" y1="380" x2="760" y2="210" stroke="var(--cyan)" />
+        <line x1="760" y1="210" x2="520" y2="190" stroke="var(--green)" />
+        <line x1="520" y1="190" x2="500" y2="350" stroke="var(--green)" />
+        <!-- Pointer line: from the two "pointer stars" (s6→s5) extended to North Star -->
+        <line x1="520" y1="190" x2="760" y2="210" stroke="rgba(255,255,255,0.15)" class="pointer-line" />
+        <line x1="760" y1="210" x2="1030" y2="50" stroke="var(--gold)" class="pointer-line" />
+      </svg>
+    </div>
+
+    <!-- Handle tip — Angie Jones -->
+    <div class="speaker-node s1">
+      <div class="speaker-avatar">AJ</div>
+      <div class="speaker-name">Angie Jones</div>
+    </div>
+
+    <!-- Handle mid — Jerome Hardaway -->
+    <div class="speaker-node s2">
+      <div class="speaker-avatar">JH</div>
+      <div class="speaker-name">Jerome Hardaway</div>
+    </div>
+
+    <!-- Bowl bottom-left — Alaxandria Foreman -->
+    <div class="speaker-node s3">
+      <div class="speaker-avatar">AF</div>
+      <div class="speaker-name">Alaxandria Foreman</div>
+    </div>
+
+    <!-- Bowl bottom-right — Minda Harts -->
+    <div class="speaker-node s4">
+      <div class="speaker-avatar">MH</div>
+      <div class="speaker-name">Minda Harts</div>
+    </div>
+
+    <!-- Bowl top-right (pointer) — Tim Banks -->
+    <div class="speaker-node s5">
+      <div class="speaker-avatar">TB</div>
+      <div class="speaker-name">Tim Banks</div>
+    </div>
+
+    <!-- Bowl top-left (pointer) — Wesley Faulkner -->
+    <div class="speaker-node s6">
+      <div class="speaker-avatar">WF</div>
+      <div class="speaker-name">Wesley Faulkner</div>
+    </div>
+
+    <!-- North Star — where the Drinking Gourd points -->
+    <div class="north-star" aria-label="North Star: Juneteenth Conference 2026, Chicago">
+      <div style="position:relative;display:inline-block;">
+        <div class="north-star-rays" aria-hidden="true"></div>
+        <div class="north-star-glow"></div>
+      </div>
+      <div class="north-star-label">North Star</div>
+      <div class="north-star-year">2026</div>
+      <div class="north-star-dest">The Movement</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SECTION 5: THE MISSION STREAM ===== -->
+<section id="mission" class="mission-section" aria-label="Our mission and programs">
+
+  <div class="mission-bg-stat" aria-hidden="true">20,000+</div>
+
+  <div class="mission-content">
+
+    <div class="mission-block">
+      <div class="mission-pullquote">
+        They said <span class="pullquote-red">"Black talent is hard to find."</span><br>
+        We filled a roster in <span class="pullquote-gold">16 days.</span>
+      </div>
+      <p class="mission-text">
+        <span class="inline-stat">20,000+</span> viewers at our inaugural event. A full speaker lineup
+        assembled in two weeks &mdash; what others claimed couldn't be done in a year.
+        <span class="inline-stat">3</span> events. <span class="inline-stat">79</span> videos.
+        <span class="inline-stat">2,500+</span> newsletter subscribers with a <span class="inline-stat">40%</span> open rate.
+        We didn't wait for permission. We built our own table.
+      </p>
+    </div>
+
+    <div class="mission-block">
+      <div class="mission-pullquote">
+        <span class="pullquote-green">Three pillars.</span><br>One movement.
+      </div>
+      <p class="mission-text">
+        20 curated sessions across engineering, data, security, entrepreneurship, and tech leadership &mdash;
+        plus a dinner cruise party on the water. Two days. One city.
+        No more asking. No more waiting. Building.
+      </p>
+    </div>
+
+    <!-- Programs -->
+    <div style="margin-top: 60px;">
+      <div class="program-card pc-1">
+        <h3>Juneteenth Conference</h3>
+        <p>Annual two-day gathering. 20 curated sessions across engineering, data, security, entrepreneurship, and tech leadership.</p>
+      </div>
+      <div class="program-card pc-2">
+        <h3>Tech Workforce Accelerator</h3>
+        <p>Hands-on project experience, mentorship, and career pipeline support for Black professionals entering or advancing in tech.</p>
+      </div>
+      <div class="program-card pc-3">
+        <h3>Mentorship Program</h3>
+        <p>Pairing aspiring technologists with experienced professionals for upskilling, portfolio building, and career guidance.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== SECTION 6: THE INVITATION ===== -->
+<section id="invitation" class="invitation-section" aria-label="Register and get involved">
+
+  <div class="invitation-bg" aria-hidden="true"></div>
+
+  <div class="invitation-content">
+    <h2 class="invitation-headline">The table was built.<br>Now it's a movement.</h2>
+    <p class="invitation-sub">No more asking. No more waiting. Building.<br>June 19&ndash;20, 2026 &bull; Chicago, IL</p>
+
+    <div class="cta-group">
+      <a href="#" class="cta-btn cta-register" role="button">Register</a>
+      <a href="#" class="cta-btn cta-sponsor" role="button">Become a Sponsor</a>
+    </div>
+
+    <form class="newsletter-form" aria-label="Newsletter signup">
+      <input type="email" placeholder="your@email.com" aria-label="Email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <p class="newsletter-note">Join 2,500+ subscribers. No spam, ever.</p>
+
+    <footer class="gathering-footer">
+      <p>
+        JuneteenthConf, Unl. &mdash; A nonprofit fiscally sponsored by YPOC Harrisburg (501(c)(3))<br>
+        <a href="#">@juneteenthconf</a> &bull;
+        <a href="#">YouTube</a> &bull;
+        <a href="#">LinkedIn</a> &bull;
+        <a href="#">info@juneteenthconf.com</a>
+      </p>
+      <p style="margin-top: 12px;">
+        Artwork by Havana Nguyen &bull; &copy; 2020&ndash;2026 JuneteenthConf
+      </p>
+    </footer>
+  </div>
+</section>
+
+</body>
+</html>
