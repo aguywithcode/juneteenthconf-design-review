@@ -44,9 +44,30 @@
             letter-spacing: 2px; text-transform: uppercase;
         }
 
+        /* ── Revision Nav ── */
+        .revision-nav {
+            position: fixed; top: 28px; left: 0; right: 0; z-index: 999;
+            background: rgba(20, 16, 28, 0.92); backdrop-filter: blur(6px);
+            display: flex; align-items: center; justify-content: center;
+            gap: 4px; padding: 5px 12px;
+            font-family: 'Space Grotesk', sans-serif; font-size: 12px;
+            border-bottom: 1px solid rgba(240, 237, 230, 0.06);
+        }
+        .revision-nav a {
+            color: rgba(240, 237, 230, 0.45); text-decoration: none;
+            padding: 2px 7px; border-radius: 4px;
+            transition: color 0.2s, background 0.2s;
+        }
+        .revision-nav a:hover { color: #f0ede6; background: rgba(240, 237, 230, 0.08); }
+        .revision-nav .rev-current {
+            color: #D4A843; font-weight: 700;
+            background: rgba(212, 168, 67, 0.1);
+        }
+        .revision-nav .rev-sep { color: rgba(240, 237, 230, 0.15); font-size: 10px; }
+
         /* ── Scroll Progress Bar ── */
         .scroll-progress {
-            position: fixed; top: 28px; left: 0; height: 3px; z-index: 999;
+            position: fixed; top: 54px; left: 0; height: 3px; z-index: 998;
             background: linear-gradient(90deg, #231c2d, #c84342 30%, #D4A843 60%, #55ac64);
             width: 0%; transition: width 0.1s linear;
         }
@@ -308,6 +329,25 @@
 
     <!-- Design Sample Banner -->
     <div class="design-banner">Design Option D: Scroll Story</div>
+
+    <!-- Revision Nav -->
+    <nav class="revision-nav">
+        <a href="index.html">&larr; Gallery</a>
+        <span class="rev-sep">|</span>
+        <a href="option_a_same_dna.html">A</a>
+        <a href="option_b_afrofuturist.html">B</a>
+        <a href="#" class="rev-current">D</a>
+        <a href="option_d2_scroll_story_visual.html">D-2</a>
+        <a href="option_d3_scroll_story_legends.html">D-3</a>
+        <a href="option_d4_scroll_story_final.html">D-4</a>
+        <a href="option_e_the_gathering.html">E</a>
+        <a href="option_e2_the_gathering.html">E-2</a>
+        <a href="option_e3_the_gathering.html">E-3</a>
+        <a href="option_f_manifesto.html">F</a>
+        <a href="option_f2_manifesto.html">F-2</a>
+        <a href="option_f3_manifesto.html">F-3</a>
+        <a href="option_g_remix.html">G</a>
+    </nav>
 
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress" id="scrollProgress"></div>

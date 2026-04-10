@@ -132,6 +132,10 @@
             .finalist-card { animation: none; }
             .finalist-card, .revision-card { transition: none; }
         }
+        @media (max-width: 768px) {
+            .finalist-grid { grid-template-columns: 1fr !important; }
+            .revision-grid { grid-template-columns: 1fr !important; }
+        }
     </style>
 </head>
 <body>
@@ -150,7 +154,7 @@
         <section style="margin-bottom: 16px;">
             <h2 class="font-display" style="font-size: 20px; font-weight: 700; letter-spacing: 1px; margin-bottom: 24px; color: #D4A843;">The Finalists</h2>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="finalist-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <a href="option_d4_scroll_story_final.html" class="finalist-card">
                     <div class="finalist-badge">Finalist</div>
                     <div class="finalist-title">D-4: Scroll Story &mdash; Final Cut</div>
@@ -183,7 +187,7 @@
                     D Line &mdash; Scroll Story
                     <span class="lineage-arrow">&rarr;</span> cinematic narrative
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                <div class="revision-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
                     <a href="option_a_same_dna.html" class="revision-card">
                         <div class="revision-letter">Option A</div>
                         <div class="revision-title">Same DNA, Modern Craft</div>
@@ -223,7 +227,7 @@
                     F Line &mdash; The Manifesto
                     <span class="lineage-arrow">&rarr;</span> typography as design
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                <div class="revision-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
                     <a href="option_f_manifesto.html" class="revision-card">
                         <div class="revision-letter">Option F</div>
                         <div class="revision-title">The Manifesto</div>
@@ -248,7 +252,7 @@
                     E Line &mdash; The Gathering
                     <span class="lineage-arrow">&rarr;</span> living collage
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                <div class="revision-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
                     <a href="option_e_the_gathering.html" class="revision-card">
                         <div class="revision-letter">Option E</div>
                         <div class="revision-title">The Gathering</div>
@@ -273,7 +277,7 @@
                     G &mdash; The Remix
                     <span class="lineage-arrow">&rarr;</span> D + F hybrid
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                <div class="revision-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
                     <a href="option_g_remix.html" class="revision-card" style="border-color: rgba(212,168,67,0.25);">
                         <div class="revision-letter" style="color: #D4A843;">Option G &starf;</div>
                         <div class="revision-title">The Remix</div>

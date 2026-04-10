@@ -48,6 +48,24 @@
     text-transform: uppercase;
   }
 
+  .revision-nav {
+    position: fixed; top: 33px; left: 0; right: 0; z-index: 9998;
+    background: rgba(35, 28, 45, 0.85); backdrop-filter: blur(10px);
+    padding: 5px 16px; text-align: center;
+    font-family: 'Inter', sans-serif; font-size: 11px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .revision-nav a {
+    color: rgba(240, 236, 226, 0.4); text-decoration: none;
+    padding: 0 6px; transition: color 0.2s;
+  }
+  .revision-nav a:hover { color: rgba(240, 236, 226, 0.8); }
+  .revision-nav .sep { color: rgba(255,255,255,0.12); padding: 0 2px; }
+  .revision-nav .current {
+    color: #fff; font-weight: 600;
+    padding: 0 6px;
+  }
+
   /* ===== SIDE NAV ===== */
   .side-nav {
     position: fixed;
@@ -1502,6 +1520,22 @@
 
 <!-- Design Banner -->
 <div class="design-banner" role="banner">Design Option E: The Gathering</div>
+<nav class="revision-nav" aria-label="Design revisions">
+  <a href="index.html">&larr; Gallery</a><span class="sep">|</span>
+  <a href="option_a_same_dna.html">A</a><span class="sep">|</span>
+  <a href="option_b_afrofuturist.html">B</a><span class="sep">|</span>
+  <a href="option_d_scroll_story.html">D</a><span class="sep">|</span>
+  <a href="option_d2_scroll_story_visual.html">D-2</a><span class="sep">|</span>
+  <a href="option_d3_scroll_story_legends.html">D-3</a><span class="sep">|</span>
+  <a href="option_d4_scroll_story_final.html">D-4</a><span class="sep">|</span>
+  <span class="current">E</span><span class="sep">|</span>
+  <a href="option_e2_the_gathering.html">E-2</a><span class="sep">|</span>
+  <a href="option_e3_the_gathering.html">E-3</a><span class="sep">|</span>
+  <a href="option_f_manifesto.html">F</a><span class="sep">|</span>
+  <a href="option_f2_manifesto.html">F-2</a><span class="sep">|</span>
+  <a href="option_f3_manifesto.html">F-3</a><span class="sep">|</span>
+  <a href="option_g_remix.html">G</a>
+</nav>
 
 <!-- Side Navigation -->
 <nav class="side-nav" aria-label="Section navigation">
