@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -31,126 +31,260 @@
     </script>
     <style>
         body { font-family: 'Inter', sans-serif; background: #231c2d; color: #f0ede6; min-height: 100vh; }
-        .option-card {
-            background: rgba(45, 36, 56, 0.5);
-            border: 1px solid rgba(240, 237, 230, 0.08);
-            border-radius: 12px; padding: 28px;
+
+        /* ── Finalist Cards ── */
+        .finalist-card {
+            background: rgba(45, 36, 56, 0.6);
+            border: 2px solid rgba(212, 168, 67, 0.4);
+            border-radius: 16px; padding: 36px;
+            text-decoration: none; color: #f0ede6;
+            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            display: block; position: relative; overflow: hidden;
+        }
+        .finalist-card::before {
+            content: ''; position: absolute; inset: -1px;
+            border-radius: 16px; padding: 2px;
+            background: linear-gradient(135deg, rgba(212,168,67,0.5), rgba(200,67,66,0.3), rgba(85,172,100,0.3));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            opacity: 0; transition: opacity 0.4s;
+        }
+        .finalist-card:hover::before { opacity: 1; }
+        .finalist-card:hover {
+            border-color: rgba(212, 168, 67, 0.7);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 60px rgba(212, 168, 67, 0.15), 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .finalist-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #D4A843, #c84342);
+            color: #fff; font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 11px; letter-spacing: 2px;
+            text-transform: uppercase; padding: 4px 12px;
+            border-radius: 100px; margin-bottom: 16px;
+        }
+        .finalist-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 24px; margin-bottom: 10px;
+        }
+        .finalist-desc {
+            font-size: 15px; line-height: 1.7; opacity: 0.6;
+        }
+        .finalist-tag {
+            display: inline-block; margin-top: 16px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: #D4A843; opacity: 0.7;
+        }
+        @keyframes finalistGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(212, 168, 67, 0.08); }
+            50% { box-shadow: 0 0 40px rgba(212, 168, 67, 0.18); }
+        }
+        .finalist-card { animation: finalistGlow 4s ease-in-out infinite; }
+
+        /* ── Revision Cards ── */
+        .revision-card {
+            background: rgba(45, 36, 56, 0.35);
+            border: 1px solid rgba(240, 237, 230, 0.06);
+            border-radius: 10px; padding: 20px;
             text-decoration: none; color: #f0ede6;
             transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
             display: block;
         }
-        .option-card:hover {
-            border-color: rgba(212, 168, 67, 0.35);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        .revision-card:hover {
+            border-color: rgba(240, 237, 230, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
         }
-        .option-letter {
+        .revision-letter {
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700; font-size: 13px;
-            letter-spacing: 3px; text-transform: uppercase;
-            opacity: 0.4; margin-bottom: 12px;
+            font-weight: 700; font-size: 11px;
+            letter-spacing: 2px; text-transform: uppercase;
+            opacity: 0.35; margin-bottom: 8px;
         }
-        .option-title {
+        .revision-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600; font-size: 20px;
-            margin-bottom: 8px;
+            font-weight: 600; font-size: 16px; margin-bottom: 6px;
         }
-        .option-desc {
-            font-size: 14px; line-height: 1.6; opacity: 0.5;
+        .revision-desc {
+            font-size: 13px; line-height: 1.5; opacity: 0.4;
+        }
+
+        /* ── Lineage connector ── */
+        .lineage-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600; font-size: 13px;
+            letter-spacing: 2px; text-transform: uppercase;
+            opacity: 0.25; margin-bottom: 12px; padding-left: 4px;
+        }
+        .lineage-arrow {
+            font-size: 11px; color: rgba(212,168,67,0.3); margin: 0 2px;
+        }
+
+        /* ── Section divider ── */
+        .section-divider {
+            height: 1px; margin: 48px 0;
+            background: linear-gradient(90deg, transparent, rgba(240,237,230,0.1) 20%, rgba(240,237,230,0.1) 80%, transparent);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .finalist-card { animation: none; }
+            .finalist-card, .revision-card { transition: none; }
         }
     </style>
 </head>
 <body>
-    <div style="max-width: 720px; margin: 0 auto; padding: 64px 24px 48px;">
+    <div style="max-width: 900px; margin: 0 auto; padding: 64px 24px 48px;">
 
-        <header style="margin-bottom: 56px;">
+        <!-- Header -->
+        <header style="margin-bottom: 48px;">
             <h1 class="font-display" style="font-size: 28px; font-weight: 700; margin-bottom: 12px;">JuneteenthConf 2026 — Design Review</h1>
-            <p class="font-body" style="font-size: 15px; opacity: 0.5; line-height: 1.6;">Select a design direction to preview. Share your feedback with the board.</p>
+            <p class="font-body" style="font-size: 15px; opacity: 0.5; line-height: 1.6;">Board review gallery. The two finalists are highlighted below &mdash; start there.</p>
         </header>
 
-        <div style="display: grid; gap: 16px; margin-bottom: 56px;">
 
-            <a href="option_a_same_dna.html" class="option-card">
-                <div class="option-letter">Option A</div>
-                <div class="option-title">Same DNA, Modern Craft</div>
-                <div class="option-desc">Refined evolution. Warm, polished, illustration-forward.</div>
-            </a>
+        <!-- ═══════════════════════════════════ -->
+        <!-- THE FINALISTS                       -->
+        <!-- ═══════════════════════════════════ -->
+        <section style="margin-bottom: 16px;">
+            <h2 class="font-display" style="font-size: 20px; font-weight: 700; letter-spacing: 1px; margin-bottom: 24px; color: #D4A843;">The Finalists</h2>
 
-            <a href="option_b_afrofuturist.html" class="option-card">
-                <div class="option-letter">Option B</div>
-                <div class="option-title">Afrofuturist Bold</div>
-                <div class="option-desc">Dark, powerful, geometric. Statement piece.</div>
-            </a>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <a href="option_d4_scroll_story_final.html" class="finalist-card">
+                    <div class="finalist-badge">Finalist</div>
+                    <div class="finalist-title">D-4: Scroll Story &mdash; Final Cut</div>
+                    <div class="finalist-desc">Cinematic scroll narrative through 400 years. Animated chain shatter, canvas particles, historical photos with Ken Burns, inventor legends, memorial portraits, &ldquo;Remember them&rdquo; moment, and a cinematic Madison Butler reveal.</div>
+                    <div class="finalist-tag">Cinematic &bull; Narrative &bull; Visual</div>
+                </a>
 
-            <a href="option_d_scroll_story.html" class="option-card">
-                <div class="option-letter">Option D</div>
-                <div class="option-title">Scroll Story</div>
-                <div class="option-desc">Cinematic narrative. Scroll through 400 years from 1619 to 2026.</div>
-            </a>
+                <a href="option_g_remix.html" class="finalist-card">
+                    <div class="finalist-badge">Finalist</div>
+                    <div class="finalist-title">G: The Remix</div>
+                    <div class="finalist-desc">D-4&rsquo;s cinematic scroll fused with F-3&rsquo;s typographic power. Text bleeds over images, photos emerge through letterforms. Carve effect, chaos&rarr;order, vibrating type, dawn reveal, name wall, accelerating ticker, bleeding edges.</div>
+                    <div class="finalist-tag">Cinematic + Typographic &bull; Hybrid</div>
+                </a>
+            </div>
+        </section>
 
-            <a href="option_d2_scroll_story_visual.html" class="option-card" style="border-color: rgba(212, 168, 67, 0.2);">
-                <div class="option-letter" style="color: #D4A843;">Option D-2</div>
-                <div class="option-title">Scroll Story — Visual Edition</div>
-                <div class="option-desc">Same cinematic narrative with real historical images embedded. Brookes slave ship, segregation-era photos, Emancipation Day, Tuskegee, March on Washington, Chicago skyline, Madison Butler.</div>
-            </a>
 
-            <a href="option_d3_scroll_story_legends.html" class="option-card" style="border-color: rgba(212, 168, 67, 0.3); background: rgba(212, 168, 67, 0.05);">
-                <div class="option-letter" style="color: #D4A843;">Option D-3 &star;</div>
-                <div class="option-title">Scroll Story — Legends Edition</div>
-                <div class="option-desc">D-2 plus a hall of fame: Banneker, Latimer, Carver, Walker, Garrett Morgan, Granville Woods, Katherine Johnson, Mark Dean, Marian Croak, Lisa Gelobter. Portraits flank the narrative as you scroll through history.</div>
-            </a>
+        <div class="section-divider"></div>
 
-            <a href="option_d4_scroll_story_final.html" class="option-card" style="border-color: rgba(212, 168, 67, 0.5); background: rgba(212, 168, 67, 0.08); box-shadow: 0 0 30px rgba(212, 168, 67, 0.1);">
-                <div class="option-letter" style="color: #D4A843;">Option D-4 &starf;</div>
-                <div class="option-title">Scroll Story — Final Cut</div>
-                <div class="option-desc">The cinematic edition. Animated chain shatter with golden flash, canvas particle system, Ken Burns on historical photos, inventor portrait glow pulses, stat explosions, a "Remember them" moment of silence, and a cinematic Madison Butler reveal from darkness. Make you say holy shit.</div>
-            </a>
 
-            <a href="option_e_the_gathering.html" class="option-card">
-                <div class="option-letter">Option E</div>
-                <div class="option-title">The Gathering</div>
-                <div class="option-desc">Living collage. Big Dipper constellation. Art installation.</div>
-            </a>
+        <!-- ═══════════════════════════════════ -->
+        <!-- ALL REVISIONS                       -->
+        <!-- ═══════════════════════════════════ -->
+        <section>
+            <h2 class="font-display" style="font-size: 18px; font-weight: 600; letter-spacing: 1px; margin-bottom: 32px; opacity: 0.5;">All Revisions</h2>
 
-            <a href="option_e2_the_gathering.html" class="option-card" style="border-color: rgba(85, 172, 100, 0.3); background: rgba(85, 172, 100, 0.05);">
-                <div class="option-letter" style="color: #55ac64;">Option E-2 &star;</div>
-                <div class="option-title">The Gathering — Evolved</div>
-                <div class="option-desc">Ambient particles, historical images in the collage, interactive Big Dipper constellation, richer floating cards. The page breathes.</div>
-            </a>
+            <!-- D LINE -->
+            <div style="margin-bottom: 36px;">
+                <div class="lineage-label">
+                    D Line &mdash; Scroll Story
+                    <span class="lineage-arrow">&rarr;</span> cinematic narrative
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                    <a href="option_a_same_dna.html" class="revision-card">
+                        <div class="revision-letter">Option A</div>
+                        <div class="revision-title">Same DNA, Modern Craft</div>
+                        <div class="revision-desc">Refined evolution. Warm, polished, illustration-forward.</div>
+                    </a>
+                    <a href="option_b_afrofuturist.html" class="revision-card">
+                        <div class="revision-letter">Option B</div>
+                        <div class="revision-title">Afrofuturist Bold</div>
+                        <div class="revision-desc">Dark, powerful, geometric. Statement piece.</div>
+                    </a>
+                    <a href="option_d_scroll_story.html" class="revision-card">
+                        <div class="revision-letter">Option D</div>
+                        <div class="revision-title">Scroll Story</div>
+                        <div class="revision-desc">Cinematic narrative. 400 years from 1619 to 2026.</div>
+                    </a>
+                    <a href="option_d2_scroll_story_visual.html" class="revision-card">
+                        <div class="revision-letter">Option D-2</div>
+                        <div class="revision-title">Scroll Story &mdash; Visual</div>
+                        <div class="revision-desc">Real historical images. Brookes slave ship, segregation-era, Emancipation Day.</div>
+                    </a>
+                    <a href="option_d3_scroll_story_legends.html" class="revision-card">
+                        <div class="revision-letter">Option D-3</div>
+                        <div class="revision-title">Scroll Story &mdash; Legends</div>
+                        <div class="revision-desc">D-2 plus inventor hall of fame flanking the timeline.</div>
+                    </a>
+                    <a href="option_d4_scroll_story_final.html" class="revision-card" style="border-color: rgba(212,168,67,0.25);">
+                        <div class="revision-letter" style="color: #D4A843;">Option D-4 &starf;</div>
+                        <div class="revision-title">Scroll Story &mdash; Final Cut</div>
+                        <div class="revision-desc">Chain shatter, particles, Ken Burns, memorial portraits, cinematic Madison.</div>
+                    </a>
+                </div>
+            </div>
 
-            <a href="option_e3_the_gathering.html" class="option-card" style="border-color: rgba(85, 172, 100, 0.5); background: rgba(85, 172, 100, 0.08); box-shadow: 0 0 30px rgba(85, 172, 100, 0.1);">
-                <div class="option-letter" style="color: #55ac64;">Option E-3 &starf;</div>
-                <div class="option-title">The Gathering — Final Form</div>
-                <div class="option-desc">Custom cursor with particle trail. Mouse parallax. Torn-paper historical images. Rotating 120-star starfield. Self-drawing constellation lines. Click ripples. Convergence finale. The art installation is alive.</div>
-            </a>
+            <!-- F LINE -->
+            <div style="margin-bottom: 36px;">
+                <div class="lineage-label">
+                    F Line &mdash; The Manifesto
+                    <span class="lineage-arrow">&rarr;</span> typography as design
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                    <a href="option_f_manifesto.html" class="revision-card">
+                        <div class="revision-letter">Option F</div>
+                        <div class="revision-title">The Manifesto</div>
+                        <div class="revision-desc">Typography IS the design. 400 years from whisper to thunder.</div>
+                    </a>
+                    <a href="option_f2_manifesto.html" class="revision-card">
+                        <div class="revision-letter">Option F-2</div>
+                        <div class="revision-title">Manifesto &mdash; Evolved</div>
+                        <div class="revision-desc">Carve effect, chaos&rarr;order, speaker ticker, dawn reveal.</div>
+                    </a>
+                    <a href="option_f3_manifesto.html" class="revision-card">
+                        <div class="revision-letter">Option F-3</div>
+                        <div class="revision-title">Manifesto &mdash; Final Word</div>
+                        <div class="revision-desc">Vibrating type, scroll velocity glow, name wall, bleeding edges, spoken word.</div>
+                    </a>
+                </div>
+            </div>
 
-            <a href="option_f_manifesto.html" class="option-card">
-                <div class="option-letter">Option F</div>
-                <div class="option-title">The Manifesto</div>
-                <div class="option-desc">Typography IS the design. Spoken word in type. 400 years from whisper to thunder.</div>
-            </a>
+            <!-- E LINE -->
+            <div style="margin-bottom: 36px;">
+                <div class="lineage-label">
+                    E Line &mdash; The Gathering
+                    <span class="lineage-arrow">&rarr;</span> living collage
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                    <a href="option_e_the_gathering.html" class="revision-card">
+                        <div class="revision-letter">Option E</div>
+                        <div class="revision-title">The Gathering</div>
+                        <div class="revision-desc">Big Dipper constellation, mosaic collage, ambient CSS motion.</div>
+                    </a>
+                    <a href="option_e2_the_gathering.html" class="revision-card">
+                        <div class="revision-letter">Option E-2</div>
+                        <div class="revision-title">Gathering &mdash; Evolved</div>
+                        <div class="revision-desc">Ambient particles, interactive constellation, historical collage, richer cards.</div>
+                    </a>
+                    <a href="option_e3_the_gathering.html" class="revision-card">
+                        <div class="revision-letter">Option E-3</div>
+                        <div class="revision-title">Gathering &mdash; Final Form</div>
+                        <div class="revision-desc">Cursor trail, parallax, torn-paper edges, rotating starfield, self-drawing SVG, ripples.</div>
+                    </a>
+                </div>
+            </div>
 
-            <a href="option_f2_manifesto.html" class="option-card" style="border-color: rgba(200, 67, 66, 0.3); background: rgba(200, 67, 66, 0.05);">
-                <div class="option-letter" style="color: #c84342;">Option F-2 &star;</div>
-                <div class="option-title">The Manifesto — Unleashed</div>
-                <div class="option-desc">Type over photography. Scroll-reactive words. Inventor names as texture. "Add your name to the table" participatory wall. Madison as magazine spread.</div>
-            </a>
+            <!-- G (standalone) -->
+            <div style="margin-bottom: 36px;">
+                <div class="lineage-label">
+                    G &mdash; The Remix
+                    <span class="lineage-arrow">&rarr;</span> D + F hybrid
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+                    <a href="option_g_remix.html" class="revision-card" style="border-color: rgba(212,168,67,0.25);">
+                        <div class="revision-letter" style="color: #D4A843;">Option G &starf;</div>
+                        <div class="revision-title">The Remix</div>
+                        <div class="revision-desc">D-4 cinematic + F-3 typographic. Text over images, photos through type.</div>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-            <a href="option_f3_manifesto.html" class="option-card" style="border-color: rgba(200, 67, 66, 0.5); background: rgba(200, 67, 66, 0.08); box-shadow: 0 0 30px rgba(200, 67, 66, 0.1);">
-                <div class="option-letter" style="color: #c84342;">Option F-3 &starf;</div>
-                <div class="option-title">The Manifesto — Final Word</div>
-                <div class="option-desc">Letters carved in real-time. Vibrating 2026 type. Chaos→order assembly. Madison dawn reveal. Scroll-velocity glow. Accelerating speaker ticker. Text bleeding off edges. Names etched in gold. Every limiter removed.</div>
-            </a>
 
-            <a href="option_g_remix.html" class="option-card" style="border: 2px solid rgba(212, 168, 67, 0.6); background: linear-gradient(135deg, rgba(200, 67, 66, 0.08), rgba(212, 168, 67, 0.08)); box-shadow: 0 0 40px rgba(212, 168, 67, 0.15);">
-                <div class="option-letter" style="color: #D4A843; font-size: 14px;">Option G &starf;&starf;</div>
-                <div class="option-title">The Remix</div>
-                <div class="option-desc">D-4's cinematic scroll + F-3's typographic power. Text IS the image. Images bleed through type. Carved letters over the slave ship. "FREE ON PAPER" stamped on Emancipation photos. Chaos→order. Dawn reveal. Participatory wall. The synthesis.</div>
-            </a>
-
-        </div>
-
-        <footer style="border-top: 1px solid rgba(240, 237, 230, 0.08); padding-top: 24px;">
+        <footer style="border-top: 1px solid rgba(240, 237, 230, 0.08); padding-top: 24px; margin-top: 24px;">
             <p class="font-body" style="font-size: 12px; opacity: 0.3; line-height: 1.7;">These are design direction mockups with placeholder content. The final site will include real photography, generated graphics, and video content.</p>
         </footer>
 
